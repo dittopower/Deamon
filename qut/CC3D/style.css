@@ -1,0 +1,366 @@
+@media screen and (max-width: 1300px) and (min-width: 0px) {
+  body {
+    width:1300px;
+  }
+}
+
+html{
+	overflow-y:scroll;
+}
+
+body{
+	margin: 0;
+	font-family: 'Roboto', sans-serif;
+}
+
+textarea{
+	width: 16%;
+	height: 50px;
+}
+
+#header{
+	width: 100%;
+	background: white;
+	font-size: 3em;
+}
+
+	#logo{
+		width: 50px;
+		position: relative;
+		top: 15px;
+		padding: 0 10px 10px 10px;
+	}
+	
+#navbar{
+	text-align:center;
+	width: 100%;
+	border-bottom: 2px solid black;
+	padding-bottom: 5px;
+	font-size: 1.8em;
+	background-color: #7ac943;
+}
+
+	#nav2{
+		width:  1100px;
+		margin: auto;
+		padding: 15px 20px 0 20px;
+		text-align:center;
+		background: #eee;
+	}
+	
+		#test{
+			display: inline;
+			font-size: 14px;
+		}
+		
+		#filter{
+			font-size: 15px;
+			text-align:center;
+			font-size: 0.5em;
+			float:left;
+			width:275px;
+		}
+		
+		#search{
+			float:right;
+			margin-bottom: 0;
+			width:275px;
+			position: relative;
+			top: 10px;
+		}
+		
+			#searchText{
+				width: 200px;
+			}
+		
+		#smaller{
+			width: 550px;
+			margin: auto;
+		}
+		
+		#amount{
+			background: #eee;
+		}
+
+	.inline{
+		display: inline;
+	}
+	
+	#navbar ul{
+		margin: 0 0 0 100px;
+		padding: 15px 0 15px 0;
+		display: inline;
+	}
+	
+	#navbar a, #nav2 a{
+		color: black;
+		text-decoration: none;
+	}
+	
+	#navbar a:hover{
+		color: black;
+		text-decoration: underline;
+	}
+
+	#navbar li{
+		display: inline;
+		list-style-type: none;
+		padding: 10px;
+	}
+	
+
+
+#middleContainer{
+	margin: auto;
+	background: #eee;
+	width: 1100px;
+	padding: 20px;
+	position: relative;
+}
+
+	#fb{
+		width: 100%;
+		text-align:left;
+	}
+
+	#banner{
+		width: 100%;
+		height: 310px;
+		position: relative;
+	}
+	
+		#banner #text{
+			background: #222;
+			width: 100%;
+			text-align:center;
+			font-weight: 900;
+			letter-spacing: 4px;
+			z-index: 9;
+			position: absolute;
+			bottom: 0px;
+			color: white;
+			padding: 10px 0 10px 0;
+			opacity: 0.95;
+			filter: alpha(opacity=95); /* For IE8 and earlier */
+		}
+	
+		#banner a{
+			color:white;
+			text-decoration: none;
+			font-size: 1.5em;
+			font-weight: bold;
+		}
+	
+		#banner img{
+			width: 520px;
+			height:100%;
+		}
+	
+		#banner #main{
+			position: absolute;
+			right: 260px;
+			z-index: 8;
+		}
+		
+		#banner #right{
+			float:right;
+			overflow: hidden;
+		}
+				
+		#banner #left{
+			float:left;
+			overflow: hidden;
+		}
+		
+		.blur{
+			-webkit-filter: blur(10px);
+			filter: blur(10px);
+			// Browser Specific
+			-webkit-filter: blur(10px);
+			-moz-filter: blur(10px);
+			-o-filter: blur(10px);
+			-ms-filter: blur(10px);
+		}
+
+	.gridItem{
+		position: relative;
+		width: 216px;
+		height: 162px;
+		background: rgba(0,0,0,0.2);
+		border: 1px solid black;
+		margin: 1px;
+		float:left;
+		color: white;
+	}
+	
+	.gridItem img{
+		width: 100%;
+		height: 100%;
+	}
+	
+	.text{
+		z-index: 5;
+		text-align:center;
+		width: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background-color:rgba(0,0,0,0.6);
+		color: white;
+		padding: 3px 0 3px 0;
+	}
+	
+	#catcat{
+		width: 600px;
+	}
+	
+	#middleContainer a{
+		-moz-text-decoration-color: black;
+		text-decoration-color: black;
+	}
+	
+	.clear{
+		clear:both;
+	}
+	
+	#tableList{
+		width: 100%;
+		border: 1px solid black;
+		border-collapse: collapse;
+	}
+	
+		#tableList a{
+			color: black;
+		}
+		
+		#tableList th{
+			text-align:left;
+			font-size: 1.2em;
+			padding-bottom: 10px;
+		}
+		
+		#tableList tr:nth-child(odd) {background: #FFF}
+	
+	#newPro{
+		margin: auto;
+		width: 500px;
+	}
+	
+		#newPro input[type="text"], #newPro input[type="number"], #newPro textarea{
+			width: 500px;
+		}
+	
+	#itemImg{
+		width: 400px;
+		float:left;
+		border: 1px solid black;
+		margin-right: 10px;
+	}
+	
+	#desc{
+		width: 600px;
+	}
+	
+	#related{
+		width: 100%;
+	}
+	
+		.third{
+			width: 271px;
+			height: 210px;
+			float:left;
+			position: relative;
+			background: rgba(0,0,0,0.2);
+			margin: 2px;
+		}
+		
+			.third img{
+				width: 100%;
+				height: 100%;
+			}
+	
+#cart{
+	background: #eee;
+	text-align: center;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 300px;
+	z-index: 50;
+	border: 2px solid black;
+}
+
+	#toggle{
+		border: 2px solid black;
+		position: relative;
+		top: -24px;
+		left:-2px;
+		background: #eee;
+		height: 20px;
+		width: 100%;
+		margin: auto;
+		padding: 5px 0 5px 0;
+	}
+	
+	#cart sub{
+		float: right;
+		position: relative;
+		right: 10px;
+	}
+	
+	#cart ul{
+		text-align:left;
+	}
+	
+	#cart a{
+		color: black;
+	}
+	
+	#cartIcon{
+		width: 50px;
+		height: 50px;
+		float:right;
+	}
+
+
+#checkout{
+	width: 100%;
+	border-collapse: collapse;
+}
+
+	#checkout a{
+		color:black;
+	}
+	
+	#checkout td, #checkout th{
+		border: 1px solid black;
+		padding: 5px;
+	}
+	
+	#payBtn{
+		padding: 5px;
+	}
+	
+#footer{
+	border-top: 1px dashed #222;
+	background: #eee;
+	width: 1100px;
+	margin: auto;
+	padding: 20px;
+	margin-bottom: 50px;
+}
+
+		#loginInfo{
+			float: right;
+			font-size: 1em;
+		}
+		
+		#loginInfo a{
+			color: black;
+			text-decoration: none;
+		}
+
+		#loginInfo a:hover{
+			color: black;
+			text-decoration: underline;
+		}
