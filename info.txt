@@ -1,0 +1,26 @@
+Deamon.netau.net
+Damon
+
+ToDo: (dash denote priority)
+ --- Google plus
+ --- Facebook
+ --- Twitter
+ - article framework
+ -- Search functions
+ - Colour scheme
+ - Title/logo
+ -- Texture pack manager
+ - Game Review framework
+ --- html/js/php game
+	-- top down turn based shooterish
+	-- fps
+	-- Text adventure
+	-- fps via picture zoom in
+ 
+ browserBridge	.clientInfo
+				.gpuInfo
+		user timelog
+	image hover
+	/random mouse over info
+	
+http://0.media.collegehumor.cvcdn.com/72/74/41e1f5e330a9a0b6dbae58a71ff9d1e3.gif
