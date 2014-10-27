@@ -6,9 +6,9 @@
 			$user = strtolower($_POST['username']);
 			$pass = $_POST['password'];
 
-			$dbPassword = singleSQL("SELECT password FROM Users WHERE username='$user'", $mysqli);
+			$dbPassword = singleSQL("SELECT password FROM Users WHERE username='$user'");
 			
-			if($dbPassword === md5($pass)){
+			if(hash_equals($dbPassword, md5(crypt($pass,"BattleMage")))){
 				$_SESSION['User'] = $user;
 			} else {
 			$pass = md5($pass);

@@ -1,44 +1,8 @@
 <?php
 	
 	include 'connection_include.php';
-	
-	function singleSQL($sql, $mysqli){
-		$p = mysqli_query($mysqli,$sql);
-		$result = 0;
-		if($p != NULL){
-			$t = mysqli_fetch_array($p,MYSQLI_BOTH);
-			$result = $t[0];
-		}
-		return $result;
-	}//runs an sql statement and returns only a single result
-	
-	function singleRowSQL($sql, $mysqli){
-		$p = mysqli_query($mysqli,$sql);
-		$row = mysqli_fetch_array($p,MYSQLI_BOTH);
-		if($row != NULL){
-			return $row;
-		}
-		else{
-			return 0;
-		}
-	}//runs a command that will give a result as an single row
-	
-	function multiSQL($sql, $mysqli){
-		$p = mysqli_query($mysqli,$sql);
-		if($p != NULL){
-			return $p;
-		}
-		else{
-			return 0;
-		}
-	}//runs a command that will give a result as an array
-	
-	function runSQL($sql, $mysqli){
-		return mysqli_query($mysqli,$sql);	
-	}//run a command that either passes or failes (doesn't have an output)
 
-
-	function single_SQL($sql){
+	function singleSQL($sql){
 		global $mysqli;
 		$p = mysqli_query($mysqli,$sql);
 		$result = 0;
@@ -49,7 +13,7 @@
 		return $result;
 	}//runs an sql statement and returns only a single result
 	
-	function singleRow_SQL($sql){
+	function singleRowSQL($sql){
 		global $mysqli;
 		$p = mysqli_query($mysqli,$sql);
 		$row = mysqli_fetch_array($p,MYSQLI_BOTH);
@@ -61,7 +25,7 @@
 		}
 	}//runs a command that will give a result as an single row
 	
-	function multi_SQL($sql){
+	function multiSQL($sql){
 		global $mysqli;
 		$p = mysqli_query($mysqli,$sql);
 		if($p != NULL){
@@ -72,7 +36,7 @@
 		}
 	}//runs a command that will give a result as an array
 	
-	function run_SQL($sql){
+	function runSQL($sql){
 		global $mysqli;
 		return mysqli_query($mysqli,$sql);	
 	}//run a command that either passes or failes (doesn't have an output)
