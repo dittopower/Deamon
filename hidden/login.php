@@ -8,15 +8,15 @@
 
 			$dbPassword = singleSQL("SELECT password FROM Users WHERE username='$user'");
 			
-			if(hash_equals($dbPassword, md5(crypt($pass,"BattleMage")))){
+			if($dbPassword === encrypt($pass)){
 				$_SESSION['User'] = $user;
 			} else {
-			$pass = md5($pass);
 				echo "Incorrect Login Details.";
 			}
 		}
 	
 	if (isset($_POST['logout'])){
+		unset($_SESSION);
 		$_SESSION = array();
 		session_destroy();
 	}

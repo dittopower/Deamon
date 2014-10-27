@@ -2,6 +2,7 @@
 	
 	include '../page.php';
 	
+//Create User
 	if(isset($_POST['newUser'])||isset($_POST['newFname'])||isset($_POST['newLname'])||isset($_POST['newPass1'])||isset($_POST['newPass2'])||isset($_POST['newEmail'])){
 		$u=0;$p=0;$f=0;$l=0;$e=0;
 		
@@ -16,9 +17,9 @@
 		if(isset($_POST['newPass1'])){
 			if(strlen($_POST['newPass1']) > 6){
 				if(isset($_POST['newPass2'])){
-					$npass = md5($_POST['newPass1']);
-					$npass2 = md5($_POST['newPass2']);
-					if($npass == $npass2){
+					$npass = encrypt($_POST['newPass1']);
+					$npass2 = encrypt($_POST['newPass2']);
+					if($npass === $npass2){
 						$p=1;
 					}
 				}
@@ -56,6 +57,7 @@
 			mysqli_stmt_close($sql);
 		}
 	}else{
+//Wait for user details
 		$u=1;$p=1;$f=1;$l=1;$e=1;
 	}
 	?>

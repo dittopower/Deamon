@@ -41,6 +41,10 @@
 		return mysqli_query($mysqli,$sql);	
 	}//run a command that either passes or failes (doesn't have an output)
 
+	function encrypt($what){
+		 return md5(md5($what."Battle")."Mage");
+	}
+	
 	
 	
 	function pagename(){

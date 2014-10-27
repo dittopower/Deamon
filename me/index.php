@@ -17,14 +17,14 @@
 			}
 	
 			$dbPassword = singleSQL("SELECT password FROM Users WHERE username='$_SESSION[User]'", $mysqli);
-			if($dbPassword === md5($_POST['word1'])){
+			if($dbPassword === encrypt($_POST['word1'])){
 				$wrong = 0;
 			}else{
 				$wrong = 1;
 			}
 			
 			if(!$match && (!$wrong)){
-					$passw = md5($_POST['word2']);
+					$passw = encrypt($_POST['word2']);
 					$sql = "UPDATE `a4561011_core`.`Users` SET `password` = '$passw' WHERE CONVERT(`Users`.`username` USING utf8) = '$_SESSION[User]' LIMIT 1";
 					runSQL($sql, $mysqli);
 					$done = 1;
