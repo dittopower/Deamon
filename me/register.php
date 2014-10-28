@@ -1,10 +1,15 @@
+<?php //Load Template
+	$layers = substr_count($_SERVER["PHP_SELF"],"/");
+	$home = "";
+	for($i = 1;$i < $layers;$i++){
+		$home .= "../";
+	}
+	include $home."page.php";
+?>
 <?php
-	
-	include '../page.php';
-	
 //Create User
 	if(isset($_POST['newUser'])||isset($_POST['newFname'])||isset($_POST['newLname'])||isset($_POST['newPass1'])||isset($_POST['newPass2'])||isset($_POST['newEmail'])){
-		$u=0;$p=0;$f=0;$l=0;$e=0;
+		$u=0;$p=0;$f=0;$l=0;$e=0;$day=0;
 		
 		if(isset($_POST['newUser'])){
 			$nuser = strtolower($_POST['newUser']);
@@ -43,10 +48,14 @@
 				$e=1;
 			}
 		}
-		if($u && $p && $f && $l && $e){
+		if(isset($_POST['newdate'])){
+			$nday = $_POST['newdate'];
+			$day=1;
+		}
+		if($u && $p && $f && $l && $e && $day){
 		
-			$sql= mysqli_prepare($mysqli, "INSERT INTO Users(username, password, first_name, last_name, email) VALUES (?, ?, ?, ?, ?)");
-			mysqli_stmt_bind_param($sql,"sssss",$nuser,$npass,$nfname,$nlname,$nemail);
+			$sql= mysqli_prepare($mysqli, "INSERT INTO Users(username, password, first_name, last_name, email, bday) VALUES (?, ?, ?, ?, ?, ?)");
+			mysqli_stmt_bind_param($sql,"ssssss",$nuser,$npass,$nfname,$nlname,$nemail,$nday);
 			
 			if(mysqli_stmt_execute($sql)){
 				$_SESSION['User'] = $nuser;
@@ -58,7 +67,7 @@
 		}
 	}else{
 //Wait for user details
-		$u=1;$p=1;$f=1;$l=1;$e=1;
+		$u=1;$p=1;$f=1;$l=1;$e=1;$day=1;
 	}
 	?>
 		<form id='regForm' method='POST'>
@@ -87,6 +96,11 @@
 					<tr>
 						<td><label>Email: </label></td>
 						<td><input type='email' name='newEmail' <?php echo "value='$nemail'";?>></td>
+					</tr>
+					
+					<tr>
+						<td><label>Birthday: </label></td>
+						<td><input type='date' name='newdate' <?php echo "value='$nday'";?> placeholder="YYYY-MM-DD"></td>
 					</tr>
 				</table>
 				<hr class="spacer">

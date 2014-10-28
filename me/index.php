@@ -16,7 +16,7 @@
 				$match = 1;
 			}
 	
-			$dbPassword = singleSQL("SELECT password FROM Users WHERE username='$_SESSION[User]'", $mysqli);
+			$dbPassword = singleSQL("SELECT password FROM Users WHERE username='$_SESSION[User]'");
 			if($dbPassword === encrypt($_POST['word1'])){
 				$wrong = 0;
 			}else{
@@ -26,7 +26,7 @@
 			if(!$match && (!$wrong)){
 					$passw = encrypt($_POST['word2']);
 					$sql = "UPDATE `a4561011_core`.`Users` SET `password` = '$passw' WHERE CONVERT(`Users`.`username` USING utf8) = '$_SESSION[User]' LIMIT 1";
-					runSQL($sql, $mysqli);
+					runSQL($sql);
 					$done = 1;
 			}
 		}
@@ -39,7 +39,7 @@
 		<h2>Details</h2>
 		<?php 
 			$sql = "SELECT * FROM Users where username = '$_SESSION[User]'";
-			$row = singleRowSQL($sql, $mysqli);
+			$row = singleRowSQL($sql);
 			echo "<b> User:</b> $row[username]<br>";
 			echo "<b> Name:</b> $row[first_name] $row[last_name]<br>";
 			echo "<b>Email:</b> $row[email]<br>";

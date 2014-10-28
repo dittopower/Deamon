@@ -39,7 +39,7 @@
 	<nav id='games' class='submenu' hidden>
 		<div>News*</div>
 		<a href='//<?php echo $D; ?>/games'><div>Game Base</div></a>
-		<?php $sql="SELECT game_review FROM user_priv WHERE username='$_SESSION[User]'"; if (singleSQL($sql, $mysqli)){?><a href='//<?php echo $D; ?>/games/reviewer.php'><div>Submit Review</div></a><?php }?>
+		<?php $sql="SELECT game_review FROM user_priv WHERE username='$_SESSION[User]'"; if (singleSQL($sql)){?><a href='//<?php echo $D; ?>/games/reviewer.php'><div>Submit Review</div></a><?php }?>
 		<div>Text Adventure*</div>
 		<div>*Search*</div>
 	</nav>
@@ -48,7 +48,7 @@
 <!-- Code Navigation -->
 	<nav id='code' class='submenu' hidden>
 		<div>News*</div>
-		<?php $sql="SELECT code_edit FROM user_priv WHERE username='$_SESSION[User]'"; if (singleSQL($sql, $mysqli)){?><a href='//<?php echo $D; ?>/Editor'><div>Editor</div></a><?php }?>
+		<?php $sql="SELECT code_edit FROM user_priv WHERE username='$_SESSION[User]'"; if (singleSQL($sql)){?><a href='//<?php echo $D; ?>/Editor'><div>Editor</div></a><?php }?>
 		<div>Archive*</div>
 		<a href='//<?php echo $D; ?>/random'><div>Random</div></a>
 		<a href='//<?php echo $D; ?>/qut'><div>QUT</div></a>
@@ -60,6 +60,7 @@
 	<nav id='user' class='submenu' <?php if(!isset($_SESSION['User'])){echo ' hidden';}?>>
 	<?php 
 	if (isset($_SESSION['User'])){ ?>
+		<a href='//<?php echo $D; ?>/me/Friends'><div>Friends</div></a>
 		<a href='<?php echo "//$D/me/";?>'><div><?php echo $_SESSION['User']; ?></div></a>
 		<div id='navUser'><form id='userForm' method='POST'>
 			<input name='logout' hidden><input id='logoutbtn' type='submit' value='Logout'>

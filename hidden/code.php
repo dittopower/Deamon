@@ -50,11 +50,28 @@
 	function pagename(){
 		$url = $_SERVER['PHP_SELF'];
 		$Nname = "";
-		if (preg_match("/\/(.*)\//", $url,$result)){
-			$Nname = "@".ucfirst($result[count($result)-1]);
-		if (preg_match("/.*\/(.+)\./", $url,$results)& ($results[count($results)-1] !='index')){
-			$Nname .= " - ".ucfirst($results[count($results)-1]);
+		$temp = explode("/",$url);
+		$c = count($temp);
+		foreach($temp as $key=>$tem){
+			$temp[$key] = ucfirst($tem);
+			if(substr_count($tem, "index.") > 0 || $tem === ""){
+				unset($temp[$key]);
+				$c--;
+			}
 		}
+		if (count($temp) > 0){
+			$Nname = "D@";
+			$c = end($temp);
+			foreach($temp as $key=>$tem){
+				if($c != $tem){
+					if($tem != ""){$Nname .= $tem[0]."/";}
+				}else{
+					preg_match("/([^.?&#]+)/i",$tem,$res);
+					$Nname .= $res[0];
+				}
+			}
+		}else{
+			$Nname = "Deamon";
 		}
 		return $Nname;
 	}

@@ -7,7 +7,8 @@
 <link rel="shortcut icon" type="image/x-icon" href="http://deamon.netau.net/res/site.ico">
 <link rel="icon" type="image/png" href="http://deamon.netau.net/res/site.ico">
 <link href="http://deamon.netau.net/this.css" rel="stylesheet" type="text/css"/>
-<title>Deamon<?php echo pagename(); ?></title>
+<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+<title><?php echo pagename(); ?></title>
 <?php include_once("hidden/udata.php"); ?>
 </head>
 
