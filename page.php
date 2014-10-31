@@ -15,3 +15,4 @@
 <body>
 <?php include 'hidden/titlebar.php'; ?>
 <?php include 'hidden/navbar.php'; ?>
+<span id=refresh></span>

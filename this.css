@@ -10,6 +10,7 @@
 		background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,1) 10%,rgba(255,26,0,1) 15%,rgba(0,0,0,1) 23%,rgba(0,0,0,1) 32%,rgba(155,0,0,1) 40%,rgba(0,0,0,1) 68%,rgba(0,0,0,1) 82%); /* IE10+ */
 		background: radial-gradient(ellipse at center,  rgba(0,0,0,1) 10%,rgba(255,26,0,1) 15%,rgba(0,0,0,1) 23%,rgba(0,0,0,1) 32%,rgba(155,0,0,1) 40%,rgba(0,0,0,1) 68%,rgba(0,0,0,1) 82%); /* W3C */
 		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+		background-size: cover;
 	}
 	
 	body{
@@ -137,7 +138,7 @@
 	}
 	.gamebase th{
 		background: rgba(0,0,0,0.1);
-		}
+	}
 
 	.gb_img{
 		width:25%;
@@ -237,3 +238,33 @@
 		margin-top:2%;
 		margin-bottom:3%;
 	}
+	
+	.FrCur {
+		background:rgba(0,0,0,0.1);
+	}
+	
+	.FrPend{
+		background:rgba(100,255,100,0.15);
+	}
+	.FrBye{
+		background:rgba(0,5,0,0.6);
+	}
+	
+	.FrList{
+		border-collapse:collapse;
+		width:35%;
+		text-align: center;
+	}
+	
+	.FrOpt{
+		border-collapse:collapse;
+		width:25%;
+		text-align: center;
+	}
+	
+	.FrCur td, .FrPend td, .FrBye td {
+		width: 33%;
+	}
+	
+	
+	

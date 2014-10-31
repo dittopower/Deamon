@@ -12,16 +12,32 @@ w.i.p.
 
 <div id=myfriends>
 <h1>My Friends</h1>
-<table>
+<table class=FrList>
 		<?php
 		$sql = "SELECT username, first_name, img, com_id FROM `user_friends` a join Users b on a.user_b = b.username where user_a = '$_SESSION[User]' and block_a = 0 union all SELECT username, first_name, img, com_id FROM `user_friends` a join Users b on a.user_a = b.username where user_b = '$_SESSION[User]' and block_b = 0;";
 		$results = multiSQL($sql);
 		while($rows = mysqli_fetch_array($results,MYSQLI_BOTH)){
-				echo "<tr id='$rows[username]' class=FrList onclick=\"unfriend('$rows[username]','')\"><td><img class='ProIco' width='100px' src='/res/users/$rows[img]'></td><td><h2>$rows[username]</h2></td><td><h3>$rows[first_name]</h3></td></tr>";
+				echo "<tr id='$rows[username]' class=FrCur onclick=\"unfriend('$rows[username]','')\"><td><img class='ProIco' width='100px' src='/res/users/$rows[img]'></td><td><h2>$rows[username]</h2></td><td><h3>$rows[first_name]</h3></td></tr>";
 		}
 		?>
 </table>
 </div>
+
+
+<div id=notyetfriends>
+		<?php
+		$sql = "SELECT username, first_name, img, com_id FROM `user_friends` a join Users b on a.user_b = b.username where user_a = '$_SESSION[User]' and block_a = 1 and block_b = 0 union all SELECT username, first_name, img, com_id FROM `user_friends` a join Users b on a.user_a = b.username where user_b = '$_SESSION[User]' and block_b = 1 and block_a = 0;";
+		$results = multiSQL($sql);
+		if ($results != NULL){
+			echo "<h1>Friend Requests</h1><table class=FrOpt>";
+			while($rows = mysqli_fetch_array($results,MYSQLI_BOTH)){
+					echo "<tr id='$rows[username]' class=FrPend onclick=\"addfriend('$rows[username]','')\"><td><img class='ProIco' width='100px' src='/res/users/$rows[img]'></td><td><h2>$rows[username]</h2></td><td><h3>$rows[first_name]</h3></td></tr>";
+			}
+			echo "</table>";
+		}
+		?>
+</div>
+
 
 <!-- find Friend -->
 <div id=friendfinder>
@@ -47,31 +63,30 @@ function getfriends(){
 function addfriend(who,pre){
 	jQuery.post("./_FF.php", {Name: who, please: "add"},function(data){
 		here = document.getElementById(pre+who);
-		here.onclick = "unfriend('"+who+"','"+pre+"')";
 		here.className = "FrCur";
+		ere = here.outerHTML;
+		here.outerHTML = ere.replace("addfriend","unfriend");
+		});
+}
+
+function unfriend(who,pre){
+	jQuery.post("./_FF.php", {Name: who, please: "un"},function(data){
+		here = document.getElementById(pre+who);
+		here.className = "FrBye";
+		ere = here.outerHTML;
+		here.outerHTML = ere.replace("unfriend","addfriend");
 		});
 }
 </script>
 <form method=POST action='./' onsubmit="getfriends(); return false;" name=FF>
-	<input type=text id=target maxlength=220>
+	<input type=text id=target maxlength=220 placeholder="Nickname, Name">
 	<input type='button' value=Find onclick="getfriends()">
 </form>
-<table id=FrOpt></table>
+<table id=FrOpt class=FrOpt></table>
 </div>
 
 
-<div id=myfriends>
-<h1>Wanting to be Friends</h1>
-<table>
-		<?php
-		$sql = "SELECT username, first_name, img, com_id FROM `user_friends` a join Users b on a.user_b = b.username where user_a = '$_SESSION[User]' and block_a = 1 and block_b = 0 union all SELECT username, first_name, img, com_id FROM `user_friends` a join Users b on a.user_a = b.username where user_b = '$_SESSION[User]' and block_b = 1 and block_a = 0;";
-		$results = multiSQL($sql);
-		while($rows = mysqli_fetch_array($results,MYSQLI_BOTH)){
-				echo "<tr id='$rows[username]' class=FrList onclick=\"addfriend('$rows[username]','')\"><td><img class='ProIco' width='100px' src='/res/users/$rows[img]'></td><td><h2>$rows[username]</h2></td><td><h3>$rows[first_name]</h3></td></tr>";
-		}
-		?>
-</table>
-</div>
+
 
 <?php }?>
 </div>
