@@ -93,7 +93,7 @@
 			
 			<?php 
 				$id = $_GET['id'];
-				$t = multiSQL("SELECT BillID, Operation, MoneyOwed FROM prices p join patientfinancial f on p.OperationID = f.OperationID where patientID = $id",$mysqli);
+				$t = multiSQL("SELECT BillID, Operation, MoneyOwed FROM 201_prices p join 201_patientfinancial f on p.OperationID = f.OperationID where patientID = $id",$mysqli);
 				echo '<p>&nbsp;</p><br><hr><h2>Bills</h2>';
 				if($t->num_rows !== 0){
 					
