@@ -51,7 +51,7 @@
 		<?php $sql="SELECT code_edit FROM user_priv WHERE username='$_SESSION[User]'"; if (singleSQL($sql)){?><a href='//<?php echo $D; ?>/Editor'><div>Editor</div></a><?php }?>
 		<div>Archive*</div>
 		<a href='//<?php echo $D; ?>/random'><div>Random</div></a>
-		<a href='//<?php echo $D; ?>/qut'><div>QUT</div></a>
+		<a href='//<?php echo $D; ?>/uni'><div>University</div></a>
 		<div>*Search*</div>
 	</nav>
 	<!-- End Code -->

@@ -41,9 +41,10 @@
 	if ($a){
 		$str = file_get_contents("http://".$url);
 		preg_match_all('#(http|https)?\/\/([^\s\;\,\"\'\:\<\>]+\.[^\s\;\,\"\'\:\<\>]+)#is', $str, $links);
-		preg_match_all('#["\']\.?(\/[^\s\;\,\"\'\:\<\>]+)["\']#is', $str, $virtuallinks);
+		preg_match_all('#["\'](\.?(\/[^\s\;\,\"\'\:\<\>]+))["\']#is', $str, $virtuallinks);
+
 		unset($links[1]);unset($virtuallinks[0]);
-		unset($links[0]);
+		unset($links[0]);unset($virtuallinks[2]);
 	/* End Loading */
 
 
@@ -87,8 +88,14 @@
 			if (preg_match('/(\.(jpg|jpeg|png|gif|webm|ico|css|js|htc)|\/\/)/i',$virtuallinks[1][$i])){
 				unset($virtuallinks[1][$i]);
 			}else{
-				if($virtuallinks[1][$i] === "."){
-					$link = $url.$virtuallinks[1][$i];
+				if($virtuallinks[1][$i][0] === "."){
+					$virtuallinks[1][$i][0] = "";
+					if(strpos($temp[count($temp)-1],".") !== False){
+						unset($temp[count($temp)-1]);
+						$link = implode("/", $temp).$virtuallinks[1][$i];
+					}else{
+						$link = $url.$virtuallinks[1][$i];
+					}
 				}else{
 					$link = $_SESSION['core'].$virtuallinks[1][$i];
 				}

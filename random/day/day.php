@@ -6,7 +6,7 @@
 	echo $s;
 	
 	$datesql = "SET time_zone = '+10:00';SELECT * FROM `dates` where day = DATE_FORMAT(NOW(),'%d/%c');";
-	$result = multi_SQL($datesql);
+	$result = multiSQL($datesql);
 	
 	if ($result->num_rows != 0){
 		while($rows = mysqli_fetch_array($result,MYSQLI_BOTH)){
