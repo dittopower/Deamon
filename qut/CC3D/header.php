@@ -1,5 +1,12 @@
 <?php session_start(); ?>
-<?php include 'connection_include.php'; ?>
+<?php //use my sites database connection
+  $layers = substr_count($_SERVER["PHP_SELF"],"/");
+  $home = "";
+  for($i = 1;$i < $layers;$i++){
+    $home .= "../";
+  }
+  include $home."/hidden/connection_include.php";
+?>
 <?php include 'functions.php'; ?>
 <?php
 	//the any page login script
@@ -13,7 +20,7 @@
 			$_SESSION['Email'] = $email;
 		} else {
 		
-			$p = mysqli_query($mysqli,"SELECT Password FROM users WHERE Email='" . $email ."'");
+			$p = mysqli_query($mysqli,"SELECT Password FROM 313_users WHERE Email='" . $email ."'");
 			
 			if($p -> num_rows !== 0){
 		
@@ -52,8 +59,8 @@
 	
 	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
 	<?php
-		$mmin = singleSQL("SELECT MIN(Price) FROM designs");
-		$mmax = singleSQL("SELECT MAX(Price) FROM designs");	
+		$mmin = singleSQL("SELECT MIN(Price) FROM 313_designs");
+		$mmax = singleSQL("SELECT MAX(Price) FROM 313_designs");	
 		
 		if(($mmin-10) >=0){
 			$mmin -= 10;

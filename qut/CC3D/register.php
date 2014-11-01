@@ -14,13 +14,13 @@
 		$ship = mysqli_real_escape_string($mysqli,$_POST['shipping']);
 		$contact = mysqli_real_escape_string($mysqli,$_POST['contact']);
 		
-		$exist = singleSQL("SELECT Email FROM users WHERE Email='$email'", $mysqli);
+		$exist = singleSQL("SELECT Email FROM 313_users WHERE Email='$email'", $mysqli);
 		if($email == $warehousee){ $exist=$warehousee;}
 		if($p1 === $p2 && $exist == null){
 				
-			$userid = singleSQL('SELECT UserID FROM users ORDER BY UserID DESC LIMIT 1', $mysqli) + 1;
+			$userid = singleSQL('SELECT UserID FROM 313_users ORDER BY UserID DESC LIMIT 1', $mysqli) + 1;
 			
-			$sql1 = runSQL("INSERT INTO users (UserID, Email, Password, ShippingAddress, FirstName, Surname, ContactNum) VALUES('$userid','$email','$p1','$ship','$firstname','$surname','$contact')", $mysqli);
+			$sql1 = runSQL("INSERT INTO 313_users (UserID, Email, Password, ShippingAddress, FirstName, Surname, ContactNum) VALUES('$userid','$email','$p1','$ship','$firstname','$surname','$contact')", $mysqli);
 
 			if($sql1){
 				echo "Welcome $firstname";

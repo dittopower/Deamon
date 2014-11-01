@@ -17,7 +17,7 @@
 					$match = 1;
 				}
 				
-				$dbPassword = singleSQL("SELECT Password FROM users WHERE Email='$_SESSION[Email]'", $mysqli);
+				$dbPassword = singleSQL("SELECT Password FROM 313_users WHERE Email='$_SESSION[Email]'", $mysqli);
 				if($dbPassword === md5($_POST['word1'])){
 					$wrong = 0;
 				}else{
@@ -26,7 +26,7 @@
 				
 				if(!$match && (!$wrong)){
 						$passw = md5($_POST['word2']);
-						$sql = "UPDATE users SET `password` = '$passw' WHERE Email = '$_SESSION[Email]' LIMIT 1";
+						$sql = "UPDATE 313_users SET `password` = '$passw' WHERE Email = '$_SESSION[Email]' LIMIT 1";
 						runSQL($sql);
 						$done = 1;
 				}
@@ -37,7 +37,7 @@
 			$phony = mysqli_real_escape_string($mysqli,$_POST['cphone']);
 			$dress = mysqli_real_escape_string($mysqli,$_POST['cadd']);
 			$_SESSION['Email'] = $email;
-			$sql = "UPDATE users SET `ContactNum` = '$phony', `ShippingAddress` = '$dress'WHERE Email = '$_SESSION[Email]' LIMIT 1";
+			$sql = "UPDATE 313_users SET `ContactNum` = '$phony', `ShippingAddress` = '$dress'WHERE Email = '$_SESSION[Email]' LIMIT 1";
 			runSQL($sql);
 			$donee = 1;
 		}
@@ -54,7 +54,7 @@
 	<div id=userinfo>
 		<h2>My Details</h2>
 		<?php 
-			$sql = "SELECT * FROM users where Email = '$_SESSION[Email]'";
+			$sql = "SELECT * FROM 313_users where Email = '$_SESSION[Email]'";
 			$row = singleRowSQL($sql);
 			echo "<form method='POST' action='./account.php'><b> Email: </b>$row[Email]<br>";
 			echo "<b> Name:</b> $row[FirstName] $row[Surname]<br>";
@@ -86,9 +86,9 @@
 	<?php
 	
 		$email = $_SESSION['Email'];
-		$userid = singleSQL("SELECT UserID FROM users WHERE Email='$email'");
+		$userid = singleSQL("SELECT UserID FROM 313_users WHERE Email='$email'");
 		
-		$ayy = multiSQL("SELECT OrderID, OrderCost, ItemsOrdered, DateOrdered, Status FROM orders WHERE CreatedBy=$userid ORDER BY OrderID DESC");
+		$ayy = multiSQL("SELECT OrderID, OrderCost, ItemsOrdered, DateOrdered, Status FROM 313_orders WHERE CreatedBy=$userid ORDER BY OrderID DESC");
 		while($rows = mysqli_fetch_array($ayy,MYSQLI_BOTH)){
 			echo "<tr>";
 			echo "<td>Order #" . $rows['OrderID'] . "</td>";
@@ -99,7 +99,7 @@
 			
 			for($i=0; count($items) > $i; $i++){
 				$id = $items[$i];
-				$itemInfo = singleRowSQL("SELECT Name, Price FROM designs WHERE DesignID=$id");
+				$itemInfo = singleRowSQL("SELECT Name, Price FROM 313_designs WHERE DesignID=$id");
 				echo "<a href='./product.php?item=" . $id . "'>" .$itemInfo['Name'] . "</a> ($" . sprintf('%0.2f',$itemInfo['Price']) . ")<br>";
 			}
 			

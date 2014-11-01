@@ -7,15 +7,15 @@
 
 		if(isset($_GET['item'])){
 			$id=mysqli_real_escape_string($mysqli,$_GET['item']);
-			$row = singleRowSQL("SELECT DesignID, Description, File, Name, Price, Available, Material, Categories, Author FROM designs WHERE DesignID=$id");
+			$row = singleRowSQL("SELECT DesignID, Description, File, Name, Price, Available, Material, Categories, Author FROM 313_designs WHERE DesignID=$id");
 			if($row == 0){
 				echo "<h2>Product not found :(<br><br>#sadboys2001</h2>";
 			}else{
 			
 				if(isset($_SESSION['Email'])){$myemail = $_SESSION['Email'];}else{$myemail='';}
-				$authoremail = singleSQL("SELECT Email FROM users WHERE UserID=(SELECT Author FROM designs WHERE DesignID=$id)");
+				$authoremail = singleSQL("SELECT Email FROM 313_users WHERE UserID=(SELECT Author FROM designs WHERE DesignID=$id)");
 				
-				$materialName = singleSQL("SELECT Name FROM materials WHERE MaterialID=" . $row['Material']);
+				$materialName = singleSQL("SELECT Name FROM 313_materials WHERE MaterialID=" . $row['Material']);
 				
 				if(isset($_GET['edit']) && isset($_SESSION['Email'])){
 					
@@ -28,10 +28,10 @@
 						$shedooooo = runSQL("UPDATE designs SET Name='$t', Price=$p, Material=$m, Description='$d', Categories='$c' WHERE DesignID=$id");
 						if($shedooooo){ echo 'Product updated.'; }
 						else{ echo 'Failed to update.'; }
-						$row = singleRowSQL("SELECT DesignID, Description, File, Name, Price, Available, Material, Categories FROM designs WHERE DesignID=$id");
+						$row = singleRowSQL("SELECT DesignID, Description, File, Name, Price, Available, Material, Categories FROM 313_designs WHERE DesignID=$id");
 					}
 					
-						$materials = multiSQL('SELECT MaterialID, Name, CostPerCubicCM FROM materials');
+						$materials = multiSQL('SELECT MaterialID, Name, CostPerCubicCM FROM 313_materials');
 						
 						if($myemail == $authoremail){
 							echo '
@@ -57,7 +57,7 @@
 				}else{
 					$tags = explode(',', $row["Categories"]);
 					
-					$nameee = singleSQL("SELECT FirstName FROM users WHERE UserID=".$row['Author']);
+					$nameee = singleSQL("SELECT FirstName FROM 313_users WHERE UserID=".$row['Author']);
 					
 					echo '
 					<script>document.title = "CC3D - '.$row["Name"].'";</script>
@@ -77,7 +77,7 @@
 						echo "<a href='./?search=$ytag'>$ytag</a> ";
 					}
 					
-					$relatedSQL="SELECT DesignID, File, Name, Price FROM designs WHERE Categories LIKE ";
+					$relatedSQL="SELECT DesignID, File, Name, Price FROM 313_designs WHERE Categories LIKE ";
 					$relatedSQL .= "'%" . $tags[0] . "%'";
 					
 					for($i = 1; count($tags) > $i; $i++){
@@ -117,10 +117,10 @@
 			}
 		}else if(isset($_GET['user'])){
 		
-			$yo = singleSQL("SELECT FirstName FROM users WHERE UserID=" . $_GET['user']);
+			$yo = singleSQL("SELECT FirstName FROM 313_users WHERE UserID=" . $_GET['user']);
 			echo "<h1>".$yo."'s Items</h1>";
 			
-			$ayy = multiSQL("SELECT DesignID, File, Name, Price, Available FROM designs WHERE Author=".$_GET['user']." ORDER BY DesignID");
+			$ayy = multiSQL("SELECT DesignID, File, Name, Price, Available FROM 313_designs WHERE Author=".$_GET['user']." ORDER BY DesignID");
 			
 			while($rows = mysqli_fetch_array($ayy,MYSQLI_BOTH)){
 				echo '<a href="./product.php?item=' . $rows["DesignID"] . '&'. $rows["Name"].'"><div class="gridItem">';
@@ -134,8 +134,8 @@
 			if(isset($_SESSION['Email']) && isset($_POST['name']) && isset($_POST['material']) && isset($_POST['price']) && isset($_POST['categories'])){
 				
 				$email = $_SESSION['Email'];
-				$userid = singleSQL("SELECT UserID FROM users WHERE Email='$email'");	
-				$designID = singleSQL('SELECT DesignID FROM designs ORDER BY DesignID DESC LIMIT 1') + 1;				
+				$userid = singleSQL("SELECT UserID FROM 313_users WHERE Email='$email'");	
+				$designID = singleSQL('SELECT DesignID FROM 313_designs ORDER BY DesignID DESC LIMIT 1') + 1;				
 				
 				$originalFile = $_FILES["model"]["name"];
 				$tmp = explode('.', $originalFile);
@@ -150,7 +150,7 @@
 				$category = mysqli_real_escape_string($mysqli,$_POST['categories']);
 				$description = mysqli_real_escape_string($mysqli,$_POST['descrip']);
 
-				$sql1 = runSQL("INSERT INTO designs (designID, Description, File, Categories, Name, Price, Available, Author, Material) VALUES($designID,'$description', '$fileName','$category','$name',$price,'Yes',$userid,'$material')");
+				$sql1 = runSQL("INSERT INTO 313_designs (designID, Description, File, Categories, Name, Price, Available, Author, Material) VALUES($designID,'$description', '$fileName','$category','$name',$price,'Yes',$userid,'$material')");
 
 				if($sql1){
 					echo 'Design submitted.';
@@ -172,16 +172,16 @@
 				</tr>
 				<?php
 					$email = $_SESSION['Email'];
-					$userid = singleSQL("SELECT UserID FROM users WHERE Email='$email'");
+					$userid = singleSQL("SELECT UserID FROM 313_users WHERE Email='$email'");
 					
-					$ayy = multiSQL("SELECT DesignID, Name, Price, Available, Material FROM designs WHERE Author=$userid");
+					$ayy = multiSQL("SELECT DesignID, Name, Price, Available, Material FROM 313_designs WHERE Author=$userid");
 					while($rows = mysqli_fetch_array($ayy,MYSQLI_BOTH)){
 						echo "<tr>";
 						echo "<td><a href='./product.php?item=" . $rows['DesignID'] . "'>" . $rows['Name'] . "</a></td>";
 						echo "<td>$" . sprintf('%0.2f',$rows['Price']) . "</td>";
-						$materialll = singleSQL("SELECT Name FROM materials WHERE MaterialID=" . $rows['Material']);
+						$materialll = singleSQL("SELECT Name FROM 313_materials WHERE MaterialID=" . $rows['Material']);
 						echo "<td>" . $materialll . "</td>";
-						$number = singleSQL("SELECT COUNT(*) FROM orders WHERE ItemsOrdered LIKE '%".$rows['DesignID']."%'");
+						$number = singleSQL("SELECT COUNT(*) FROM 313_orders WHERE ItemsOrdered LIKE '%".$rows['DesignID']."%'");
 						echo "<td>$number</td>";
 						echo '<td align="right"><input type="button" value="Edit Product" onclick="window.location=\'./product.php?item='.$rows['DesignID'].'&edit=1\'"></td>';
 						echo "</tr>";
@@ -197,7 +197,7 @@
 					<label>Material to be made out of</label><br>
 					<select name="material">
 					<?php
-						$materials = multiSQL('SELECT MaterialID, Name, CostPerCubicCM FROM materials ORDER BY Name ASC');
+						$materials = multiSQL('SELECT MaterialID, Name, CostPerCubicCM FROM 313_materials ORDER BY Name ASC');
 						while($rows = mysqli_fetch_array($materials,MYSQLI_BOTH)){
 							echo '<option value="' . $rows['MaterialID'] . '">' . $rows['Name'] . ' - $' . sprintf('%0.2f',$rows['CostPerCubicCM']) . '</option>';
 						}

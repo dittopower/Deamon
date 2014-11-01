@@ -17,16 +17,16 @@
 			
 			for($i = 0; $i < count($items); $i++){
 				$id=$items[$i];
-				$ee = singleRowSQL("SELECT Name, Price FROM designs WHERE DesignID=$id");
+				$ee = singleRowSQL("SELECT Name, Price FROM 313_designs WHERE DesignID=$id");
 				$total += $ee[1];
 			}
 			$email = $_SESSION['Email'];
-			$userid = singleSQL("SELECT UserID FROM users WHERE Email='$email'");
-			$orderid = singleSQL('SELECT OrderID FROM orders ORDER BY OrderID DESC LIMIT 1') + 1;
+			$userid = singleSQL("SELECT UserID FROM 313_users WHERE Email='$email'");
+			$orderid = singleSQL('SELECT OrderID FROM 313_orders ORDER BY OrderID DESC LIMIT 1') + 1;
 			
 			$cartspaces = str_replace(',', ' ', $cookie_value);
 			
-			$sql = "INSERT INTO orders (OrderID, CreatedBy, OrderCost, ItemsOrdered, DateOrdered,Status) VALUES($orderid,$userid,$total,'$cartspaces','".date('Y-m-d H:i:s')."','Payment Pending')";
+			$sql = "INSERT INTO 313_orders (OrderID, CreatedBy, OrderCost, ItemsOrdered, DateOrdered,Status) VALUES($orderid,$userid,$total,'$cartspaces','".date('Y-m-d H:i:s')."','Payment Pending')";
 			
 			$ye = runSQL($sql);
 						
@@ -61,7 +61,7 @@
 			for($i = 0; $i < count($items); $i++){
 				echo '<tr>';
 				$id=$items[$i];
-				$ee = singleRowSQL("SELECT Name, Price FROM designs WHERE DesignID=$id");
+				$ee = singleRowSQL("SELECT Name, Price FROM 313_designs WHERE DesignID=$id");
 				echo '<td><a href="./product.php?item='.$items[$i].'">' . $ee[0] . '</td>';
 				echo '<td>1</td>';
 				echo '<td>$' . sprintf('%0.2f',$ee[1]) . '</td>';

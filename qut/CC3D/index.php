@@ -29,10 +29,10 @@
 		if($_GET['search']=="" && round($setmin)==round($mmin) && round($setmax)==round($mmax)){
 			echo '<h2>Catalogue</h2>';	
 		}else{ echo '<h2>Search result for: "' . $search . '"<br>Price range: $'.$setmin.' - $'.$setmax.'</h2>'; }
-		$ayy = multiSQL("SELECT DesignID, File, Name, Price, Available FROM designs WHERE Price > $setmin AND Price < $setmax AND (Name LIKE '%" . $search . "%' OR Categories LIKE '%" . $search . "%')");
+		$ayy = multiSQL("SELECT DesignID, File, Name, Price, Available FROM 313_designs WHERE Price > $setmin AND Price < $setmax AND (Name LIKE '%" . $search . "%' OR Categories LIKE '%" . $search . "%')");
 	}else{ 
 	
-		$ban = singlerowSQL("SELECT File, DesignID, Name, Price FROM designs ORDER BY RAND() LIMIT 1"); ?>
+		$ban = singlerowSQL("SELECT File, DesignID, Name, Price FROM 313_designs ORDER BY RAND() LIMIT 1"); ?>
 				
 		<div id="banner">
 			<img id="main" src="./ModelFiles/<?php echo $ban['File']; ?>">
@@ -43,7 +43,7 @@
 
 	<?php
 		echo '<h1>New Products</h1>';
-		$ayy = multiSQL("SELECT DesignID, File, Name, Price, Available FROM designs ORDER BY DesignID DESC LIMIT 10");
+		$ayy = multiSQL("SELECT DesignID, File, Name, Price, Available FROM 313_designs ORDER BY DesignID DESC LIMIT 10");
 	}
 	
 	while($rows = mysqli_fetch_array($ayy,MYSQLI_BOTH)){

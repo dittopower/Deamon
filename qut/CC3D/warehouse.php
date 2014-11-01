@@ -8,7 +8,7 @@
 			if(isset($_POST['item'])){
 				$itemid = $_POST['item'];
 				
-				$ye = runSQL("UPDATE orders SET Status='Shipped' WHERE OrderID=".$itemid);
+				$ye = runSQL("UPDATE 313_orders SET Status='Shipped' WHERE OrderID=".$itemid);
 				if($ye){ echo "Order #".$itemid." marked as shipped."; }
 				else{ echo "Something went wrong."; }
 			}
@@ -25,7 +25,7 @@
 		<th>Status</th>
 		<th>Ship It</th>
 		<?php
-			$sql = "SELECT OrderID, OrderCost, ItemsOrdered, DateOrdered, Status, users.FirstName AS fn, users.Surname AS sn FROM orders LEFT JOIN users ON orders.CreatedBy=users.UserID";
+			$sql = "SELECT OrderID, OrderCost, ItemsOrdered, DateOrdered, Status, users.FirstName AS fn, users.Surname AS sn FROM 313_orders as orders LEFT JOIN 313_users as users ON orders.CreatedBy=users.UserID";
 			
 			if(isset($_GET['orderid']) && $_GET['orderid'] != ""){ $sql .= " WHERE OrderID=" . $_GET['orderid']; }
 			$ayy = multiSQL($sql);
@@ -40,7 +40,7 @@
 				
 				for($i=0; count($items) > $i; $i++){
 					$id = $items[$i];
-					$itemInfo = singleRowSQL("SELECT Name, Price FROM designs WHERE DesignID=$id");
+					$itemInfo = singleRowSQL("SELECT Name, Price FROM 313_designs WHERE DesignID=$id");
 					echo "<a href='./product.php?item=" . $id . "'>" .$itemInfo['Name'] . "</a> ($" . sprintf('%0.2f',$itemInfo['Price']) . ")<br>";
 				}
 				

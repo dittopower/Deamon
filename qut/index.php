@@ -24,7 +24,7 @@
 				}else{
 					echo "Project .info Not Found.";
 				}
-				echo "</p></span><hr>";
+				echo "</p></span>";
 			}
 		}
 	?>
