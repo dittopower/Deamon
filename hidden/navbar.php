@@ -28,9 +28,9 @@
 	
 <!-- Tech Navigation -->
 	<nav id='tech' class='submenu' hidden>
-		<div>News</div>
-		<div>Tech Base</div>
-		<div>Parts Base</div>
+		<div>News*</div>
+		<div>Tech Base*</div>
+		<div>Parts Base*</div>
 		<div>*Search*</div>
 	</nav>
 	<!-- End Tech -->
@@ -48,8 +48,7 @@
 <!-- Code Navigation -->
 	<nav id='code' class='submenu' hidden>
 		<div>News*</div>
-		<?php $sql="SELECT code_edit FROM user_priv WHERE username='$_SESSION[User]'"; if (singleSQL($sql)){?><a href='//<?php echo $D; ?>/Editor'><div>Editor</div></a><?php }?>
-		<div>Archive*</div>
+		<?php if (canUser("code_edit")){?><a href='//<?php echo $D; ?>/Editor'><div>Editor</div></a><?php }?>
 		<a href='//<?php echo $D; ?>/random'><div>Random</div></a>
 		<a href='//<?php echo $D; ?>/uni'><div>University</div></a>
 		<div>*Search*</div>

@@ -26,7 +26,7 @@
 	}
 	
 	function canUser($what){
-		$cUsql = "Select what from user_priv where username = '$_SESSION[User]'";
+		$cUsql = "Select $what from user_priv where username = '$_SESSION[User]'";
 		return singleSQL($cUsql);
 	}
 

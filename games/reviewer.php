@@ -3,7 +3,7 @@
 	
 //Check permissions
 	$sql="SELECT game_review FROM user_priv WHERE username='$_SESSION[User]'";
-	if (singleSQL($sql, $mysqli)){
+	if (singleSQL($sql)){
 	
 		echo '<div class="page"><hr class="spacer">';
 		echo "<h1>Review Game</h1><hr class='spacer'>";
@@ -11,15 +11,15 @@
 		if (!isset($_GET['game'])){
 		//Add new game
 			if (isset($_POST['new'])&&isset($_POST['date'])){
-			$sql_add_game="INSERT INTO `a4561011_core`.`GameDB` (`id`, `name`, `publisher`, `dev`, `date`) VALUES (LAST_INSERT_ID(), '$_POST[new]', '$_POST[pub]', '$_POST[dev]', '$_POST[date]');";
-			runSQL($sql_add_game, $mysqli);
+			$sql_add_game="INSERT INTO game (name, publisher, dev, date) VALUES ('$_POST[new]', '$_POST[pub]', '$_POST[dev]', '$_POST[date]');";
+			runSQL($sql_add_game);
 			}
 		//Get Un-reviewed game list
-			$sql="SELECT id,name FROM GameDB WHERE id not in (select game_id from GameReviews)";
+			$sql="SELECT id,name FROM game WHERE id not in (select game_id from GameReviews)";
 			
 			echo "<table class='gamebase'><tr><th><h2>Game</h2></th></tr>";
 			
-			$result = multiSQL($sql, $mysqli);
+			$result = multiSQL($sql);
 			while($rows = mysqli_fetch_array($result,MYSQLI_BOTH)){
 				echo "<tr><td><a href='?game=$rows[id]'>$rows[name]</a></td></tr>";
 			}
@@ -42,17 +42,17 @@
 				$mc = $_POST['m_coop'] == 'on';
 				$mm = $_POST['m_multi'] == 'on';
 
-				$sql_add_game = "INSERT INTO `a4561011_core`.`GameReviews` (`game_id`, `user_id`, `graphic_style`, `graphic_rating`, `ai_rating`, `responsive_rating`, `types`, `play_single`, `play_coop`, `play_multi`, `time`)";
+				$sql_add_game = "INSERT INTO game_Reviews (game_id, user_id, graphic_style, graphic_rating, ai_rating, responsive_rating, types, play_single, play_coop, play_multi, time)";
 				$sql_add_game .= "VALUES ('$_GET[game]', '$_SESSION[User]', '$_POST[style]', '$_POST[gr_rate]', '$_POST[ai_rate]', '$_POST[res_rate]', '$_POST[types]', '$ms', '$mc', '$mm', CURDATE());";
 
-				if (!runSQL($sql_add_game, $mysqli)){
+				if (!runSQL($sql_add_game)){
 					echo "Failed";
 				}
 			}
 
 		/* Rating The Chosen Game */
-			$sql = "SELECT * FROM GameDB WHERE id='$_GET[game]'";
-			$row = singleRowSQL($sql, $mysqli);
+			$sql = "SELECT * FROM game WHERE id='$_GET[game]'";
+			$row = singleRowSQL($sql);
 			
 			echo "<table class='gamebase'>";
 			echo "<tr><th><h2>Detail</h2></th><th><h2>Game</h2></th></tr>";
