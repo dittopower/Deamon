@@ -18,6 +18,7 @@ if(isUser()){
 				echo "$rows[username]:$rows[first_name]:$rows[img];";
 			}
 		}else if($_POST["please"] === "add"){
+		//	echo "Add ";
 			$sqla = "Select com_id, block_a from user_friends where user_b = '$name' and user_a = '$_SESSION[User]'";
 			$sqlb = "Select com_id, block_b from user_friends where user_a = '$name' and user_b = '$_SESSION[User]'";
 			
@@ -26,17 +27,22 @@ if(isUser()){
 			$row = singleRowSQL($sqla);
 			$rows = singleRowSQL($sqlb);
 			if($row != 0){
+		//		echo "exists 1 ";
 				if($row['block_a']){
+				//	echo "A";
 					$sqlau = "UPDATE user_friends SET block_a = 0 WHERE com_id = '$row[com_id]' LIMIT 1";
 					runSQL($sqlau);
-				}else if($rows != 0){
-					if($rows['block_b']){
-						$sqlbu = "UPDATE user_friends SET block_b = 0 WHERE com_id = '$rows[com_id]' LIMIT 1";
-						runSQL($sqlbu);
-					}else{
-						runSQL($sqli);
-					}
 				}
+			}else if($rows != 0){
+		//		echo "exists 2 ";
+				if($rows['block_b']){
+				//	echo "B";
+					$sqlbu = "UPDATE user_friends SET block_b = 0 WHERE com_id = '$rows[com_id]' LIMIT 1";
+					runSQL($sqlbu);
+				}
+			}else{
+				//echo "create";
+				runSQL($sqli);
 			}
 		}else if($_POST["please"] === "un"){
 			echo "un";
@@ -46,18 +52,18 @@ if(isUser()){
 			$row = singleRowSQL($sqla);
 			$rows = singleRowSQL($sqlb);
 			if($row != 0){
-			echo "A";
+				echo "A";
 				if(!$row['block_a']){
-			echo "b";
+					echo "b";
 					$sqlau = "UPDATE user_friends SET block_a = 1 WHERE com_id = '$row[com_id]' LIMIT 1";
 					runSQL($sqlau);
-				}else if($rows != 0){
-			echo "C";
-					if(!$rows['block_b']){
-			echo "d";
-						$sqlbu = "UPDATE user_friends SET block_b = 1 WHERE com_id = '$rows[com_id]' LIMIT 1";
-						runSQL($sqlbu);
-					}
+				}
+			}else if($rows != 0){
+				echo "C";
+				if(!$rows['block_b']){
+					echo "d";
+					$sqlbu = "UPDATE user_friends SET block_b = 1 WHERE com_id = '$rows[com_id]' LIMIT 1";
+					runSQL($sqlbu);
 				}
 			}
 		}

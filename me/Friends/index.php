@@ -8,7 +8,6 @@
 	if(isUser()){
 ?>
 <div class='page'>
-w.i.p.
 
 <div id=myfriends>
 <h1>My Friends</h1>
@@ -17,7 +16,7 @@ w.i.p.
 		$sql = "SELECT username, first_name, img, com_id FROM `user_friends` a join Users b on a.user_b = b.username where user_a = '$_SESSION[User]' and block_a = 0 union all SELECT username, first_name, img, com_id FROM `user_friends` a join Users b on a.user_a = b.username where user_b = '$_SESSION[User]' and block_b = 0;";
 		$results = multiSQL($sql);
 		while($rows = mysqli_fetch_array($results,MYSQLI_BOTH)){
-				echo "<tr id='$rows[username]' class=FrCur onclick=\"unfriend('$rows[username]','')\"><td><img class='ProIco' width='100px' src='/res/users/$rows[img]'></td><td><h2>$rows[username]</h2></td><td><h3>$rows[first_name]</h3></td></tr>";
+				echo "<tr id='$rows[username]' class=FrCur onclick=\"unfriend('$rows[username]','')\"><td><img class='ProIco' width='100px' src='/res/users/$rows[img]'></td><td><h2>$rows[username]</h2></td><td><h3>$rows[first_name]</h3></td><td><button onclick=\"unfriend('$rows[username]','')\">+</button></td></tr>";
 		}
 		?>
 </table>
@@ -28,10 +27,10 @@ w.i.p.
 		<?php
 		$sql = "SELECT username, first_name, img, com_id FROM `user_friends` a join Users b on a.user_b = b.username where user_a = '$_SESSION[User]' and block_a = 1 and block_b = 0 union all SELECT username, first_name, img, com_id FROM `user_friends` a join Users b on a.user_a = b.username where user_b = '$_SESSION[User]' and block_b = 1 and block_a = 0;";
 		$results = multiSQL($sql);
-		if ($results != NULL){
+		if (mysqli_num_rows($results) != 0){
 			echo "<h1>Friend Requests</h1><table class=FrOpt>";
 			while($rows = mysqli_fetch_array($results,MYSQLI_BOTH)){
-					echo "<tr id='$rows[username]' class=FrPend onclick=\"addfriend('$rows[username]','')\"><td><img class='ProIco' width='100px' src='/res/users/$rows[img]'></td><td><h2>$rows[username]</h2></td><td><h3>$rows[first_name]</h3></td></tr>";
+					echo "<tr id='rr$rows[username]' class=FrPend onclick=\"addfriend('$rows[username]','rr')\"><td><img class='ProIco' width='100px' src='/res/users/$rows[img]'></td><td><h2>$rows[username]</h2></td><td><h3>$rows[first_name]</h3></td><td><button onclick=\"addfriend('$rows[username]','rr')\">+</button></td></tr>";
 			}
 			echo "</table>";
 		}
@@ -66,6 +65,7 @@ function addfriend(who,pre){
 		here.className = "FrCur";
 		ere = here.outerHTML;
 		here.outerHTML = ere.replace("addfriend","unfriend");
+		console.log(data);
 		});
 }
 
@@ -75,6 +75,7 @@ function unfriend(who,pre){
 		here.className = "FrBye";
 		ere = here.outerHTML;
 		here.outerHTML = ere.replace("unfriend","addfriend");
+		console.log(data);
 		});
 }
 </script>
