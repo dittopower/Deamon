@@ -13,7 +13,12 @@
 		foreach ($projects as $project){
 			if (preg_match("/$fileex|$folder/",$project)&& !(preg_match("/index($fileex)/",$project))){
 				$p = preg_replace("/$fileex/","",$project);
-				echo "<a href='$project' class='obj'>$p</a>";
+				if (file_exists("$p.info")){
+					$text = file_get_contents("$p.info");
+				}else{
+					$text = $p;
+				}
+				echo "<a href='$project' class='obj' title='$text'>$p</a>";
 			}
 		}
 	?>
