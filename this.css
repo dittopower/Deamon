@@ -27,10 +27,11 @@
 	}
 	
 	a{
-		color:red;
+		color:rgb(250,0,0);
 		text-shadow: 3px 2px 1px rgba(0,0,0,1);
 	}
 	a:hover{
+		color:rgb(255,0,0);
 		background:rgba(0,0,0,0.2);
 	}
 	
