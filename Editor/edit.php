@@ -73,7 +73,6 @@
 		$text = loadpage($_GET['url']);
 	}
 ?>
-<div class='page'>
 	<div id="console" class="horizonal_half">
 		<div id="controlbox">
 			<hr class='spacer'>

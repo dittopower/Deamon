@@ -1,7 +1,6 @@
 <?php 
 	include "../page.php";
 ?>
-<div class='page'>
 	<h1>Random Things</h1>
 	<hr>
 	<p>Just a few random pages and other bits of code I made for one reason or another at some point.</p>

@@ -14,5 +14,10 @@
 
 <body>
 <?php include 'hidden/titlebar.php'; ?>
-<?php include 'hidden/navbar.php'; ?>
 <span id=refresh></span>
+<div class='page'>
+<script>
+page = document.getElementsByClassName("page")[0];
+header = document.getElementsByTagName("header")[0];
+page.style.marginTop = (header.clientHeight * 1.1);
+</script>

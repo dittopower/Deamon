@@ -2,8 +2,6 @@
 	
 	include '../page.php';
 	
-	echo "<div class=page>";
-	
 	//Ensure a USER is viewing the user page
 	if (isset($_SESSION['User'])){
 		$cuser = ucfirst($_SESSION['User']);

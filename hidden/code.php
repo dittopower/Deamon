@@ -40,6 +40,12 @@
 		global $mysqli;
 		return mysqli_query($mysqli,$sql);	
 	}//run a command that either passes or failes (doesn't have an output)
+	
+	function escapeSQL($text){
+		global $mysqli;
+		return mysqli_real_escape_string($mysqli,$text);
+	}
+	
 
 	function encrypt($what){
 		 return md5(md5($what."Battle")."Mage");

@@ -53,6 +53,13 @@
 
 
 <body>
+	<div id="space">
+		<div class="stars"></div>
+		<div class="stars"></div>
+		<div class="stars"></div>
+		<div class="stars"></div>
+		<div class="stars"></div>
+	</div>
 	
 	<h2>Behold Mortal You have been thrown to the void by</h2>
 	<h1>Error <?php echo $num; ?> </h1>

@@ -7,7 +7,6 @@
 	include $home."page.php";
 	if(isUser()){
 ?>
-<div class='page'>
 
 <div id=myfriends>
 <h1>My Friends</h1>

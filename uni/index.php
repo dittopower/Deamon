@@ -2,7 +2,6 @@
 	include "../page.php";
 	
 ?>
-<div class='page'>
 	<h1>University Projects</h1>
 	<p>My Web Based University Projects &copy; Damon 2014</p>
 	<hr><hr>
