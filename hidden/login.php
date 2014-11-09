@@ -20,14 +20,5 @@
 		$_SESSION = array();
 		session_destroy();
 	}
-	
-	function isUser(){
-		return isset($_SESSION['User']);
-	}
-	
-	function canUser($what){
-		$cUsql = "Select $what from user_priv where username = '$_SESSION[User]'";
-		return singleSQL($cUsql);
-	}
 
 ?>

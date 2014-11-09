@@ -20,7 +20,7 @@ function normal(e){
 	var evt = e.type;
 
 	document.body.style.background='white';
-	document.p.innerHTML = "Press F to suck dick";
+	document.p.innerHTML = "Press F if you dare";
 	document.getElementById('d').hidden = true;
 	document.getElementById('m').hidden = true;
 }
@@ -58,7 +58,7 @@ function normal(e){
 </style>
 </head>
 <body onkeydown="pressf()" onkeyup='normal()'>
-<form name=p>Press F to suck dick</form>
+<form name=p>Don't Press F </form>
 <img src='http://d3d71ba2asa5oz.cloudfront.net/73000363/images/penis-costume.jpg' id='d' hidden>
 <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSXkjHS2AOGtLP7o6jGt0nnaZMORA4hCsp_AHqbAbYiOwDAP8gGg' id='m' hidden>
 </body>

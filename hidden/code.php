@@ -45,11 +45,46 @@
 		global $mysqli;
 		return mysqli_real_escape_string($mysqli,$text);
 	}
-	
 
+	
+	
+	
+	
+//Current Hash encryption
 	function encrypt($what){
 		 return md5(md5($what."Battle")."Mage");
 	}
+	
+//Check if is logged in
+	function isUser(){
+		return isset($_SESSION['User']);
+	}
+//Check user permissions	
+	function canUser($what){
+		$cUsql = "Select $what from user_priv where username = '$_SESSION[User]'";
+		return singleSQL($cUsql);
+	}
+	
+	function debug($thisshit){
+		if (isset($_GET['debug'])){
+			$thisshit = htmlentities($thisshit,ENT_QUOTES | ENT_HTML5);
+			echo "<br>";
+			var_dump($thisshit);
+			echo "<br>";
+		}
+	}
+	
+	
+	
+	
+	function htmlescape($string){
+		return htmlentities($string,ENT_QUOTES | ENT_HTML5);
+	}
+	
+	function htmlunescape($string){
+		return html_entity_decode($string,ENT_QUOTES | ENT_HTML5);
+	}
+	
 	
 	
 	

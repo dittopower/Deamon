@@ -17,6 +17,7 @@
 				}else{
 					$text = $p;
 				}
+				$text = htmlescape($text);
 				echo "<a href='$project' class='obj' title='$text'>$p</a>";
 			}
 		}
