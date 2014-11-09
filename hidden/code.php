@@ -61,8 +61,11 @@
 	}
 //Check user permissions	
 	function canUser($what){
-		$cUsql = "Select $what from user_priv where username = '$_SESSION[User]'";
-		return singleSQL($cUsql);
+		if(isUser){
+			$cUsql = "Select $what from user_priv where username = '$_SESSION[User]'";
+			return singleSQL($cUsql);
+		}
+		return false;
 	}
 	
 	function debug($thisshit){

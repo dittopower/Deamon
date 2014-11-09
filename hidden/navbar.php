@@ -39,7 +39,7 @@
 	<nav id='games' class='submenu' hidden>
 		<div>News*</div>
 		<a href='//<?php echo $D; ?>/games'><div>Game Base</div></a>
-		<?php $sql="SELECT game_review FROM user_priv WHERE username='$_SESSION[User]'"; if (singleSQL($sql)){?><a href='//<?php echo $D; ?>/games/reviewer.php'><div>Submit Review</div></a><?php }?>
+		<?php if (canUser("game_review")){?><a href='//<?php echo $D; ?>/games/reviewer.php'><div>Submit Review</div></a><?php }?>
 		<div>Text Adventure*</div>
 		<div>*Search*</div>
 	</nav>

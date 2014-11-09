@@ -1,7 +1,6 @@
 <?php
 	include '../page.php';
-	$sql = "Select code_edit from user_priv where username='$_SESSION[User]'";
-	if (singleSQL($sql, $mysqli)){
+	if (canUser("code_edit")){
 ?>
 <?php
 	$url="";

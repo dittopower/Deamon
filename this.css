@@ -198,105 +198,6 @@
 	.spacer{
 		visibility:hidden;
 		}
-
-/* Content Rules */
-	.gamebase{
-		width:95%;
-		text-align:center;
-		margin-left: 2.5%;
-		border-collapse:collapse;
-		border-left: rgba(0,0,0,0.1) solid;
-		border-right: rgba(0,0,0,0.1) solid;
-	}
-	.gamebase tr:nth-child(even){
-		background:rgba(255,255,255,0.05);
-	}
-	.gamebase tr:nth-child(odd){
-		background:rgba(0,0,0,0.05);
-	}
-	.gamebase tr:hover{
-		background:rgba(255,0,0,0.1);
-	}
-	
-	.gamebase .gb_head{
-		background:rgba(0,0,0,0.1);
-	}
-	.gamebase th{
-		background: rgba(0,0,0,0.1);
-	}
-
-	.gb_img{
-		width:25%;
-	}
-	.gb_img img{
-		width:75%;
-	}
-	.gb_name{
-		width:20%;
-	}
-	.gb_head .gb_type{
-		text-align:center;
-	}
-	.gb_type{
-		width:15%;
-		text-align:left;
-	}
-	.gb_modes{
-		width:12%;
-		text-align:left;
-	}
-	.gb_modes ul, .gb_type ul{
-		margin:0;
-		padding-top:16;
-		padding-bottom:16;
-	}
-	.gb_head .gb_modes{
-		text-align:center;
-	}
-	.gb_graphics{
-		width:16%;
-	}
-	.gb_res{
-		width:7%;
-	}
-	.gb_ai{
-		width:5%;
-	}
-	
-	#gb_title{
-		text-align:right;
-	}
-	#gb_page{
-		width:90%;
-		padding-bottom:5%;
-		margin:5%;
-	}
-	.quarter_w{
-		width:35%;
-	}
-	#gb_stats{
-		width:100%;
-		text-align:center;
-		border: rgba(0,0,0,0.2)solid;
-		border-radius: 5%;
-		padding:3%;
-	}
-	#gb_stats td{
-		border: rgba(0,0,0,0.15)solid;
-		vertical-align: top;
-	}
-	#gb_stats td ul{
-		text-align:left;
-	}
-	.quarter3_w{
-		vertical-align: top;
-		width:65%;
-	}
-	#gb_stuff{
-		margin-left:5%;
-		width:100%;
-		padding-right:5%;
-	}
 	
 /* Site */
 	/*img:hover{
@@ -307,6 +208,7 @@
 	}*/
 	.obj{
 		display:inline-block;
+		vertical-align: top;
 		padding:1%;
 		margin:1%;
 		background: rgba(0,0,0,0.6);
