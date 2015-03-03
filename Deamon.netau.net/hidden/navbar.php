@@ -59,7 +59,7 @@
 	<nav id='user' class='submenu' <?php if(!isset($_SESSION['User'])){echo ' hidden';}?>>
 	<?php 
 	if (isset($_SESSION['User'])){ ?>
-		<a href='//<?php echo $D; ?>/me/Friends'><div>Friends</div></a>
+		<a href='//<?php echo $D; ?>/me/Friends'><div>Friends (w.i.p)</div></a>
 		<a href='<?php echo "//$D/me/";?>'><div><?php echo $_SESSION['User']; ?></div></a>
 		<div id='navUser'><form id='userForm' method='POST'>
 			<input name='logout' hidden><input id='logoutbtn' type='submit' value='Logout'>
