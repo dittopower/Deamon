@@ -14,7 +14,7 @@
 			if($data['Length'] === strlen($pass) && $data['PassPhrase'] === encrypt($pass)){
 				$_SESSION['person'] = $data['UserId'];
 			} else {
-				echo "Incorrect Login Details.";
+				$e_login = "Incorrect Login Details.";
 			}
 		}
 

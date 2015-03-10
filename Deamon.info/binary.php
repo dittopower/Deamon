@@ -32,7 +32,7 @@
 	
 	function bensay ($datain)
 		{
-		$pie = base_convert($datain, 10, 30);
+		$pie = base_convert($datain, 30, 10);
 
 		$out = pack("c*", $pie);
 		return $out;
@@ -40,3 +40,4 @@
 	$a = benhear("pie");
 	var_dump($a);echo "\n";
 	var_dump(bensay($a));
+?>

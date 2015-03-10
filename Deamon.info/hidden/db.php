@@ -1,6 +1,6 @@
 <?php
 	
-	include 'connection_include.php';
+	require_once('connection_include.php');
 	
 	function singleSQL($sql){
 		global $mysqli;
