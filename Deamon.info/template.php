@@ -1,10 +1,16 @@
 <?php //Load Template
 	$layers = substr_count($_SERVER["PHP_SELF"],"/");
 	$home = "";
-	for($i = 1;$i < $layers;$i++){
-		$home .= "../";
+	if($layers <= 1){
+		$home = "./";
+	}else{
+		for($i = 1;$i < $layers;$i++){
+			$home .= "../";
+		}
 	}
-	include $home."deamon.php";
+	require $home."hidden/deamon.php";
+	require $home."hidden/start.php";
+	require $home."hidden/nav.php";
 ?>
 <!-- START content -->
 
@@ -12,5 +18,5 @@
 
 <!-- END content -->
 <?php
-	include $home."/hidden/end.php";
+	require $home."hidden/end.php";
 ?>
