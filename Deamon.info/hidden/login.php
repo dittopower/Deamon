@@ -5,13 +5,12 @@
 	
 //Login
 	if(isset($_POST['username']) && isset($_POST['password'])){
-			
 			$user = strtolower($_POST['username']);
 			$pass = $_POST['password'];
 
-			$data = rowSQL("SELECT L.UserId, L.PassPhrase, L.Length FROM D_Login L join D_Accounts A on L.UserId = A.UserId WHERE username='$user'");
+			$data = rowSQL("SELECT UserId, PassPhrase, Length FROM D_Accounts WHERE username='$user'");
 			
-			if($data['Length'] === strlen($pass) && $data['PassPhrase'] === encrypt($pass)){
+			if($data['Length'] === ''.strlen($pass) && $data['PassPhrase'] === encrypt($pass)){
 				$_SESSION['person'] = $data['UserId'];
 			} else {
 				$e_login = "Incorrect Login Details.";

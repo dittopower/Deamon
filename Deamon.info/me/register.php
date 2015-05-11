@@ -1,10 +1,16 @@
 <?php //Load Template
 	$layers = substr_count($_SERVER["PHP_SELF"],"/");
 	$home = "";
-	for($i = 1;$i < $layers;$i++){
-		$home .= "../";
+	if($layers <= 1){
+		$home = "./";
+	}else{
+		for($i = 1;$i < $layers;$i++){
+			$home .= "../";
+		}
 	}
-	include $home."deamon.php";
+	require $home."hidden/deamon.php";
+	require $home."hidden/start.php";
+	require $home."hidden/nav.php";
 ?>
 <!-- START content -->
 
@@ -57,8 +63,8 @@
 		}
 		if($u && $p && $f && $l && $e && $day){
 		
-			$sql= mysqli_prepare($mysqli, "INSERT INTO D_Accounts(Username, FirstName, LastName, DateOfBirth, Email) VALUES (?, ?, ?, ?, ?, ?);INSERT INTO D_Login(PassPhrase, Length) VALUES (?, ?)");
-			mysqli_stmt_bind_param($sql,"ssssss",$nuser,$nfname,$nlname,$nday,$nemail,$npass,$nplength);
+			$sql= mysqli_prepare($mysqli, "INSERT INTO D_Accounts(Username, FirstName, LastName, DateOfBirth, Email, PassPhrase, Length) VALUES (?, ?, ?, ?, ?, ?, ?)");
+			mysqli_stmt_bind_param($sql,"sssssss",$nuser,$nfname,$nlname,$nday,$nemail,$npass,$nplength);
 			
 			if(mysqli_stmt_execute($sql)){
 				echo 'Account successfully created.';
@@ -112,5 +118,5 @@
 
 <!-- END content -->
 <?php
-	include $home."/hidden/end.php";
+	require $home."hidden/end.php";
 ?>

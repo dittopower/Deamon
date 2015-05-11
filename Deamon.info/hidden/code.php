@@ -1,4 +1,5 @@
 <?php
+	$pageurl = $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
 	
 //Current Hash encryption
 	function encrypt($what){
@@ -7,16 +8,23 @@
 	
 //Check if is logged in
 	function isUser(){
-		return isset($_SESSION['User']);
+		return isset($_SESSION['person']);
 	}
 //Check user permissions	
-	function canUser($what){
+	function getUserLevel($what){
 		if(isUser){
-			$cUsql = "Select $what from user_priv where username = '$_SESSION[User]'";
+			$cUsql = "Select level from D_Perms where UserId = '$_SESSION[person]' and what = $what";
 			return singleSQL($cUsql);
+		}
+		return 0;
+	}
+	function canUser($what){
+		if(getUserLevel($what) == 1){
+			return true;
 		}
 		return false;
 	}
+	
 	
 	function debug($thisshit){
 		if (isset($_GET['debug'])){
