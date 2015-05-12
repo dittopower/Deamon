@@ -13,7 +13,7 @@
 //Check user permissions	
 	function getUserLevel($what){
 		if(isUser){
-			$cUsql = "Select level from D_Perms where UserId = '$_SESSION[person]' and what = $what";
+			$cUsql = "Select level from D_Perms where UserId = '$_SESSION[person]' and what = '$what'";
 			return singleSQL($cUsql);
 		}
 		return 0;
