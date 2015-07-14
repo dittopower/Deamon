@@ -1,5 +1,19 @@
+</div>
 <footer>
-<a href="#" onclick="window.open('https://www.sitelock.com/verify.php?site=deamon.info','SiteLock','width=600,height=600,left=160,top=170');" ><img alt="website security" title="SiteLock" src="//shield.sitelock.com/shield/deamon.info"/></a>
+<?php if(!isUser()){?>
+	<form id='userForm' class='_pannel' method='POST' <?php if(isset($e_login)){
+		echo "style='border: red 1px solid;background: rgba(250,0,0,0.5);'";}?>>
+		<input type='text' name='username' placeholder='Username'>
+		<input type='password' name='password' placeholder='Password'>
+		<input type='submit' value='>'>
+<?php }else{ ?>
+	<form id='userForm' class='_pannel' method='POST'>
+		<input name='logout' hidden>
+		<input id='logoutbtn' type='submit' value='Logout'>
+<?php } ?>
+	</form>
+
+
 </footer>
 <?php
 	require_once("connection_include.php");

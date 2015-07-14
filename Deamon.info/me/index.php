@@ -11,18 +11,10 @@
 	require $home."hidden/deamon.php";
 	require $home."hidden/start.php";
 	require $home."hidden/nav.php";
-	require $home."core/feed.php";
-	
 ?>
 <!-- START content -->
 
-<h1>Deamon</h1><h2>Tech, Games & Code</h2><h3>Coming Soon</h3>
-<br>
-yeah, yeah, i'm slowly making it..
-
-<?php 
-	feed('');
-?>
+rowSQL
 
 <!-- END content -->
 <?php

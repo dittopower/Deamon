@@ -1,6 +1,15 @@
 <?php
 	$pageurl = $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
 	
+	function debug($thisshit){
+		if (isset($_GET['debug'])){
+			$thisshit = htmlentities($thisshit,ENT_QUOTES | ENT_HTML5);
+			echo "<br>";
+			var_dump($thisshit);
+			echo "<br>";
+		}
+	}
+	
 //Current Hash encryption
 	function encrypt($what){
 		 return md5(md5($what."Battle")."Mage");
@@ -18,21 +27,40 @@
 		}
 		return 0;
 	}
+	
 	function canUser($what){
-		if(getUserLevel($what) == 1){
+		if(getUserLevel($what) >= 1){
 			return true;
 		}
 		return false;
 	}
 	
-	
-	function debug($thisshit){
-		if (isset($_GET['debug'])){
-			$thisshit = htmlentities($thisshit,ENT_QUOTES | ENT_HTML5);
-			echo "<br>";
-			var_dump($thisshit);
-			echo "<br>";
+	function getUserPerm($what){
+		if(isUser){
+			$cUsql = "Select other from D_Perms where UserId = '$_SESSION[person]' and what = '$what'";
+			return singleSQL($cUsql);
 		}
+		return 0;
+	}
+	
+	function canUserPerm($what, $thing){
+		if(canUser($what)){
+			$sql = "/^".getUserPerm($what)."/";
+			return preg_match($sql, $thing);
+		}else{
+			return 0;
+		}
+	}
+	
+	
+	function get_mydir(){
+		// /home3/deamon/public_html
+		$mydir=getcwd();
+		$temp = explode("/",$mydir);
+		if($temp[count($temp)-2] == 'deamon'){
+			return 'Home';
+		}
+		return ucfirst($temp[count($temp)-1]);
 	}
 	
 	

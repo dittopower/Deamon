@@ -16,12 +16,8 @@
 ?>
 <!-- START content -->
 
-<h1>Deamon</h1><h2>Tech, Games & Code</h2><h3>Coming Soon</h3>
-<br>
-yeah, yeah, i'm slowly making it..
-
 <?php 
-	feed('');
+	feed('tech');
 ?>
 
 <!-- END content -->

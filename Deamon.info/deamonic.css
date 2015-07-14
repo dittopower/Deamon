@@ -1,0 +1,121 @@
+html{
+	background:rgb(0,0,0);
+}
+body{
+	margin:0;
+}
+.headbar{
+	border-style: outset;
+	border-color: grey;
+	border-bottom-width: 5px;
+	border-top-width: 0;
+	border-left-width: 0px;
+	border-right-width: 4px;
+	color:black;
+	display:inline-block;
+	overflow:hidden;
+	height:100px;
+	font-size: 2.5em;
+	border-radius: 0px 0px 50px 0px;
+	background:rgba(255,255,255,0.9);
+	padding-left: 10px;
+	padding-right: 20px;
+}
+.headbar:hover{
+	color:rgba(200,0,0,0.9);
+	/* border-color:white; */
+}
+.linkbar{
+	vertical-align:top;
+	display:inline-block;
+	padding-left: 20px;
+	padding-top: 5px;
+	padding-right: 20px;
+	height:50px;
+	font-size: 2em;
+	color:white;
+	text-align:center;
+	text-decoration:none;
+	border-left: white 5px solid;
+}
+.linkbar:hover{
+	background:rgba(200,0,0,0.8);
+}
+.linktitle{
+	vertical-align: bottom;
+}
+.linksbar{
+	background:rgba(0,0,0,0.5);
+	vertical-align:top;
+	display:inline-block;
+	border-style: outset;
+	border-color: white;
+	border-bottom-width: 5px;
+	border-top-width: 0px;
+	border-left-width: 0px;
+	border-right-width: 5px;
+	border-radius:0px 0px 30px 0px;
+	height:50px;
+	overflow:hidden;
+}
+header{
+	border-top: white solid 5px;
+	position:fixed;
+	z-index:100;
+}
+footer{
+	position:fixed;
+	z-index:100;
+	overflow:hidden;
+	bottom:0;
+	right:0;
+	height:50px;
+	background:rgba(0,0,0,0.5);
+	border-style: inset;
+	border-color: white;
+	border-bottom-width: 0px;
+	border-top-width: 5px;
+	border-left-width: 5px;
+	border-right-width: 0px;
+	border-radius:30px 0px 0px 0px;
+	border-bottom: white solid 5px;
+}
+._pannel{
+	display:inline-block;
+	font-size: 2em;
+	text-decoration:none;
+	color:white;
+	text-align:center;
+	padding-left:20px;
+	padding-right:20px;
+	vertical-align: top;
+	border-right: white 5px solid;
+  height: 100%;
+}
+._pannel:hover{
+	background:rgba(200,0,0,0.8);
+}
+#seclock{
+	height:40px;
+	width:70px;
+	background:url('//shield.sitelock.com/shield/deamon.info');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-origin: content-box;
+	padding-top: 5px;
+}
+
+#page{
+	background:white;
+	position:relative;
+	left:5%;
+	top:130px;
+	width:90%;
+	/* height:100%; */
+	padding:10px;
+	margin-bottom:100px;
+}
+
+section{
+border:solid grey 2px;
+}
