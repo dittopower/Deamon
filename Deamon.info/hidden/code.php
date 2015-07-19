@@ -63,7 +63,12 @@
 		return ucfirst($temp[count($temp)-1]);
 	}
 	
-	
+	function toss ($ecode){
+		header("HTTP/1.0 ".$ecode);
+		$_SERVER['REDIRECT_STATUS'] = $ecode;
+		include "../error.php";
+		die();
+	}
 	
 	
 	function htmlescape($string){
