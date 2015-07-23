@@ -37,7 +37,7 @@ if($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg"
 $count = 0;
 while(file_exists($target_file)) {
 	$target_file = $target_dir . $fileName . "_$count.". $fileType;
-    echo "Sorry, file already exists.";
+	$count++;
 }
 
 // Check file size
@@ -46,15 +46,23 @@ if ($_FILES["fileToUpload"]["size"] > 500000) {
     $uploadOk = 0;
 }
 
+
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
 // if everything is ok, try to upload file
 } else {
-    if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
-    } else {
-        echo "Sorry, there was an error uploading your file.";
-    }
+	$type = preg_match("/\.[^\.]+$/",$target_file, $match);
+	$match = $match[0];
+	if(preg_match("/jpg|jpeg|png|gif|tif|tiff|bmp/", $match)){
+		$image = imagecreatefromstring($_FILES["fileToUpload"]["tmp_name"]);
+		imagepng($image,$target_file,9);
+	}else{
+		if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+			echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded.";
+		} else {
+			echo "Sorry, there was an error uploading your file.";
+		}
+	}
 }
 ?>
