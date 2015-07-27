@@ -45,8 +45,6 @@ if(!isUser()){
 <input id='logoutbtn' type='submit' value='Logout'>";
 }
 echo "</form></footer>";
-require_once("connection_include.php");
-mysqli_close($mysqli);
 echo "</body>";
 }
 register_shutdown_function('myEnd');
