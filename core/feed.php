@@ -1,14 +1,7 @@
 <?php //Load Template
-	$layers = substr_count($_SERVER["PHP_SELF"],"/");
-	$home = "";
-	if($layers <= 1){
-		$home = "./";
-	}else{
-		for($i = 1;$i < $layers;$i++){
-			$home .= "../";
-		}
-	}
-	require $home."hidden/deamon.php";
+$home = $_SERVER['DOCUMENT_ROOT']."/";
+require_once $home."../core/database.php";
+require_once $home."../core/perms.php";
 ?>
 <!-- START content -->
 

@@ -1,7 +1,11 @@
 <?php //Start Page
+$home = $_SERVER['DOCUMENT_ROOT']."/";
+require_once $home."../core/perms.php";
+require_once $home."../core/files.php";
+
 echo "<html>
 <head>
-<title>Deamon.(<?php echo get_mydir();?>)</title>
+<title>Deamon.(".dir_Name().")</title>
 <link href='//deamon.info/deamonic.css' rel='stylesheet' type='text/css'/>";
 
 if (file_exists("./local.css")){
@@ -13,7 +17,7 @@ echo "</head>";
 //Start body
 echo "<body><header>";
 //title
-echo "<a href='//deamon.info' class='headbar'><h1 style='display:inline;'>Deamon.(<?php echo get_mydir();?>)</h1></a>";
+echo "<a href='//deamon.info' class='headbar'><h1 style='display:inline;'>Deamon.(".dir_Name().")</h1></a>";
 //Navbar
 echo "<nav class=linksbar>";
 echo "<a href='/tech' class='linkbar linktitle'>Tech</a>";

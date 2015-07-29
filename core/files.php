@@ -17,4 +17,10 @@ function dir_Name(){//check can be replaced by __DIR__?
 	return ucfirst($temp[count($temp)-1]);
 }
 
+function write($file, $content){
+	$handle = fopen($file, "w");
+	fwrite($handle,$content);
+	fclose($handle);
+}
+
 ?>

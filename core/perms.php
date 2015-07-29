@@ -1,4 +1,7 @@
 <?php //Permissions
+$home = $_SERVER['DOCUMENT_ROOT']."/";
+require_once $home."../core/login.php";
+require_once $home."../core/database.php";
 
 //Check if logged in
 	function isUser(){

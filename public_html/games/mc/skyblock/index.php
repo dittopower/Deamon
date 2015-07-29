@@ -1,16 +1,6 @@
 <?php //Load Template
-	$layers = substr_count($_SERVER["PHP_SELF"],"/");
-	$home = "";
-	if($layers <= 1){
-		$home = "./";
-	}else{
-		for($i = 1;$i < $layers;$i++){
-			$home .= "../";
-		}
-	}
-	require $home."hidden/deamon.php";
-	require $home."hidden/start.php";
-	require $home."hidden/nav.php";
+	$home = $_SERVER['DOCUMENT_ROOT']."/";
+	require_once $home."page.php";
 ?>
 <!-- START content -->
 <h1>Skyblock</h1>
@@ -78,8 +68,3 @@
 <li><input type=checkbox id=a49><label for=a49>Collect 64 bonemeal</label></li>
 <li><input type=checkbox id=a50><label for=a50>Craft 20 cobblestone stairs</label></li>
 </ol>
-
-<!-- END content -->
-<?php
-	require $home."hidden/end.php";
-?>

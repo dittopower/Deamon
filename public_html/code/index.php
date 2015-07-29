@@ -6,5 +6,5 @@
 <!-- START content -->
 
 <?php 
-	feed('tech');
+	feed('coding');
 ?>

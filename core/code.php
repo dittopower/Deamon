@@ -1,9 +1,10 @@
 <?php
 
 ///Debug Functions
-	$debug = isset($_GET['debug']);
+	$debug = isset($_GET['debug']) || isset($_POST['debug']);
 	//Dump something to the page when debugging
 	function debug($thisshit){
+		global $debug;
 		if ($debug){
 			echo "<br>";
 			var_dump($thisshit);
@@ -12,6 +13,7 @@
 	}
 	//Dump something to the page with a description.
 	function Ndebug($name,$thisshit){
+		global $debug;
 		if ($debug){
 			echo "<hr><h1>$name</h1>";
 			var_dump($thisshit);
@@ -20,9 +22,27 @@
 	}
 	//Dump everything
 	function bugs(){
+		global $debug;
 		if($debug){
 			echo "<hr><h1>All: </h1><h2>Variables</h2>";
 			var_dump(get_defined_vars());
+			echo "<h2>System Variables</h2>";
+			echo "<h3>_GET</h3>";
+			foreach($_GET as $key=>$val){
+				echo "$key  =>  $val <br>";
+			}
+			echo "<h3>_POST</h3>";
+			foreach($_POST as $key=>$val){
+				echo "$key  =>  $val <br>";
+			}
+			echo "<h3>_SESSION</h3>";
+			foreach($_SESSION as $key=>$val){
+				echo "$key  =>  $val <br>";
+			}
+			echo "<h3>_SERVER</h3>";
+			foreach($_SERVER as $key=>$val){
+				echo "$key  =>  $val <br>";
+			}
 			echo "<h2>Functions</h2>";
 			var_dump(get_defined_functions()['user']);
 		}
@@ -62,33 +82,4 @@
 	//Page's URL
 	$pageurl = $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'];
 	
-	//Make a page title that fits the site's style.
-	function pagename(){
-		$url = $_SERVER['PHP_SELF'];
-		$Nname = "";
-		$temp = explode("/",$url);
-		$c = count($temp);
-		foreach($temp as $key=>$tem){
-			$temp[$key] = ucfirst($tem);
-			if(substr_count($tem, "index.") > 0 || $tem === ""){
-				unset($temp[$key]);
-				$c--;
-			}
-		}
-		if (count($temp) > 0){
-			$Nname = "D@";
-			$c = end($temp);
-			foreach($temp as $key=>$tem){
-				if($c != $tem){
-					if($tem != ""){$Nname .= $tem[0]."/";}
-				}else{
-					preg_match("/([^.?&#]+)/i",$tem,$res);
-					$Nname .= $res[0];
-				}
-			}
-		}else{
-			$Nname = "Deamon";
-		}
-		return $Nname;
-	}
 ?>
