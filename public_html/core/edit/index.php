@@ -1,16 +1,6 @@
 <?php //Load Template
-	$layers = substr_count($_SERVER["PHP_SELF"],"/");
-	$home = "";
-	if($layers <= 1){
-		$home = "./";
-	}else{
-		for($i = 1;$i < $layers;$i++){
-			$home .= "../";
-		}
-	}
-	require $home."hidden/deamon.php";
-	require $home."hidden/start.php";
-	require $home."hidden/nav.php";
+	$home = $_SERVER['DOCUMENT_ROOT']."/";
+	require_once $home."page.php";
 ?>
 <!-- START content -->
 
@@ -49,8 +39,11 @@
 		//save
 			if($_POST['action']=='Save'&&isset($_POST['content'])){
 				$content = $_POST['content'];
-				$content = stripslashes($content);
+				Ndebug("input1",substr_count($content,"\n"));
 				$content = htmlunescape($content);
+				//$content = preg_replace("/\r\n\r/","\r",$content);
+				$content = preg_replace("/\n/","",$content);
+				Ndebug("input2",substr_count($content,"\n"));
 				
 				$handle = fopen($home.$url, "w");
 				fwrite($handle,$content);
@@ -65,7 +58,7 @@
 				$text = loadpage($home.$url);
 			}
 			
-			$url2 = $home.$url;
+			$url2 = "//deamon.info".$url;
 			
 		}else{
 			$text = "Forbidden Directory";
@@ -104,8 +97,3 @@
 		</div>
 
 	<?php }else echo "<META http-equiv='refresh' content='0;URL=/error.php?e=403'>"; ?>
-
-<!-- END content -->
-<?php
-	require $home."hidden/end.php";
-?>
