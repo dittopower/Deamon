@@ -2,6 +2,7 @@
 	$home = $_SERVER['DOCUMENT_ROOT']."/";
 	require_once $home."../core/database.php";
 	require_once $home."../core/code.php";
+	require_once $home."../core/files.php";
 	session_start();
 	
 //Login
@@ -16,6 +17,7 @@
 				$_SESSION['name'] = strtolower($_POST['username']);
 			} else {
 				$e_login = "Incorrect Login Details.";
+				note('login',"Failed::$user");
 			}
 		}
 

@@ -42,7 +42,7 @@
 		$p = mysqli_query($mysqli,$sql);
 		if($p != NULL){
 			return $p;
-		}
+		}//while($row = mysqli_fetch_array($result,MYSQL_ASSOC)){
 		else{
 			return 0;
 		}

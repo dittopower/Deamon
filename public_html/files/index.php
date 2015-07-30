@@ -4,15 +4,7 @@
 	require_once $home."../core/files.php";
 //Start Content
 if (isUser()){
-?>
-
-<form method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileToUpload" id="fileToUpload">
-    <input type="submit" value="Upload" name="do">
-</form>
-
-<?php
+	$uploadTxt = '';
 if($_POST['do'] == 'Upload'){
 	
 	$target_dir = $home."../media/".$_SESSION['person']."/";
@@ -20,19 +12,9 @@ if($_POST['do'] == 'Upload'){
 	
 	$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 	$uploadOk = 1;
+	$uploadTxt = "Sorry, there was an error uploading your file. ";
 	$fileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 	$fileName = pathinfo($target_file, PATHINFO_FILENAME);
-	// Check if image file is a actual image or fake image
-	if(isset($_POST["submit"])) {
-		$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-		if($check !== false) {
-			echo "File is an image - " . $check["mime"] . ".";
-			$uploadOk = 1;
-		} else {
-			echo "File is not an image.";
-			$uploadOk = 0;
-		}
-	}
 
 	// Check if file already exists
 	$count = 0;
@@ -43,7 +25,8 @@ if($_POST['do'] == 'Upload'){
 
 	// Check file size
 	if ($_FILES["fileToUpload"]["size"] > (5*1024*1024)) {
-		echo "Sorry, your file is too large.";
+		$uploadTxt .= "Sorry, your file is too large. ";
+		note('upload',"Problem::filesize");
 		$uploadOk = 0;
 	}
 
@@ -53,14 +36,13 @@ if($_POST['do'] == 'Upload'){
 			$uploadOk = 1;
 		} else {
 			$uploadOk = 0;
+			note('upload',"Problem::storefile");
+			$uploadTxt .= "There was an Error Storing your file. ";
 		}
 	}
 
-	// Check if $uploadOk is set to 0 by an error
-	if ($uploadOk == 0) {
-		echo "Sorry, your file was not uploaded.";
-	// if everything is ok, try to upload file
-	}else{
+	// Check if $uploadOk isnt set to 1 by an error
+	if ($uploadOk == 1) {
 		$uploadOk = 0;
 		$match = $match[0];
 		switch($fileType){
@@ -102,13 +84,59 @@ if($_POST['do'] == 'Upload'){
 	
 	
 	if ($uploadOk){
-		echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded to <a href='//$_SERVER[HTTP_HOST]/files/view?$id' target='_blank'>$_SERVER[HTTP_HOST]/files?$id</a>.";
+		$uploadTxt = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded to <a href='//$_SERVER[HTTP_HOST]/files/view?$id' target='_blank'>$_SERVER[HTTP_HOST]/files?$id</a>.<hr>";
+		note('upload',"Uploaded::".basename( $_FILES["fileToUpload"]["name"]));
 	}else{
-		echo "Sorry, there was an error uploading your file.";
+		note('upload',"Failed::".basename( $_FILES["fileToUpload"]["name"]));
+	}//note when new css green highlight uploaded file instead?
+	
+//Delete files
+}else if($_POST['do'] == 'Delete' && is_numeric($_POST['file'])){
+	$row = rowSQL("Select * from D_Media where media_id = $_POST[file]");
+	if($row['owner'] == $_SESSION['person']){
+		runSQL("DELETE FROM D_Media WHERE media_id=$_POST[file]");
+		unlink($home.$row['location']);
+		note('upload',"Deleted::media-$_POST[file]::".basename($row['location']));
+		$uploadTxt = "You deleted the file ".basename($row['location']).".";
+	}else{
+		note('upload',"ABUSE::media-$_POST[file]::Attempt to delete someone else's file");
+		$uploadTxt = "No, that's not your file. So you can't delete it.";
 	}
 }
+//Upload form
+	echo "<div class='uploadstatus'>$uploadTxt</div>";
+?>
+<form method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload" name="do">
+</form>
+<hr>
+<?php
+//Display File list
+	$result = multiSQL("Select media_id, location, share from D_Media where owner = $_SESSION[person]");
+	echo "<table><tr><th>File Name:</th><th>Sharing Status:</th><th>Controls:</th></tr>";
+	while($row = mysqli_fetch_array($result,MYSQL_ASSOC)){
+		echo "<tr><td><a href='//$_SERVER[HTTP_HOST]/files/view?$row[media_id]' target='_blank'>".basename($row['location'])."</a></td><td>";
+		switch($row['share']){
+			case 0:
+				echo "Just Me";
+				break;
+			case 1:
+				echo "Specific People";
+				break;
+			case 2:
+				echo "Friends";
+				break;
+			case 3:
+				echo "Public Link";
+				break;
+		}
+		echo "</td><td>tba:<form method='POST'><input type='text' name='file' value='$row[media_id]' hidden><input type='submit' value='Delete' name='do'></form></td></tr>";
+	}
+	echo "</table>";
 
-}else{
+}else{//end page
 	echo "Login Required";
 }
 ?>

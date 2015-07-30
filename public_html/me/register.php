@@ -1,6 +1,7 @@
 <?php //Load Template
 	$home = $_SERVER['DOCUMENT_ROOT']."/";
 	require_once $home."page.php";
+	require_once $home."../core/files.php";
 ?>
 <!-- START content -->
 
@@ -58,8 +59,10 @@
 			
 			if(mysqli_stmt_execute($sql)){
 				echo 'Account successfully created.';
+				note('Registration',"Created::$nuser");
 			} else {
 				echo 'Failed.';
+				note('Registration',"Failed::$nuser");
 			}
 			mysqli_stmt_close($sql);
 		}

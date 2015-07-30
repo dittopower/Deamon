@@ -1,6 +1,7 @@
 <?php //Load Template
 	$home = $_SERVER['DOCUMENT_ROOT']."/";
 	require_once $home."page.php";
+	require_once $home."../core/files.php";
 ?>
 <!-- START content -->
 
@@ -45,12 +46,15 @@
 				$content = preg_replace("/\n/","",$content);
 				Ndebug("input2",substr_count($content,"\n"));
 				
+				note('edit', "Save::$home$url");
+				
 				$handle = fopen($home.$url, "w");
 				fwrite($handle,$content);
 				fclose($handle);
 				//file_put_contents($url,$content);
 			}else if($_POST['action']=='Delete'){
 				unlink($home.$url);
+				note('edit', "Delete::$home$url");
 			}
 		
 		//load

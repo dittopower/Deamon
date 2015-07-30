@@ -2,6 +2,7 @@
 $home = $_SERVER['DOCUMENT_ROOT']."/";
 require_once $home."../core/database.php";
 require_once $home."../core/perms.php";
+require_once $home."../core/files.php";
 ?>
 <!-- START content -->
 
@@ -25,8 +26,10 @@ function feed($topic){
 			
 				if(mysqli_stmt_execute($sql)){
 					echo '<div>Article Posted.</div>';
+				note('newsfeed',"Posted::$_POST[Title]");
 				} else {
 					echo '<div>Posting Failed.</div>';
+				note('newsfeed',"Failed::$_POST[Title]");
 				}
 				mysqli_stmt_close($sql);
 				unset($tags);
@@ -36,8 +39,10 @@ function feed($topic){
 		
 		echo "<form name='newpost' id='feed_post' method='POST'>";
 		echo "<input name='Topic' type='text' value='$topic' hidden>";
-		echo "<input name='Title' type='text' placeholder='Title'>";
-		echo "<input name='Tags' type='text' placeholder='Pie, Swag, Badger, etc.'>";
+		echo "<label for='nft'>Title</label>";
+		echo "<input name='Title' id='nft' type='text' placeholder='Something Awesome...'>";
+		echo "<label for='nfta'>Tags</label>";
+		echo "<input name='Tags' id='nfta' type='text' placeholder='Pie, Swag, Badger, etc.'>";
 		echo "<textarea name='Content' placeholder='Post content...'></textarea>";
 		echo "<input name='feed' type='submit' value='Post'>";
 		echo "</form>";
