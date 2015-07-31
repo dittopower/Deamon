@@ -57,5 +57,31 @@
 		global $mysqli;
 		return mysqli_real_escape_string($mysqli,$text);
 	}
-
+	
+	function dump_table($table){
+		table("Select * from $table");
+	}
+	
+	function table($sql){
+		//Display Table Contents
+		$result = multiSQL($sql);
+		$header = 1;
+		echo "<table><tr><th>File Name:</th><th>Sharing Status:</th><th>Controls:</th></tr>";
+		while($row = mysqli_fetch_array($result,MYSQL_ASSOC)){
+			if($header){
+				echo "<tr>";
+				foreach($row as $key=>$value){
+					echo "<th>$key</th>";
+				}
+				echo "</tr>";
+				$header = 0;
+			}
+			echo "<tr>";
+			foreach($row as $value){
+				echo "<td>$value</td>";
+			}
+			echo "</tr>";
+		}
+		echo "</table>";
+	}
 ?>
