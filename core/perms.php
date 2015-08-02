@@ -43,4 +43,21 @@ require_once $home."../core/database.php";
 			return 0;
 		}
 	}
+	
+	function dir_access($perm, $dir){
+		$pe = getUserLevel($perm);
+		if($pe != 3 && $pe != 1){
+			if($pe > 0){
+				$base_dir = getUserPerm($perm);
+				if($base_dir == ''){
+					$base_dir = "this_guy_doesn't_have_a_base";
+				}
+				$pattern = "/^(".preg_replace("/\//","\\/",$base_dir)."|\.\.\/media\/$_SESSION[person]\/)([\/#\?].*|)$/";
+			}else{
+				$pattern = "/^\.\.\/media\/$_SESSION[person]\/([\/#\?].*|)$/";
+			}
+			return preg_match($pattern,$dir);
+		}
+		return false;
+	}
 ?>

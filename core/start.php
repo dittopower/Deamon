@@ -8,8 +8,8 @@ echo "<html>
 <title>Deamon.(".dir_Name().")</title>
 <link href='//deamon.info/deamonic.css' rel='stylesheet' type='text/css'/>";
 
-if (file_exists("./local.css")){
-	echo '<link href="./local.css" rel="stylesheet" type="text/css"/>';
+if (file_exists($home."../media/$_SESSION[person]/custom.css")){
+	echo '<link href="/files/view?custom.css" rel="stylesheet" type="text/css"/>';
 }
 //end head
 echo "</head>";

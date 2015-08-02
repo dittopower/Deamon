@@ -76,7 +76,12 @@
 		return html_entity_decode($string,ENT_QUOTES | ENT_HTML5);
 	}
 
-
+	//For status messages
+	function div($what){
+		if(strlen($what) > 0){
+		echo "<div class='status'>$what</div>";
+		}
+	}
 
 ///Page Functions
 	//Page's URL
