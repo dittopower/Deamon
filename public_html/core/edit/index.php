@@ -62,7 +62,7 @@
 				$text = loadpage($home.$url);
 			}
 			
-			$url2 = "//deamon.info".$url;
+			$url2 = "//deamon.info/".$url;
 			
 		}else{
 			$text = "Forbidden Directory";
