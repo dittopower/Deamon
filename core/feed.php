@@ -20,16 +20,17 @@ function feed($topic){
 			if($_POST['feed'] == 'Post'){
 				global $mysqli;
 				$sql = mysqli_prepare($mysqli, "INSERT INTO `deamon_core`.`D_Articles` (`user_id`, `post_date`, `mod_date`, `tags`, `title`, `contents`) VALUES (?, NOW(), NOW(), ?, ?, ?)");
-				$tags = $_POST['Topic'].'|'.preg_replace("/, |,/", "/|/", $_POST['Tags']);
+				$tags = $_POST['Topic']."|".preg_replace("/, |,/", "|", $_POST['Tags'])."|";
+				$content = d_text($_POST['Content']);
 				
-				mysqli_stmt_bind_param($sql,"ssss",$_SESSION['person'],$tags,$_POST['Title'],$_POST['Content']);
+				mysqli_stmt_bind_param($sql,"ssss",$_SESSION['person'],$tags,$_POST['Title'],$content);
 			
 				if(mysqli_stmt_execute($sql)){
 					echo '<div>Article Posted.</div>';
-				note('newsfeed',"Posted::$_POST[Title]");
+					note('newsfeed',"Posted::$_POST[Title]");
 				} else {
 					echo '<div>Posting Failed.</div>';
-				note('newsfeed',"Failed::$_POST[Title]");
+					note('newsfeed',"Failed::$_POST[Title]");
 				}
 				mysqli_stmt_close($sql);
 				unset($tags);

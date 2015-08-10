@@ -1,0 +1,13 @@
+{
+  "short_name": "Deamon",
+  "name": "Deamon: Tech, Games & Code",
+  "icons": [
+    {
+      "src": "launcher-icon-3x.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone"
+}

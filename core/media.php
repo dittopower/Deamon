@@ -13,25 +13,65 @@
 		$type = preg_match("/\.[^\.]+$/",$file, $match);
 		$match = strtolower($match[0]);
 		
-		if(preg_match("/jpg|jpeg/", $match)){
-			$type = "image/jpeg";
-		}else if(preg_match("/png/", $match)){
-			$type = "image/png";
-		}else if(preg_match("/gif/", $match)){
-			$type = "image/gif";
-		}else if(preg_match("/tif|tiff/", $match)){
-			$type = "image/tiff";
-		}else if(preg_match("/webp/", $match)){
-			$type = "image/webp";
-		}else if(preg_match("/bmp/", $match)){
-			$type = "image/bmp";
+		header('Content-Length: ' . filesize($home.$file));
+		
+		if(!isset($_GET['download'])){
+			if(preg_match("/jpg|jpeg/", $match)){//images
+				$type = "image/jpeg";
+			}else if(preg_match("/png/", $match)){
+				$type = "image/png";
+			}else if(preg_match("/gif/", $match)){
+				$type = "image/gif";
+			}else if(preg_match("/tif|tiff/", $match)){
+				$type = "image/tiff";
+			}else if(preg_match("/webp/", $match)){
+				$type = "image/webp";
+			}else if(preg_match("/bmp/", $match)){
+				$type = "image/bmp";
+			}else if(preg_match("/pdf/", $match)){//pdf
+				$type = "application/pdf";
+			}else if(preg_match("/aac/", $match)){//audio
+				$type = "audio/x-aac";
+			}else if(preg_match("/dts/", $match)){
+				$type = "audio/vnd.dts";
+			}else if(preg_match("/dtshd/", $match)){
+				$type = "audio/vnd.dts.hd";
+			}else if(preg_match("/rip/", $match)){
+				$type = "audio/vnd.rip";
+			}else if(preg_match("/m3u/", $match)){
+				$type = "audio/x-mpegurl";
+			}else if(preg_match("/wma/", $match)){
+				$type = "audio/x-ms-wma";
+			}else if(preg_match("/wax/", $match)){
+				$type = "audio/x-ms-wax";
+			}else if(preg_match("/mid/", $match)){
+				$type = "audio/midi";
+			}else if(preg_match("/mpga/", $match)){
+				$type = "audio/mpeg";
+			}else if(preg_match("/mp3/", $match)){
+				$type = "audio/mpeg";
+			}else if(preg_match("/mp4a/", $match)){
+				$type = "audio/mp4";
+			}else if(preg_match("/oga|ogg/", $match)){
+				$type = "audio/ogg";
+			}else if(preg_match("/weba/", $match)){
+				$type = "audio/webm";
+			}else if(preg_match("/au/", $match)){
+				$type = "audio/basic";
+			}else if(preg_match("/wav/", $match)){
+				$type = "audio/x-wav";
+			}else if(preg_match("/txt|html|css|php/", $match)){
+				$type = "text/plain";
+			}else{
+				$type = "application/octet-stream";
+				header('Content-Disposition: attachment; filename='.basename($file));
+			}
 		}else{
 			$type = "application/octet-stream";
 			header('Content-Disposition: attachment; filename='.basename($file));
 		}
-		
 		header('Content-Type:'.$type);
-		header('Content-Length: ' . filesize($home.$file));
+		
 		readfile($home.$file);
 	}
 	
@@ -70,9 +110,8 @@
 			media_lookup($mymedia);
 		}else{
 			global $custom;
-			if(file_exists($custom[$mymedia])){
-				media_send($custom[$mymedia]);
-			}
+			debug($custom[$_GET['name']]);
+			media_lookup(singleSQL("Select media_id from D_Media where location='".$custom[$_GET['name']]."'"));
 		}
 	}
 	
@@ -100,11 +139,11 @@
 				// Check if file already exists
 				$count = 0;
 				while(file_exists($target_file)){
-					if(is_numeric(fileoveride) && !fileoveride){
+					if($_POST['fileoveride'] == 1){
+						unlink($target_file);
+					}else{
 						$target_file = $target_dir . $fileName . "_$count.". $fileType;
 						$count++;
-					}else{
-						unlink($target_file);
 					}
 				}
 				// Check file size
@@ -153,17 +192,21 @@
 							break;
 						default:
 							isOk(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file));
-				}}
+					}
+				}
 				//Log it in the database
 				if($uploadOk){
 					$target_file = substr($target_file, strlen($home));
-					$sql = "INSERT INTO `deamon_core`.`D_Media` (`location`, `owner`, `share`, `people`) VALUES ('$target_file', '$_SESSION[person]', '3', '');";
-					runSQL($sql);
-					$id = singleSQL("Select LAST_INSERT_ID();");
-				}
-				if ($uploadOk){
-					$uploadTxt = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded to <a href='//$_SERVER[HTTP_HOST]/files/view?$id' target='_blank'>$_SERVER[HTTP_HOST]/files?$id</a>.<hr>";
-					note('upload',"Uploaded::".basename( $_FILES["fileToUpload"]["name"]));
+					if($_POST['fileoveride'] == 1){
+						$id = singleSQL("Select media_id from D_Media where location = '$target_file'");
+						note('upload',"Replaced::".basename( $_FILES["fileToUpload"]["name"]));
+					}else{
+						$sql = "INSERT INTO `deamon_core`.`D_Media` (`location`, `owner`, `share`, `people`) VALUES ('$target_file', '$_SESSION[person]', '3', '');";
+						runSQL($sql);
+						$id = singleSQL("Select LAST_INSERT_ID();");
+						note('upload',"Uploaded::".basename( $_FILES["fileToUpload"]["name"]));
+					}
+					$uploadTxt = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded to <a href='//$_SERVER[HTTP_HOST]/files/view?$id' target='_blank'>$_SERVER[HTTP_HOST]/files/view?$id</a>.<hr>";
 				}else{
 					note('upload',"Failed::".basename( $_FILES["fileToUpload"]["name"]));
 				}
@@ -197,10 +240,13 @@
 			echo "Select file to upload:";
 			echo "<input type='file' name='fileToUpload' id='fileToUpload'>";
 			if($filename != ""){
-				echo "<input type='text' hidden name='filename' value='$filename'>";
+				echo "<label for='filename'>File will be uploaded as: $filename</label>";
+				echo "<input type='text' hidden name='filename' id='filename' value='$filename'>";
+				echo "<input type='checkbox' hidden id='fileoveride' name='fileoveride' value='1'>";
+			}else{
+				echo "<label for='fileoveride'>Overide Existing File?</label>";
+				echo "<input type='checkbox' id='fileoveride' name='fileoveride' value='1'>";
 			}
-			echo "<label for='fileoveride'>Overide Existing File?</label>";
-			echo "<input type='checkbox' id='fileoveride' name='overide' value='1'>";
 			if(getUserLevel('access') != 3 && $where != ""){
 				echo "<input type='text' hidden name='location' value='$where'>";
 			}

@@ -35,7 +35,9 @@ if($_POST['do'] == 'Upload'){
 				echo "Public Link";
 				break;
 		}
-		echo "</td><td>tba:<form method='POST'><input type='text' name='file' value='$row[media_id]' hidden><input type='submit' value='Delete' name='do'></form></td></tr>";
+		echo "</td><td><a href='//$_SERVER[HTTP_HOST]/files/view?$row[media_id]&download' target='_blank'>Download</a>";
+		echo "<br><a href='//$_SERVER[HTTP_HOST]/edit?url=".htmlescape($row['location'])."' target='_blank'>Edit</a>";
+		echo "<form method='POST'><input type='text' name='file' value='$row[media_id]' hidden><input type='submit' value='Delete' name='do'></form></td></tr>";
 	}
 	echo "</table>";
 

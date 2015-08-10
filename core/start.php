@@ -3,14 +3,18 @@ $home = $_SERVER['DOCUMENT_ROOT']."/";
 require_once $home."../core/perms.php";
 require_once $home."../core/files.php";
 
-echo "<html>
-<head>
-<title>Deamon.(".dir_Name().")</title>
-<link href='//deamon.info/deamonic.css' rel='stylesheet' type='text/css'/>";
+echo "<html><head>";
+echo "<title>Deamon.(".dir_Name().")</title>";
+echo "<link rel='manifest' href='/manifest.json'>";
+echo "<link href='//deamon.info/deamonic.css' rel='stylesheet' type='text/css'/>";
 
 if (file_exists($home."../media/$_SESSION[person]/custom.css")){
-	echo '<link href="/files/view?custom.css" rel="stylesheet" type="text/css"/>';
+	echo '<link href="//deamon.info/files/view?name=custom.css" rel="stylesheet" type="text/css"/>';
 }
+
+echo "<script src='/service-worker.js' type='text/javascript'></script>";
+//echo"";analytics
+
 //end head
 echo "</head>";
 
@@ -30,7 +34,6 @@ echo "</nav></header>
 
 function myEnd(){
 global $e_login;
-global $mysqli;
 echo "</div>
 <footer>";//start footer
 

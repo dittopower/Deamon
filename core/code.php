@@ -53,7 +53,7 @@
 ///Error functions
 	//Throw the use to an error page. MUST be called before any output.
 	function toss ($ecode){
-		header("HTTP/1.0 ".$ecode);
+		//header("HTTP/1.0 ".$ecode);
 		$_SERVER['REDIRECT_STATUS'] = $ecode;
 		global $home;
 		include "$home/error.php";
@@ -74,6 +74,15 @@
 	//Return html safe/ready Text to normal Text.
 	function htmlunescape($string){
 		return html_entity_decode($string,ENT_QUOTES | ENT_HTML5);
+	}
+	
+	//Process incoming text for page input
+	function d_text($content){
+		$content = preg_replace("/\n/","",$content);
+		$content = preg_replace("/\\\l\s([^\s]+)/","<a href='$1'>$1</a>",$content);//quick link
+		$content = preg_replace("/\\\L\s([^\s]+)\s([^\s]+)/","<a href='$1'>$2</a>",$content);//quick link & title
+		$content = preg_replace("/\\\(h[1-6])\s([^\n\r]+)/","<$1>$2</$1>",$content);//heading
+		return $content;
 	}
 
 	//For status messages

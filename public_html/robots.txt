@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /core
+Disallow: /edit
+Disallow: /test
+Disallow: /files/view
