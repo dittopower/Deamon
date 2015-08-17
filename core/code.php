@@ -84,6 +84,18 @@
 		$content = preg_replace("/\\\(h[1-6])\s([^\n\r]+)/","<$1>$2</$1>",$content);//heading
 		return $content;
 	}
+	
+	//Size
+	function size_byte($size,$tounit=""){
+		$units["b" => 0, "kb" => 1, "mb" => 2, "gb" => 3, "tb" => 4];
+		$byte = 1024;
+		$unit = 0;
+		while($size/$byte >= 1){
+			$size = round($size/$byte,2);
+			$unit++;
+		}
+		
+	}
 
 	//For status messages
 	function div($what){

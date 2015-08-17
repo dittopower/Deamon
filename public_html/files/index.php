@@ -5,12 +5,9 @@
 //Start Content
 if (isUser()){
 	$uploadTxt = '';
-if($_POST['do'] == 'Upload'){
-	div(media_upload());
-//Delete files
-}else if($_POST['do'] == 'Delete'){
-	div(media_delete());
-}
+	if($_POST['do'] == 'Delete'){//Delete files
+		div(media_delete());
+	}
 	media_form();
 ?>
 
@@ -18,9 +15,10 @@ if($_POST['do'] == 'Upload'){
 <?php
 //Display File list
 	$result = multiSQL("Select media_id, location, share from D_Media where owner = $_SESSION[person]");
-	echo "<table><tr><th>File Name:</th><th>Sharing Status:</th><th>Controls:</th></tr>";
+	echo "<table><tr><th>File Name:</th><th>Size</th><th>Sharing Status:</th><th>Controls:</th></tr>";
 	while($row = mysqli_fetch_array($result,MYSQL_ASSOC)){
 		echo "<tr><td><a href='//$_SERVER[HTTP_HOST]/files/view?$row[media_id]' target='_blank'>".basename($row['location'])."</a></td><td>";
+		echo filesize($home.$row['location'])."</td><td>";
 		switch($row['share']){
 			case 0:
 				echo "Just Me";

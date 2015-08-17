@@ -241,6 +241,9 @@
 	
 	function media_form($where="", $filename=""){
 		echo "<form method='post' enctype='multipart/form-data'>";
+			if($_POST['do'] == 'Upload'){
+				div(media_upload());
+			}
 			echo "Select file to upload:";
 			echo "<input type='file' name='fileToUpload' id='fileToUpload'>";
 			if($filename != ""){
