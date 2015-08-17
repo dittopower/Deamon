@@ -188,8 +188,6 @@
 							$image = imagecreatefromstring(file_get_contents($_FILES["fileToUpload"]["tmp_name"]));
 							isOk(image2wbmp($image,$target_file,150));
 							break;
-						case 'tiff':
-						case 'tif':
 						case 'png':
 							$image = imagecreatefromstring(file_get_contents($_FILES["fileToUpload"]["tmp_name"]));
 							imageAlphaBlending($image , true);
