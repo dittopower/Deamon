@@ -169,6 +169,8 @@
 					switch($fileType){
 						case 'gif':
 							$image = imagecreatefromstring(file_get_contents($_FILES["fileToUpload"]["tmp_name"]));
+							imageAlphaBlending($image , true);
+							imageSaveAlpha($image , true);
 							isOk(imagegif($image,$target_file));
 							break;
 						case 'jpg':
@@ -178,6 +180,8 @@
 							break;
 						case 'webp':
 							$image = imagecreatefromstring(file_get_contents($_FILES["fileToUpload"]["tmp_name"]));
+							imageAlphaBlending($image , true);
+							imageSaveAlpha($image , true);
 							isOk(imagewebp($image,$target_file));
 							break;
 						case 'bmp':
@@ -188,6 +192,8 @@
 						case 'tif':
 						case 'png':
 							$image = imagecreatefromstring(file_get_contents($_FILES["fileToUpload"]["tmp_name"]));
+							imageAlphaBlending($image , true);
+							imageSaveAlpha($image , true);
 							isOk(imagepng($image,$target_file,9));
 							break;
 						default:
