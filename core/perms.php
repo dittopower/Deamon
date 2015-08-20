@@ -45,6 +45,22 @@ require_once $home."../core/code.php";
 		}
 	}
 	
+	//Throw the http error if the user isn't logged in
+	function enforce_user(){
+		global $home;
+		if(!isUser()){
+			toss(401);
+		}
+	}
+	
+	//Throw the http error if the user isn't logged in
+	function enforce_perm($perm){
+		global $home;
+		if(!canUser($perm)){
+			toss(403);
+		}
+	}
+	
 	function dir_access($perm, $dir){
 		global $home;
 		Ndebug("directory",$dir);

@@ -56,7 +56,7 @@
 		//header("HTTP/1.0 ".$ecode);
 		$_SERVER['REDIRECT_STATUS'] = $ecode;
 		global $home;
-		include "$home/error.php";
+		include $home."error.php";
 		die();
 	}
 	
@@ -86,15 +86,16 @@
 	}
 	
 	//Size
-	function size_byte($size,$tounit=""){
-		$units["b" => 0, "kb" => 1, "mb" => 2, "gb" => 3, "tb" => 4];
+	function size_byte($size,$tounit="~"){
+		$units = ["~" => -1,"b" => 0, "kb" => 1, "mb" => 2, "gb" => 3, "tb" => 4, "pb" => 5, "eb" => 6, "zb" => 7, "yb" => 8];
+		$tounit = $units[strtolower($tounit)];
 		$byte = 1024;
 		$unit = 0;
-		while($size/$byte >= 1){
+		while($size/$byte >= 1 && $unit != $tounit){
 			$size = round($size/$byte,2);
 			$unit++;
 		}
-		
+		return "$size ".strtoupper(array_search($unit,$units));
 	}
 
 	//For status messages
