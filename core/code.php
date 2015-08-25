@@ -85,6 +85,12 @@
 		return $content;
 	}
 	
+	//Escape text for regex
+	function d_reg_escape($content){
+		$content = preg_quote($content,"/");
+		return $content;
+	}
+	
 	//Size
 	function size_byte($size,$tounit="~"){
 		$units = ["~" => -1,"b" => 0, "kb" => 1, "mb" => 2, "gb" => 3, "tb" => 4, "pb" => 5, "eb" => 6, "zb" => 7, "yb" => 8];
