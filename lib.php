@@ -37,6 +37,11 @@
 		global $home;
 		require_once $home."../core/start.php";
 	}
+	
+	function lib_register(){
+		global $home;
+		require_once $home."../core/register.php";
+	}
 
 //Local Templates	
 	function page(){
