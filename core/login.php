@@ -1,8 +1,8 @@
 <?php
-	$home = $_SERVER['DOCUMENT_ROOT']."/";
-	require_once $home."../core/database.php";
-	require_once $home."../core/code.php";
-	require_once $home."../core/files.php";
+	require_once "/home3/deamon/lib.php";
+	lib_database();
+	lib_code();
+	lib_files();
 	session_start();
 	
 //Login
@@ -10,9 +10,9 @@
 			$user = escapeSQL(strtolower($_POST['username']));
 			$pass = $_POST['password'];
 
-			$data = rowSQL("SELECT UserId, PassPhrase, Length FROM D_Accounts WHERE username='$user'");
+			$data = rowSQL("SELECT UserId, PassPhrase, Length, salt FROM D_Accounts WHERE username='$user'");
 			
-			if($data['Length'] === ''.strlen($pass) && $data['PassPhrase'] === encrypt($pass)){
+			if($data['Length'] === ''.strlen($pass) && $data['PassPhrase'] === encrypt($pass,$data['salt'],$user)){
 				$_SESSION['person'] = $data['UserId'];
 				$_SESSION['name'] = strtolower($_POST['username']);
 			} else {

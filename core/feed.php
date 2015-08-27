@@ -1,8 +1,8 @@
 <?php //Load Template
-$home = $_SERVER['DOCUMENT_ROOT']."/";
-require_once $home."../core/database.php";
-require_once $home."../core/perms.php";
-require_once $home."../core/files.php";
+	require_once "/home3/deamon/lib.php";
+	lib_database();
+	lib_perms();
+	lib_files();
 ?>
 <!-- START content -->
 

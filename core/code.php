@@ -62,8 +62,13 @@
 	
 ///Text Functions
 	//Current Hash encryption
-	function encrypt($what){
-		 return md5(md5($what."Battle")."Mage");
+	function encrypt($what, $salt = "Battle", $salt2 = "Mage"){
+		 return md5(md5($what.$salt).$salt2);
+	}
+	
+	//Create Salt
+	function salt($length = 64){
+		return mcrypt_create_iv($length, MCRYPT_DEV_URANDOM);
 	}
 	
 	//Make Text html safe/ready.

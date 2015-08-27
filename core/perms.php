@@ -1,8 +1,8 @@
 <?php //Permissions
-$home = $_SERVER['DOCUMENT_ROOT']."/";
-require_once $home."../core/login.php";
-require_once $home."../core/database.php";
-require_once $home."../core/code.php";
+	require_once "/home3/deamon/lib.php";
+	lib_login();
+	lib_database();
+	lib_code();
 
 //Check if logged in
 	function isUser(){

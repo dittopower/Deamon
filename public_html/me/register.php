@@ -1,7 +1,7 @@
 <?php //Load Template
-	$home = $_SERVER['DOCUMENT_ROOT']."/";
-	require_once $home."page.php";
-	require_once $home."../core/files.php";
+	require_once "/home3/deamon/lib.php";
+	lib_files();
+	page();
 ?>
 <!-- START content -->
 
@@ -22,8 +22,9 @@
 			$nplength = strlen($_POST['newPass1']);
 			if($nplength > 6){
 				if(isset($_POST['newPass2'])){
-					$npass = encrypt($_POST['newPass1']);
-					$npass2 = encrypt($_POST['newPass2']);
+					$salt = salt();
+					$npass = encrypt($_POST['newPass1'],$salt,$nuser);
+					$npass2 = encrypt($_POST['newPass2'],$salt,$nuser);
 					if($npass === $npass2){
 						$p=1;
 					}
@@ -54,8 +55,8 @@
 		}
 		if($u && $p && $f && $l && $e && $day){
 		
-			$sql= mysqli_prepare($mysqli, "INSERT INTO D_Accounts(Username, FirstName, LastName, DateOfBirth, Email, PassPhrase, Length) VALUES (?, ?, ?, ?, ?, ?, ?)");
-			mysqli_stmt_bind_param($sql,"sssssss",$nuser,$nfname,$nlname,$nday,$nemail,$npass,$nplength);
+			$sql= mysqli_prepare($mysqli, "INSERT INTO D_Accounts(Username, FirstName, LastName, DateOfBirth, Email, PassPhrase, Length, salt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+			mysqli_stmt_bind_param($sql,"ssssssss",$nuser,$nfname,$nlname,$nday,$nemail,$npass,$nplength, $salt);
 			
 			if(mysqli_stmt_execute($sql)){
 				echo 'Account successfully created.';

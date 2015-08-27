@@ -1,6 +1,5 @@
 <?php //File IO
-// "/home3/deamon/public_html"
-	$home = $_SERVER['DOCUMENT_ROOT']."/";
+	require_once "/home3/deamon/lib.php";
 	date_default_timezone_set('Australia/Brisbane');
 
 function dir_Ensure($directory){
@@ -23,18 +22,20 @@ function dir_Name(){//check can be replaced by __DIR__?
 }
 
 function write($file, $content){
+	dir_Ensure($file);
 	$handle = fopen($file, "w");
 	fwrite($handle,$content);
 	fclose($handle);
 }
 function writeA($file, $content){
+	dir_Ensure($file);
 	$handle = fopen($file, "a");
 	fwrite($handle,$content);
 	fclose($handle);
 }
 function note($log,$what){
-	global $home;
-	writeA("$home/core/logs/$log.log","\n".date('Y/m/d H:i:s-T', $_SERVER['REQUEST_TIME'])."::$_SESSION[person]-$_SESSION[name]::".$what);
+	global $local;
+	writeA("$local/core/logs/$log.log","\n".date('Y/m/d H:i:s-T', $_SERVER['REQUEST_TIME'])."::$_SESSION[person]-$_SESSION[name]::".$what);
 }
 
 function dir_list($dir){

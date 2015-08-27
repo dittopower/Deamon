@@ -1,7 +1,7 @@
 <?php //Start Page
-$home = $_SERVER['DOCUMENT_ROOT']."/";
-require_once $home."../core/perms.php";
-require_once $home."../core/files.php";
+	require_once "/home3/deamon/lib.php";
+	lib_perms();
+	lib_files();
 
 echo "<html><head>";
 echo "<title>Deamon.(".dir_Name().")</title>";

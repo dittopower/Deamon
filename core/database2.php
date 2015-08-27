@@ -1,17 +1,31 @@
 <?php 
-	global $mysqli;
-	$mysqli = new mysqli('localhost', 'deamon_site', 'OL.qc6G?&W_bSwQ~', 'deamon_core');
-
-	if ($mysqli->connect_error) {
-		die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
-		echo '<script>alert("Database Connection Failure!");</script>';
+	switch($database){
+		case "deamon":
+			$mydb = "deamon_core";
+			$mydbu = "deamon_site";
+			$mydbp = "OL.qc6G?&W_bSwQ~";
+			break;
+		case 302:
+			$mydb = "deamon_INB302";
+			$mydbu = "deamon_302";
+			$mydbp = "rip.Inplace2015";
+			break;
+	}
+	if(isset($mydb)){
+		$mysqli = new mysqli('localhost', $mydbu, $mydbp, $mydb);
+		unset($mydb,$mydbu,$mydbp);
+		if ($mysqli->connect_error) {
+			die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
+			echo '<script>alert("Database Connection Failure!");</script>';
+		}
+		
+		register_shutdown_function('closeCon');
 	}
 	
 	function closeCon(){
 		global $mysqli;
 		mysqli_close($mysqli);
 	}
-	register_shutdown_function('closeCon');
 	
 ///Functions	
 	function singleSQL($sql){

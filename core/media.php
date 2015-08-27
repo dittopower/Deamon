@@ -1,9 +1,10 @@
 <?php
-	$home = $_SERVER['DOCUMENT_ROOT']."/";
-	require_once $home."../core/database.php";
-	require_once $home."../core/code.php";
-	require_once $home."../core/login.php";
-	require_once $home."../core/perms.php";
+	require_once "/home3/deamon/lib.php";
+	lib_code();
+	lib_database();
+	lib_login();
+	lib_perms();
+	lib_files();
 	
 	$custom = ["custom.css"=>"../media/$_SESSION[person]/custom.css"];
 	
