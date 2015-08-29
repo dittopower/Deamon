@@ -53,7 +53,7 @@
 			$day=1;
 		}
 		if($u && $p && $f && $l && $e && $day){
-		
+		global $mysqli;
 			$sql= mysqli_prepare($mysqli, "INSERT INTO D_Accounts(Username, FirstName, LastName, DateOfBirth, Email, PassPhrase, Length, salt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 			mysqli_stmt_bind_param($sql,"ssssssss",$nuser,$nfname,$nlname,$nday,$nemail,$npass,$nplength, $salt);
 			
