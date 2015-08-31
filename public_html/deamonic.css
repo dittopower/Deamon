@@ -149,3 +149,8 @@ border:solid grey 2px;
 		border:0;
 		background:grey;
 	}
+	
+	
+/* Tables */
+.table tr:nth-child(even) {background: rgba(0,0,0,0.1)}
+.table tr td:nth-child(even) {background: rgba(0,0,0,0.05)}

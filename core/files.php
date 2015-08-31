@@ -38,16 +38,25 @@ function note($log,$what){
 	writeA("$local/core/logs/$log.log","\n".date('Y/m/d H:i:s-T', $_SERVER['REQUEST_TIME'])."::$_SESSION[person]-$_SESSION[name]::".$what);
 }
 
+function load($url){
+	if (file_exists($url)){
+		$text = file_get_contents($url);
+	}else{
+		$text = "404 - File Not Found";
+	}
+	return $text;
+}
+
 function dir_list($dir){
-	global $home;
-	if(file_exists($home.$dir)){
-		$out = scandir($home.$dir);
+	if(file_exists($dir)){
+		$out = scandir($dir);
 		unset($out[0]);
 		unset($out[1]);
 		/*$test = array_search("exclude this",$out);
 		if($test > 0){
 			unset($out[$test]);
 		}*/
+		return $out;
 	}else{
 		return [];
 	}
