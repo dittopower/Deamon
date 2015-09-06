@@ -199,6 +199,20 @@
 							isOk(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file));
 					}
 				}
+				switch($_POST['share']){
+					case 1:
+						$share = 1;
+						break;
+					case 2:
+						$share = 2;
+						break;
+					case 3:
+						$share = 3;
+						break;
+					default:
+						$share = 0;
+						break;
+				}
 				//Log it in the database
 				if($uploadOk){
 					$target_file = substr($target_file, strlen($home));
@@ -206,7 +220,7 @@
 						$id = singleSQL("Select media_id from D_Media where location = '$target_file'");
 						note('upload',"Replaced::".basename( $_FILES["fileToUpload"]["name"]));
 					}else{
-						$sql = "INSERT INTO `deamon_core`.`D_Media` (`location`, `owner`, `share`, `people`) VALUES ('$target_file', '$_SESSION[person]', '3', '');";
+						$sql = "INSERT INTO `deamon_core`.`D_Media` (`location`, `owner`, `share`, `people`) VALUES ('$target_file', '$_SESSION[person]', '$share', '');";
 						runSQL($sql);
 						$id = singleSQL("Select LAST_INSERT_ID();");
 						note('upload',"Uploaded::".basename( $_FILES["fileToUpload"]["name"]));
@@ -255,6 +269,13 @@
 				echo "<label for='fileoveride'>Overide Existing File?</label>";
 				echo "<input type='checkbox' id='fileoveride' name='fileoveride' value='1'>";
 			}
+			echo "<label for='share'>Sharing?</label>";
+			echo "<select id='share' name='share'>";
+			echo "<option value='0'>Private</option>";
+			echo "<option value='1'>Specific People (Coming soon)</option>";
+			echo "<option value='2'>Friends (Coming Eventually)</option>";
+			echo "<option value='3' selected>Public</option>";
+			echo "</select>";
 			if(getUserLevel('access') != 3 && $where != ""){
 				echo "<input type='text' hidden name='location' value='$where'>";
 			}
