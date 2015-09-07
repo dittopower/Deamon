@@ -12,15 +12,28 @@ body table{
 	border-collapse: collapse;
 }
 header{
-	background:rgba(200,100,0,0.5);
+	/* background:rgba(200,100,0,0.5); */
+	color: red;
 	height:100%;
 	width:100%;
 }
+header a{
+	text-decoration:none;
+}
+#pagetitle {
+	color:red;
+	text-align:left;
+	display:inline-block;
+}
 .userpanel{
-	background:pink;
+	color:white;
+	display:inline-block;
+	float:right;
+	margin-top:1em;
 }
 nav{
-	background:rgba(255,255,0,0.5);
+	/* background:rgba(255,255,0,0.5); */
+	color:white;
 }
 nav div{
 	display:block;

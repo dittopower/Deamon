@@ -5,6 +5,13 @@
 	<link href="./local.css" rel="stylesheet" type="text/css"/>
 	<script>
 	function show_sub(parent){
+		var menus = parent.parentElement.children;
+		for(i = 0; i < menus.length; i++){
+			if(menus[i] != parent){
+				menus[i].children["sub"].style.display = 'none';
+				menus[i].children.namedItem('arrow').innerText = 'v';
+			}
+		}
 		if(parent.children["sub"].style.display == 'block'){
 			parent.children["sub"].style.display = 'none';
 			parent.children.namedItem('arrow').innerText = 'v';
@@ -23,19 +30,20 @@
 			<td class='sidebar'>
 				<header>
 					<h1><a href='//deamon.info'>Deamon</a></h1>
-					<h2>'page name'</h2>
 				</header>
 			</td>
-			<td class='userpanel'>
-				<h3>user panel tba</h3>
-				<form id='userForm' class='_pannel' method='POST'>
-					<input type='text' name='username' placeholder='Username'>
-					<input type='password' name='password' placeholder='Password'>
-					<input type='submit' value='>'>
-					<!--<form id='userForm' class='_pannel' method='POST'>
-					<input name='logout' hidden>
-					<input id='logoutbtn' type='submit' value='Logout'>-->
-				</form>
+			<td>
+				<h2 id=pagetitle>'page name'</h2>
+				<div class='userpanel'>
+					<form id='userForm' class='_pannel' method='POST'>
+						<input type='text' name='username' placeholder='Username'>
+						<input type='password' name='password' placeholder='Password'>
+						<input type='submit' value='>'>
+						<!--<form id='userForm' class='_pannel' method='POST'>
+						<input name='logout' hidden>
+						<input id='logoutbtn' type='submit' value='Logout'>-->
+					</form>
+				</div>
 			</td>
 		</tr>
 			<td class='sidebar'>
