@@ -1,5 +1,5 @@
 <?php //File IO
-	require_once "/home3/deamon/lib.php";
+	require_once "$_SERVER[DOCUMENT_ROOT]/lib.php";
 	date_default_timezone_set('Australia/Brisbane');
 
 function dir_Ensure($directory){

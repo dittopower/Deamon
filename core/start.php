@@ -1,5 +1,5 @@
 <?php //Start Page
-	require_once "/home3/deamon/lib.php";
+	require_once "$_SERVER[DOCUMENT_ROOT]/lib.php";
 	lib_perms();
 	lib_files();
 

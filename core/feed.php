@@ -1,5 +1,5 @@
 <?php //Load Template
-	require_once "/home3/deamon/lib.php";
+	require_once "$_SERVER[DOCUMENT_ROOT]/lib.php";
 	lib_database();
 	lib_perms();
 	lib_files();
@@ -20,7 +20,11 @@ function feed($topic){
 			if($_POST['feed'] == 'Post'){
 				global $mysqli;
 				$sql = mysqli_prepare($mysqli, "INSERT INTO `deamon_core`.`D_Articles` (`user_id`, `post_date`, `mod_date`, `tags`, `title`, `contents`) VALUES (?, NOW(), NOW(), ?, ?, ?)");
-				$tags = $_POST['Topic']."|".preg_replace("/, |,/", "|", $_POST['Tags'])."|";
+				$tags = "";
+				if(isset($_POST['Topic']) && $_POST['Topic'] != ""){
+					$tags .= $_POST['Topic']."|";
+				}
+				$tags .= preg_replace("/, |,/", "|", $_POST['Tags']);
 				$content = d_text($_POST['Content']);
 				
 				mysqli_stmt_bind_param($sql,"ssss",$_SESSION['person'],$tags,$_POST['Title'],$content);
@@ -128,7 +132,7 @@ function feed($topic){
 		
 	//tags
 		echo "<div class='tags'>";
-		echo preg_replace("/([^|]+)\|/", "<a href='?feed&tag=$1'>$1</a>, ", $row['tags']);
+		echo preg_replace("/([^|]+)\|?/", "<a href='?feed&tag=$1'>$1</a>, ", $row['tags']);
 		echo "</div>";
 		
 	//contents
