@@ -66,7 +66,7 @@
 		//Display Table Contents
 		$result = multiSQL($sql);
 		$header = 1;
-		echo "<table><tr><th>File Name:</th><th>Sharing Status:</th><th>Controls:</th></tr>";
+		echo "<table>";
 		while($row = mysqli_fetch_array($result,MYSQL_ASSOC)){
 			if($header){
 				echo "<tr>";
