@@ -329,7 +329,7 @@ tr:nth-child(even) {
 		$result = multiSQL($sql);
 		while($row = mysqli_fetch_array($result,MYSQL_ASSOC)){
 			echo "<tr>";
-			echo "<td class=content><a href='?id=$row[id]'>$row[name]</a></td>";
+			echo "<td class=content><a href='?id=$row[id]&$row[name]'>$row[name]</a></td>";
 			echo "<td class=content><a href='?series=$row[series]'>$row[series]</a></td>";
 			echo "<td class=content><a href='?publisher=$row[publisher]'>$row[publisher]</a></td>";
 			echo "<td class=content><a href='?developer=$row[developer]'>$row[developer]</td>";
