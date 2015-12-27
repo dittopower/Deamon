@@ -13,6 +13,11 @@
 		require_once $home."../core/database.php";
 	}
 
+	function lib_wordnet(){
+		global $home;
+		require_once $home."../core/wordnet.php";
+	}
+
 	function lib_login(){
 		global $home;
 		require_once $home."../core/login.php";
