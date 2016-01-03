@@ -15,19 +15,44 @@
                     }
                 }else{
                     if(charCode == 32){
+						words.pop();
                         reset();
                     }
                 }
                 if(charCode == 13){
+					words.pop();
                     reset();
                 }
             }
+			function getwords(q,l){
+				p = new XMLHttpRequest();
+				address = "/wordnet?op=words" + "&limit="+q + "&mine="+l;//q is quantity of words, l is max length of words
+				p.open("GET",address,false);
+				p.send(null);
+				timer = window.setInterval(applywords,500)
+			}
+			function applywords(){
+				if(p.status == 200){
+					mybool = words.length < 15;
+					words=words.concat(JSON.parse(p.responseText));
+					window.clearInterval(timer);
+					console.log("got words!");
+					if(mybool){
+						reset();
+					}
+				}else if(p.status == 404){
+					window.clearInterval(timer);
+					console.log("404");
+					getwords(100,12);
+				}
+			}
             var words;
             var pic;
             var cword;
             var cscore;
             var hscore;
             var tletters;
+			var myletters;
             var winfo;
             var cur;
             var fails;
@@ -36,15 +61,15 @@
 
             function check (letter){
 				if(playing){
-					tletters.innerHTML += letter + " ";
 					reg = RegExp(letter,"i");
+					result = "";
 					
-					if(words[cur].search(reg)>-1){
+					if(words[cur].word.search(reg)>-1){
 						//console.log(letter);
 						msg("Right!");
 						nword = "";
-						for(i = 0; i < words[cur].length;i++){
-							l = words[cur][i];
+						for(i = 0; i < words[cur].word.length;i++){
+							l = words[cur].word[i];
 							if(l.toUpperCase() == letter.toUpperCase()){
 								nword += l;
 							}else{
@@ -56,22 +81,32 @@
 							msg("You win!!");
 							pic.src = "win.png";
 							playing = false;
-							myscore = calc_score(words[cur].length,fails);
+							myscore = calc_score(words[cur].word.length,fails);
 							cscore.innerHTML = myscore;
 							score += myscore;
 							hscore.innerHTML = score;
 							document.cookie = "score:"+score;
 						}
+						result = "sucess";
 					}else{
 						fails++;
 						msg("Wrong!");
 						pic.src = fails+".png";
 						if(fails > 12){
-							msg("Failure! (Your Dead...)<br>The word was "+words[cur]+".");
+							msg("Failure! (Your Dead...)<br>The word was "+words[cur].word+".");
 							playing = false;
 							cscore.innerHTML = 0;
 						}
+						result = "failure";
 					}
+					
+					
+					for(i = 0; i < tletters.children.length; i++){
+						if(tletters.children[i].innerHTML.search(reg)> -1){
+							tletters.children[i].className += " " + result;
+						}
+					}
+					
 				}
             }
 
@@ -80,9 +115,9 @@
             }
 
             function setup(){              
-                words = ['pie','dog','swaglords','test','jokes','aaaaaah','yoloswag hashtag','pizza','party',"alphabet","mountain dew"];
+                words = Array();
                 cword = document.getElementById("cur_word");
-                tletters = document.getElementById("tried");
+                tletters = document.getElementById("button_array");
                 winfo = document.getElementById("word_info");
                 pic = document.getElementById("hanging");
                 cscore = document.getElementById("Currentscore");
@@ -93,42 +128,70 @@
 				}else{
 					score = 0;
 				}
-                reset();
 				hscore.innerHTML = score;
+				reloadwords();
+                reset();
             }
 
             function reset(){
+				if(words.length < 15){
+					getwords(100,12);
+				}
                 msg("Can you guess the Word?");
 				cscore.innerHTML=0;
                 playing = true;
-				tletters.innerHTML = " ";
-                cur = Math.round(Math.random()*10);
+				myletters = [];
+                cur = words.length-1;
                 fails = 0;
                 cword.innerHTML = "";
-                for(i = 0; i < words[cur].length;i++){
-					if(words[cur][i] == "_"){
+                for(i = 0; i < words[cur].word.length;i++){
+					if(words[cur].word[i] == "_"){
 						cword.innerHTML += " ";
-					}else if ((words[cur][i].charCodeAt(0) > 64 && words[cur][i].charCodeAt(0) < 91)||(words[cur][i].charCodeAt(0) > 96 && words[cur][i].charCodeAt(0) < 123)){
+					}else if ((words[cur].word[i].charCodeAt(0) > 64 && words[cur].word[i].charCodeAt(0) < 91)||(words[cur].word[i].charCodeAt(0) > 96 && words[cur].word[i].charCodeAt(0) < 123)){
 						cword.innerHTML += "_";
 					}else{
-						cword.innerHTML += words[cur][i];
+						cword.innerHTML += words[cur].word[i];
 					}
                 }
                 pic.src = "";
+				
+				for(i = 0; i < tletters.children.length; i++){
+					tletters.children[i].className = "obj";
+				}
             }
 			
 			function calc_score (s,m){
-				return Math.round(s*Math.pow(s,m*-0.2)*4);
+				return Math.round(s*Math.pow(s,m*-0.1)*4);
 			}
+			
+			function savewords(){
+				if(typeof(Storage) !== "undefined") {
+					localStorage.setItem("mywords", JSON.stringify(words));
+				} else {
+					console.log("Local Storage not avalible.....");
+				}
+			}
+			
+			function reloadwords(){
+				if(typeof(Storage) !== "undefined") {
+					if(localStorage.getItem("mywords") != null){
+						words=JSON.parse(localStorage.getItem("mywords"));
+					}
+				} else {
+					console.log("Local Storage not avalible.....");
+				}
+			}
+			
+			window.onunload = savewords;
         </script>
 	
         <div id="arena" onkeypress="javascript:return isNumberKey(event);">
-			<h3 id=scoreboard>Last Score:<span id=Currentscore></span>  High Score:<span id=Highscore></span></h3>
+			<span onclick="reset()" class=obj>New Game</span><p style="display:inline-block;font-size: 1.5em;"> or Press 'enter'</p>
+			<hr>
+			<h3 id=scoreboard>Last Score:<span id=Currentscore></span>  Overall Score:<span id=Highscore></span></h3>
 			<h2 id="cur_word" style="letter-spacing: 0.25em;font-size: 3em;">_ _ _ _ _ _ _ _</h2>
             <img id=hanging height=200px width=200px>
 			<h1 id="word_info"></h1>
-			<hr><p style="font-size: 1.5em;">Letters Tried:</span>
-            <h3 id="tried" style="color:rgb(150,0,0);"> </h3>
 			<hr><p style="font-size: 1.5em;">Pick a letter or use your Keyboard.</span>
 			<div id=button_array>
 			<span class=obj onclick="check(this.innerHTML)">A</span>
@@ -158,8 +221,6 @@
 			<span class=obj onclick="check(this.innerHTML)">Y</span>
 			<span class=obj onclick="check(this.innerHTML)">Z</span>
 			</div>
-			<hr>
-			<span onclick="reset()" class=obj>New Game</span><p style="display:inline-block;font-size: 1.5em;"> or Press 'enter'</p>
         </div>
         <script>setup();</script>
 		<span hidden>
@@ -176,4 +237,5 @@
 		<img src="11.png">
 		<img src="12.png">
 		<img src="13.png">
+		<img src="win.png">
 		</span>

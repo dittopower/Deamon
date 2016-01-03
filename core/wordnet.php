@@ -61,20 +61,27 @@
 	function wn_dump_table($table){
 		table("Select * from $table");
 	}
+
+	function wn_arraySQL($sql){
+		global $wordsql;
+		$result = mysqli_query($wordsql,$sql);
+		if($result != NULL){
+			$a=array();
+			while($row = mysqli_fetch_array($result,MYSQL_ASSOC)){
+				array_push($a,$row);
+			}
+			
+			return $a;
+			
+		}
+		else{
+			return 0;
+		}
+	}//runs a command that will give a result as an array (for real)
 	
 	function wn_table($sql){
 		//Display Table Contents
-		$result = wn_multiSQL($sql);
-		$header = 1;
-		echo "<table>";
-		while($row = mysqli_fetch_array($result,MYSQL_ASSOC)){
-			echo "<tr>";
-			foreach($row as $value){
-				echo "<td>$value</td>";
-			}
-			echo "</tr>";
-		}
-		echo "</table>";
+		echo json_encode(wn_arraySQL($sql));
 	}
 	
 	function wn_syn(){
@@ -88,7 +95,7 @@
 	function wn_words($wordlength=0, $numberwords=100, $wordorder=0){
 		$sql = "SELECT word FROM `wn_synset`";
 		if($wordlength > 0){
-			$sql .= " WHERE Length(word) < $wordlength";
+			$sql .= " WHERE Length(word) <= $wordlength";
 		}
 		switch($wordorder){
 			case 1:
