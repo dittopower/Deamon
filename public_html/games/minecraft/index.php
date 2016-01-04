@@ -1,11 +1,11 @@
 <?php
 	require_once "/home3/deamon/public_html/lib.php";
 	page();
+	lib_feed();
 	?>
-	<h1>My Games</h1>
+	<h1>Minecraft</h1>
 	<hr>
-	<p>Just a few random Games I made for one reason or another at some point.
-	<br>Don't expect them to be amazing...</p>
+	<p>Just a couple of random minecraft related things. I'd don't think any of them are done, they're mostly little ideas i had at one point or another and never finished.</p>
 	<hr>
 	<?php
 		$projects = scandir('./');

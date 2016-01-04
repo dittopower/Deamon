@@ -28,6 +28,11 @@
 		require_once $home."../core/files.php";
 	}
 
+	function lib_feed(){
+		global $home;
+		require_once $home."../core/feed.php";
+	}
+
 	function lib_media(){
 		global $home;
 		require_once $home."../core/media.php";
