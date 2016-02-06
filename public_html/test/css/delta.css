@@ -1,0 +1,174 @@
+html{
+	background:rgb(0,0,0);
+    font-family: monospace;
+}
+body{
+	margin:0;
+}
+.headbar{
+	color:black;
+	display:block;
+	width:calc(100%-20px);
+	overflow:hidden;
+	font-size: 2.5em;
+	background:white;
+	padding: 10px;
+	text-align:center;
+	text-decoration:none;
+}
+.headbar:hover{
+	color:rgba(200,0,0,1);
+	/* border-color:white; */
+}
+.linkbar{
+	display:table-cell;
+	padding: 10px;
+	height:50px;
+	font-size: 2em;
+	color:white;
+	text-align:center;
+	text-decoration:none;
+	background:rgba(0,0,0,0.8);
+}
+.linkbar:hover{
+	background:rgba(200,0,0,1);
+}
+.linktitle{
+	vertical-align: bottom;
+}
+.linksbar{
+	background:white;
+	display:table;
+	width:100%;
+	overflow:hidden;
+}
+footer{
+	position:fixed;
+	z-index:100;
+	overflow:hidden;
+	bottom:0;
+	right:0;
+	height:50px;
+	background:rgba(0,0,0,0.5);
+	border-style: inset;
+	border-color: white;
+	border-bottom-width: 0px;
+	border-top-width: 5px;
+	border-left-width: 5px;
+	border-right-width: 0px;
+	border-radius:30px 0px 0px 0px;
+	border-bottom: white solid 5px;
+}
+._pannel{
+	display:inline-block;
+	font-size: 2em;
+	text-decoration:none;
+	color:white;
+	text-align:center;
+	padding-left:20px;
+	padding-right:20px;
+	vertical-align: top;
+	border-right: white 5px solid;
+  height: 100%;
+}
+._pannel:hover{
+	background:rgba(200,0,0,0.8);
+}
+#seclock{
+	height:40px;
+	width:70px;
+	background:url('//shield.sitelock.com/shield/deamon.info');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-origin: content-box;
+	padding-top: 5px;
+}
+
+#page{
+	background:white;
+	position:relative;
+	left:5%;
+	top:30px;
+	width:90%;
+	/* height:100%; */
+	padding:10px;
+	margin-bottom:100px;
+}
+
+section{
+border:solid grey 2px;
+}
+
+/* Editor CSS */
+	.horizonal_half{
+		width:100%;
+	}
+
+	#coding_area{
+		width:100%;
+		height:50%;
+		border:0;
+		padding:0;
+	}
+
+	#controlbox{
+		/*background:#FCF5B8;*/
+		width:100%;
+	}
+	
+	.controls{
+		display:inline;
+	}
+
+	#current_page{
+		width:100%;
+		height:50%;
+		padding:0;
+		margin-bottom:1%;
+		border:0;
+		background:grey;
+	}
+	
+	
+/* Tables */
+.table tr:nth-child(even) {background: rgba(0,0,0,0.1)}
+.table tr td:nth-child(even) {background: rgba(0,0,0,0.05)}
+
+/*
+@media screen and (max-width: 1100px){
+#page{
+top:14em;
+}
+}
+*/
+
+	.obj{
+		display:inline-block;
+		vertical-align: top;
+		padding:1%;
+		margin:1%;
+		background: rgba(0,0,0,0.9);
+		border: 3px rgba(0,0,0,1) groove;
+		color:white;
+		text-decoration:none;
+		font-size:2em;
+		/*
+		border-radius: 10%;*/
+	}
+	.obj:hover{
+		background: white;
+		color:black;
+		text-shadow: none;
+	}
+	.obj h1, .obj h2, .obj h3{
+		color:red;
+		margin-top:2%;
+		margin-bottom:3%;
+	}
+	
+.sucess{
+	background:green;
+}
+.failure{
+	background:red;
+}
