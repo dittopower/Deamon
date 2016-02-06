@@ -17,7 +17,7 @@
 
 	$pass = "OverloRd10";
 	$user = "demon";
-	$delay = 15;
+	$delay = 20;
 
 	$ssh = new Net_SSH2('play.deamon.info');
 	if (!$ssh->login($user, $pass)) {

@@ -1,6 +1,6 @@
 <?php //Load Template
-	$home = $_SERVER['DOCUMENT_ROOT']."/";
-	require_once $home."../core/login.php";
-	require_once $home."../core/start.php";
+	require_once "/home3/deamon/public_html/lib.php";
+	lib_login();
+	lib_frame();
 //Start Content
 ?>
