@@ -44,17 +44,18 @@ function feed($topic){
 		
 		echo "<form name='newpost' id='feed_post' method='POST'>";
 		echo "<input name='Topic' type='text' value='$topic' hidden>";
-		echo "<label for='nft'>Title</label>";
-		echo "<input name='Title' id='nft' type='text' placeholder='Something Awesome...'>";
-		echo "<label for='nfta'>Tags</label>";
-		echo "<input name='Tags' id='nfta' type='text' placeholder='Pie, Swag, Badger, etc.'>";
-		echo "<textarea name='Content' placeholder='Post content...'></textarea>";
-		echo "<input name='feed' type='submit' value='Post'>";
+		echo "<label for='nft'>Title: </label><br>";
+		echo "<input name='Title' id='nft' type='text' placeholder='Something Awesome...'><br>";
+		echo "<label for='nfta'>Tags: </label><br>";
+		echo "<input name='Tags' id='nfta' type='text' placeholder='Pie, Swag, Badger, etc.'><br>";
+		echo "<label for='nfc'>Content: </label><br>";
+		echo "<textarea id='nfc' name='Content' placeholder='Post content...'></textarea><br>";
+		echo "<input name='feed' id='postbutton' type='submit' value='Post'>";
 		echo "</form>";
 	}
 	
 	global $nsql;
-	$nsql = "Select art_id, Username, user_id, DATE_FORMAT(post_date, '%H:%i %d %b %y') as postd, DATE_FORMAT(mod_date, '%H:%i %d %b %y') as modd, tags, title, contents from D_Articles a join D_Accounts u on user_id = UserId";
+	$nsql = "Select art_id, Username, user_id, DATE_FORMAT(DATE_ADD(`post_date`, INTERVAL 16 DAY_HOUR), '%H:%i %d %b %y') as postd, DATE_FORMAT(DATE_ADD(mod_date, INTERVAL 16 DAY_HOUR), '%H:%i %d %b %y') as modd, tags, title, contents from D_Articles a join D_Accounts u on user_id = UserId";
 	$w = 0;
 	function where(){
 		global $w;
@@ -113,7 +114,7 @@ function feed($topic){
 	//Can edit?
 		if($edit){
 			if(getUserLevel($permision) > 1 || $_SESSION['person'] == $row['user_id']){
-				echo "<form name='editpost'>";
+				echo "<form name='editpost' class='edit'>";
 				echo "<input name='art' type='text' value='$art_id' hidden>";
 				echo "<input name='feed' type='button' value='Edit' onclick=\"alert('You haven`t made this feature yet.')\">";
 				echo "</form>";
@@ -123,7 +124,7 @@ function feed($topic){
 	//Author, Dates
 		echo "<div class='info'>";
 		echo "<a class='author' href='?feed&u=$row[Username]'>$row[Username]</a>";
-		echo " <a href='/me?u=$row[Username]'><i>P</i></a>";
+		echo " <a class='profileL' href='/me?u=$row[Username]'><i>P</i></a>";
 		echo "<div>Posted $row[postd]</div>";
 		if ($row['postd'] != $row['modd']){
 			echo "<div>Modified $row[modd]</div>";

@@ -5,6 +5,9 @@ html{
 body{
 	margin:0;
 }
+a{
+	color:rgba(200,0,0,1);
+}
 .headbar{
 	color:black;
 	display:block;
@@ -18,7 +21,6 @@ body{
 }
 .headbar:hover{
 	color:rgba(200,0,0,1);
-	/* border-color:white; */
 }
 .linkbar{
 	display:table-cell;
@@ -48,32 +50,18 @@ footer{
 	overflow:hidden;
 	bottom:0;
 	right:0;
-	height:50px;
-	background:rgba(0,0,0,0.5);
-	border-style: inset;
-	border-color: white;
-	border-bottom-width: 0px;
-	border-top-width: 5px;
-	border-left-width: 5px;
-	border-right-width: 0px;
-	border-radius:30px 0px 0px 0px;
-	border-bottom: white solid 5px;
+	background:rgba(0,0,0,0.8);
+	padding:10px;
 }
+
 ._pannel{
 	display:inline-block;
-	font-size: 2em;
 	text-decoration:none;
-	color:white;
 	text-align:center;
-	padding-left:20px;
-	padding-right:20px;
-	vertical-align: top;
-	border-right: white 5px solid;
-  height: 100%;
+	margin:0;
+	padding-left:10px;
 }
-._pannel:hover{
-	background:rgba(200,0,0,0.8);
-}
+
 #seclock{
 	height:40px;
 	width:70px;
@@ -90,14 +78,98 @@ footer{
 	left:5%;
 	top:30px;
 	width:90%;
-	/* height:100%; */
 	padding:10px;
 	margin-bottom:100px;
 }
 
-section{
-border:solid grey 2px;
+#newfeed{
+	border-top:solid grey 2px;margin-top: 20px;
 }
+#newfeed article{
+	background:lightgray;
+	padding:1em;
+	margin-top:1em;
+}
+
+#newfeed article h1{
+	text-decoration:underline;
+	margin-top:0.5em;
+	margin-bottom:0.2em;
+	font-size:x-large;
+	display: inline-block;
+}
+
+#newfeed article .edit{
+	display: inline-block;
+	float: right;
+}
+
+#newfeed article .info{
+	margin-left:1em;
+	margin-bottom:0.2em;
+}
+
+#newfeed article .info .profileL{
+	margin-right:1em;
+}
+
+#newfeed article .info *{
+	text-decoration:none;
+	font-style: italic;
+	color:rgba(0,0,0,0.9);
+	display:inline-block;
+}
+
+#newfeed article .tags{
+	margin-bottom:1em;
+}
+
+#newfeed article .tags *{
+	background:rgba(0,0,0,0.1);
+	text-decoration:none;
+	color:inherit;
+	font-weight:bold;
+	padding-left:0.5em;
+	padding-right:0.5em;
+	padding-top:0.2em;
+	padding-bottom:0.2em;
+}
+
+#newfeed article .tags *:hover{
+	background:rgba(200,0,0,1);
+	color:white;
+}
+
+#feed_post{
+	padding:10px;
+}
+
+#nft,#nfta{
+	padding:5px;
+	margin-bottom:1em;
+}
+
+#nfc{
+	padding:5px;
+	width:100%;
+	height:8em;
+	margin-bottom:1em;
+}
+
+#postbutton{
+	padding:0.5em;
+	padding-left:1.5em;
+	padding-right:1.5em;
+}
+
+.prof{
+	width:2em;
+	height:2em;
+	border-radius:0.8em;
+	background:white;
+	vertical-align: text-bottom;
+}
+
 
 /* Editor CSS */
 	.horizonal_half{
@@ -112,7 +184,6 @@ border:solid grey 2px;
 	}
 
 	#controlbox{
-		/*background:#FCF5B8;*/
 		width:100%;
 	}
 	
@@ -152,8 +223,6 @@ top:14em;
 		color:white;
 		text-decoration:none;
 		font-size:2em;
-		/*
-		border-radius: 10%;*/
 	}
 	.obj:hover{
 		background: white;

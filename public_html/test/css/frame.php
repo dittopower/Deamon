@@ -51,6 +51,7 @@ if(!isUser()){
 <input type='password' name='password' placeholder='Password'>
 <input type='submit' value='>'>";
 }else{
+	echo "<img src='//deamon.info/me/profile.png' class='prof'>";
 	echo "<form id='userForm' class='_pannel' method='POST'>
 <input name='logout' hidden>
 <input id='logoutbtn' type='submit' value='Logout'>";
