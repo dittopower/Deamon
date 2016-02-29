@@ -5,6 +5,9 @@ html{
 body{
 	margin:0;
 }
+header{
+	background-color: white;
+}
 a{
 	color:rgba(200,0,0,1);
 }
@@ -14,10 +17,11 @@ a{
 	width:calc(100%-20px);
 	overflow:hidden;
 	font-size: 2.5em;
-	background:white;
+	/*background:white;*/
 	padding: 10px;
 	text-align:center;
 	text-decoration:none;
+	border-bottom: rgba(200,0,0,0.8) 3px solid;
 }
 .headbar:hover{
 	color:rgba(200,0,0,1);
@@ -33,7 +37,7 @@ a{
 	background:rgba(0,0,0,0.8);
 }
 .linkbar:hover{
-	background:rgba(200,0,0,1);
+	background-color:rgba(200,0,0,1);
 }
 .linktitle{
 	vertical-align: bottom;
@@ -44,12 +48,28 @@ a{
 	width:100%;
 	overflow:hidden;
 }
-
 .logged{
 	background-color: rgba(0,0,0,0.7);
 	background-image: url('//deamon.info/me/profile.png');
 	background-repeat:no-repeat;
 	background-size: contain;
+}
+.pagelinks{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0.3em;
+    margin: 0.3em;
+    background: rgba(0,0,0,0.9);
+    border: 0.1em rgba(0,0,0,1) groove;
+    color: white;
+    text-decoration: none;
+    font-size: 1.8em;
+}
+.pagelinks:hover{
+	background: white;
+	color:rgba(200,0,0,1);
+	border: 0.1em rgba(200,0,0,1) groove;
+	text-shadow: none;
 }
 footer{
 	position:fixed;
@@ -248,3 +268,79 @@ top:14em;
 .failure{
 	background:red;
 }
+
+
+	#button_array .dice{
+		min-width:2em;
+		min-height:2em;
+		vertical-align:middle;
+		text-align:center;
+	}
+	.obj.dice * {
+		display: block;
+		margin: 0.5em;
+	}
+	.log_color{
+		width:3em;
+		height:3em;
+		display: inline-block;
+		border-width: 1px;
+		border-color: black;
+		border-style: solid;
+		margin-bottom:1em;
+		margin-top:1em;
+	}
+	.clear.log_color{
+		background-color:rgba(0,0,0,0.1);
+	}
+	.green.log_color{
+		background-color:rgba(0,255,0,0.6);
+	}
+	.blue.log_color{
+		background-color:rgba(0,0,255,0.6);
+	}
+	.red.log_color{
+		background-color:rgba(255,0,0,0.6);
+	}
+	.log_color.c{
+		width:2em;
+		height:2em;
+	}
+	
+	#roll_feed{
+		height:50vh;
+		overflow-y:scroll;
+		background-color:rgba(0,0,0,0.1);
+	}
+	#roll_feed div {
+		border-top-color: grey;
+		border-top-width: 1px;
+		border-top-style: ridge;
+		padding: 0.5em;
+		font-size: 1.2em;
+	}
+	#roll_result{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		background: white;
+		text-align: center;
+		width: 100vw;
+		font-size: 3em;
+		font-weight: bolder;
+		padding: 0.5em;
+		border-top: rgba(200,0,0,0.8) 3px solid;
+	}
+	.half{
+		/*display: table-cell;
+		width:50vw;*/
+	}
+	.half h2 {
+		text-align: center;
+	}
+	
+	#dice_feed p{
+		vertical-align:top;
+		padding-top: 0.5em;
+		display:inline-block;
+	}

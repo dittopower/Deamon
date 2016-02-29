@@ -1,0 +1,42 @@
+{
+	"games": [{
+		"Name": "Reviews",
+		"link": "/games/reviews",
+		"script": ""
+	}, {
+		"Name": "Dice",
+		"link": "/games/dice",
+		"script": ""
+	}, {
+		"Name": "Hangman",
+		"link": "/games/hangman",
+		"script": ""
+	}, {
+		"Name": "Minecraft",
+		"link": "/games/minecraft",
+		"script": ""
+	}, {
+		"Name": "Servers",
+		"link": "/games/servers",
+		"script": ""
+	}],
+	"code": [{
+		"Name": "University Projects",
+		"link": "/games/university",
+		"script": ""
+	}, {
+		"Name": "Edit",
+		"link": "/edit",
+		"script": ""
+	}],
+	"tech": [],
+	"me": [{
+		"Name": "Friends",
+		"link": "/me/friends",
+		"script": ""
+	}, {
+		"Name": "Customise",
+		"link": "/me/customise",
+		"script": ""
+	}]
+}

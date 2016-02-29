@@ -1,22 +1,23 @@
 <?php //Start Page
-	require_once "$_SERVER[DOCUMENT_ROOT]/lib.php";
+	require_once "/home3/deamon/public_html/lib.php";
 	lib_perms();
 	lib_files();
 
+	
+	
 echo "<html><head>";
 echo "<title>Deamon.(".dir_Name().")</title>";
 echo "<link rel='manifest' href='/manifest.json'>";
-echo "<link href='//deamon.info/deamonic.css' rel='stylesheet' type='text/css'/>";
+echo "<link href='//deamon.info/delta.css' rel='stylesheet' type='text/css'/>";
 
 if (file_exists($home."../media/$_SESSION[person]/custom.css")){
 	echo '<link href="//deamon.info/files/view?name=custom.css" rel="stylesheet" type="text/css"/>';
 }
+echo "<script src='http://code.jquery.com/jquery-2.2.0.min.js' type='text/javascript'></script>";
 
-echo "<script src='/service-worker.js' type='text/javascript'></script>";
-//echo"";analytics
-
-//end head
 echo "</head>";
+
+
 
 //Start body
 echo "<body><header>";
@@ -24,12 +25,53 @@ echo "<body><header>";
 echo "<a href='//deamon.info' class='headbar'><h1 style='display:inline;'>Deamon.(".dir_Name().")</h1></a>";
 //Navbar
 echo "<nav class=linksbar>";
-echo "<a href='/tech' class='linkbar linktitle'>Tech</a>";
-echo "<a href='/games' class='linkbar linktitle'>Games</a>";
-echo "<a href='/code' class='linkbar linktitle'>Code</a>";
+echo "<a onclick=\"menu('tech')\" class='linkbar linktitle'>Tech</a>";
+echo "<a onclick=\"menu('games')\"  class='linkbar linktitle'>Games</a>";
+echo "<a onclick=\"menu('code')\"  class='linkbar linktitle'>Code</a>";
 echo "<a href='/about' class='linkbar linktitle'>About</a>";
-echo "</nav></header>
+if(!isUser()){
+	echo "<a onclick=\"menu('me')\"  class='linkbar linktitle'>";
+	echo "Users";
+}else{
+	echo "<a onclick=\"menu('me')\" class='linkbar linktitle logged'>";
+	echo ucfirst($_SESSION['name']);
+} echo "</a>";
+echo "</nav>";
+
+echo "<script>function menu (which){
+	others = $('nav:not(.linksbar, #'+which+')').hide();
+	$('nav#'+which).toggle();
+}</script>";
+
+
+global $menus;
+$menus = load($home."menus.json");
+$menus = json_decode($menus, true);
+
+function make_submenu($which,$name){
+	echo "<nav id='$which' hidden>";
+	echo "<a class='pagelinks' href='/$which/'>$name</a>";
+	global $menus;
+	foreach ($menus[$which] as $result) {
+			echo "<a class='pagelinks' href='$result[link]' $result[script]>$result[Name]</a>";
+	}
+	echo "</nav>";
+}
+
+make_submenu("games","Games");
+
+make_submenu("code","Code");
+
+make_submenu("tech","Tech");
+
+make_submenu("me","Profile");
+
+echo "</header>
+
 <div id='page'>";//Start body content
+
+
+
 
 
 function myEnd(){
@@ -47,6 +89,7 @@ if(!isUser()){
 <input type='password' name='password' placeholder='Password'>
 <input type='submit' value='>'>";
 }else{
+	echo "<a href='//deamon.info/me/'><img src='//deamon.info/me/profile.png' class='prof'></a>";
 	echo "<form id='userForm' class='_pannel' method='POST'>
 <input name='logout' hidden>
 <input id='logoutbtn' type='submit' value='Logout'>";
