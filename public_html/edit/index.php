@@ -1,7 +1,7 @@
 <?php //Load Template
-	$home = $_SERVER['DOCUMENT_ROOT']."/";
-	require_once $home."page.php";
-	require_once $home."../core/files.php";
+	require_once "/home3/deamon/public_html/lib.php";
+	page();
+	lib_files();
 ?>
 <!-- START content -->
 
@@ -78,7 +78,7 @@
 			<form class="controls" name="controls" method="GET">
 				<input id="input_url" type="text" placeholder="file.html" name="url" value="<?php echo $url;?>" >
 				<input type="submit" id="file_button" value="Load">
-				<a href="<?php echo $url;?>" target="_newtab">Open</a>
+				<a href="/<?php echo $url;?>" target="_newtab">Open</a>
 			</form> 
 			<form class="controls" name="Delete" method="POST">
 				<input id="input_url" type="text" placeholder="file.html" name="url" value="<?php echo $url;?>">
