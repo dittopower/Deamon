@@ -28,7 +28,7 @@
 	function rowSQL($sql){
 		global $mysqli;
 		$p = mysqli_query($mysqli,$sql);
-		$row = mysqli_fetch_array($p,MYSQLI_BOTH);
+		$row = mysqli_fetch_array($p,MYSQLI_ASSOC);
 		if($row != NULL){
 			return $row;
 		}
