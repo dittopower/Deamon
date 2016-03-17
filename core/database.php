@@ -48,6 +48,23 @@
 		}
 	}//runs a command that will give a result as an array
 	
+	function arraySQL($sql){
+		global $mysqli;
+		$result = mysqli_query($mysqli,$sql);
+		if($result != NULL){
+			$a=array();
+			while($row = mysqli_fetch_array($result,MYSQL_ASSOC)){
+				array_push($a,$row);
+			}
+			
+			return $a;
+			
+		}
+		else{
+			return 0;
+		}
+	}//runs a command that will give a result as an array (for real)
+	
 	function runSQL($sql){
 		global $mysqli;
 		return mysqli_query($mysqli,$sql);	
