@@ -14,7 +14,7 @@ if (file_exists($home."../media/$_SESSION[person]/custom.css")){
 	echo '<link href="//deamon.info/files/view?name=custom.css" rel="stylesheet" type="text/css"/>';
 }
 echo "<script src='http://code.jquery.com/jquery-2.2.0.min.js' type='text/javascript'></script>";
-
+echo '<meta name="google-site-verification" content="jkrwO63jjXnERdddFIXEyfrTUKBHx6RVApO5fhczYq8" />';
 echo "</head>";
 
 
