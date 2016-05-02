@@ -1,6 +1,7 @@
 <?php
 
 ///Debug Functions
+	global $debug;
 	$debug = isset($_GET['debug']) || isset($_POST['debug']);
 	//Dump something to the page when debugging
 	function debug($thisshit){

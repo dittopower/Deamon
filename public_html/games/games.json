@@ -1,0 +1,1 @@
+{  "Hangman": {    "url":"//deamon.info/games/hangman",    "app": null,    "type": "text"  },  "Time Trials": {    "url":"//deamon.info/games/TimeTrials/",    "app": null,    "type": "timing"  },  "PolliSay": {    "url":"//deamon.info/games/pollisay/",    "app": null,    "type": "choice"  }}
