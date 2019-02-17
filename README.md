@@ -27,3 +27,12 @@ Includes:
      - [370] Car Park Simulator
      - [375] Program Parallelization
      - [lpm] Lecture Progess Monitor
+
+Planned Site Architechure:
+ - Firebase Realtime Database
+ - Firebase Serverless functions
+ - Nodejs server to host static content
+   - Serverside rendering
+   - Caching
+ - Firebases notifications
+ - React/Preact/Vue/svelte Front end
