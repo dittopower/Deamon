@@ -1,0 +1,232 @@
+<head>
+<title>DnDeamon</title>
+<script src="https://code.jquery.com/jquery-3.0.0.min.js" type="text/javascript"></script>
+<!--<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js" type="text/javascript"></script>-->
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+<script src="util.js" type="text/javascript"></script>
+<script src="spells.js" type="text/javascript"></script>
+<script src="items.js" type="text/javascript"></script>
+<script src="sheet.js" type="text/javascript"></script>
+<script src="res.js" type="text/javascript"></script>
+<script src="db.js" type="text/javascript"></script>
+<script src="rolls.js" type="text/javascript"></script>
+<script src="feats.js" type="text/javascript"></script>
+<script src="ui.js" type="text/javascript"></script>
+<script src="data_spell.js" type="text/javascript"></script>
+<link rel='stylesheet' href='style.css'>
+<link rel='icon' href='favicon.ico'>
+
+<script src="debug.js" type="text/javascript"></script>
+</head>
+<body>
+<script>
+ninja = "Ajax";
+current = ninja;
+characters[ninja] = new Character(ninja,'Damon','Drow','Ninja','CN',10,16,14,10,14,14,"The Butterfly","Dark Lands",'Male',5.92,115,Sizes[4],'blond','green');
+
+characters[ninja].Money = Money(0,2,1163);
+
+ninjarace = new Stats(0,2,-2,0,0,2);
+ninjarace.skill['Stealth'][5].push(["light dim less",2]);
+ninjarace.skill['Intimidate'][5].push(["light dim less",2]);
+ninjarace.SpellResistance = 16;
+characters[ninja].stats.push(["Drow",ninjarace,"Race"]);
+
+ninjaclass = new Stats(0,0,0,0,0,0);
+ninjaclass.level = 10;
+ninjaclass.bab[0] = 7;
+ninjaclass.bab[1] = 2;
+ninjaclass.saves['fortitude'].Base = 3;
+ninjaclass.saves['reflex'].Base = 7;
+ninjaclass.saves['will'].Base = 3;
+ninjaclass.skill['Acrobatics'][1] = true;
+ninjaclass.skill['Appraise'][1] = true;
+ninjaclass.skill['Bluff'][1] = true;
+ninjaclass.skill['Climb'][1] = true;
+ninjaclass.skill['Craft'][1] = true;
+ninjaclass.skill['Diplomacy'][1] = true;
+ninjaclass.skill['Disable Device'][1] = true;
+ninjaclass.skill['Disguise'][1] = true;
+ninjaclass.skill['Escape Artist'][1] = true;
+ninjaclass.skill['Intimidate'][1] = true;
+ninjaclass.skill['Knowledge Local'][1] = true;
+ninjaclass.skill['Knowledge Nobility'][1] = true;
+ninjaclass.skill['Linguistics'][1] = true;
+ninjaclass.skill['Perception'][1] = true;
+ninjaclass.skill['Perform'][1] = true;
+ninjaclass.skill['Profession'][1] = true;
+ninjaclass.skill['Sense Motive'][1] = true;
+ninjaclass.skill['Sleight of Hand'][1] = true;
+ninjaclass.skill['Stealth'][1] = true;
+ninjaclass.skill['Swim'][1] = true;
+ninjaclass.skill['Use Magic Device'][1] = true;
+
+ninjaclass.skill['Acrobatics'][3] = 5;
+ninjaclass.skill['Appraise'][3] = 1;
+ninjaclass.skill['Bluff'][3] = 6;
+ninjaclass.skill['Climb'][3] = 5;
+ninjaclass.skill['Craft'][3] = 1;
+ninjaclass.skill['Diplomacy'][3] = 1;
+ninjaclass.skill['Disable Device'][3] = 10;
+ninjaclass.skill['Disguise'][3] = 1;
+ninjaclass.skill['Escape Artist'][3] = 5;
+ninjaclass.skill['Intimidate'][3] = 6;
+ninjaclass.skill['Knowledge Local'][3] = 4;
+ninjaclass.skill['Knowledge Nobility'][3] = 4;
+ninjaclass.skill['Linguistics'][3] = 1;
+ninjaclass.skill['Perception'][3] = 10;
+ninjaclass.skill['Sense Motive'][3] = 4;
+ninjaclass.skill['Sleight of Hand'][3] = 1;
+ninjaclass.skill['Stealth'][3] = 10;
+ninjaclass.skill['Swim'][3] = 5;
+ninjaclass.skill['Use Magic Device'][3] = 5;
+
+ninjaclass.skill['Disguise'][4] = 3;
+ninjaclass.skill['Disable Device'][5].push(["light dim less",5]);
+ninjaclass.skill['Perception'][5].push(["light dim less",5]);
+ninjarace.skill['Stealth'][5].push(["opposed",3]);
+characters[ninja].stats.push(["Ninja",ninjaclass,"Class"]);
+ninjaclass.mod="CHA";
+ninjaclass.Abilities.push(find_Castable("Dancing Lights"));
+ninjaclass.Abilities.push(find_Castable("Darkness"));
+ninjaclass.Abilities.push(find_Castable("Faerie Fire"));
+
+//ninjaclass.Spells.push(find_Castable("Magic Missile"));
+
+//items
+characters[ninja].stats.push(["Belt of Incredible Dexterity",new Stats(0,2,0,0,0,0),"Item"]);
+characters[ninja].stats.push(["Headband of Charisma",new Stats(0,0,0,0,0,2),"Item"]);
+var ninjaclass = new Stats(0,0,0,0,0,0);
+ninjaclass.saves['fortitude'].Misc = 2;
+ninjaclass.saves['reflex'].Misc = 2;
+ninjaclass.saves['will'].Misc = 2;
+characters[ninja].stats.push(["Cloak of resistance",ninjaclass,"Item"]);
+var ninjaclass = new Stats(0,0,0,0,0,0);
+ninjaclass.skill['Perception'][4] = 5;
+characters[ninja].stats.push(["Eyes of the Eagle",ninjaclass,"Item"]);
+var ninjaclass = new Stats(0,0,0,0,0,0);
+ninjaclass.skill['Disable Device'][4] = 2;
+characters[ninja].stats.push(["Masterwork Theives Tools",ninjaclass,"Item"]);
+var ninjaclass = new Stats(0,0,0,0,0,0);
+ninjaclass.armour['armour'] = 4;
+ninjaclass.resistance['damage'] = 5;
+ninjaclass.skill['Stealth'][4] = 5;
+characters[ninja].stats.push(["Armour",ninjaclass,"Armour"]);
+applyFeat("Skill Focus (Stealth)",characters[ninja]);
+applyFeat("Weapon Finesse",characters[ninja]);
+
+characters[ninja].stats.push(["Fatal Finesse",new Stats(0,0,0,0,0,0),"Ninja Trick"]);
+
+var weap = new Weapon("+1 Keen Corrosive Chthonic Wakizashi", "L", "Exotic", "Melee", [1,6], "P/S", [15,2], " - ", " - ", 10, cMoney(17285,"cp"),1,[[1,6,"acid"]],2);
+characters[ninja].Equip(weap);
+var weap = new Weapon("+1 Cold Iron Shuriken", 1, "Exotic", "Thrown", [1,2], "P", [20,2], 10, 100, 0.5, cMoney(640,"cp"),"Masterwork",[[3,6,"P"]]);
+characters[ninja].Equip(weap);
+
+//Next character
+
+walter = "Walter";
+current = walter;
+characters[walter] = new Character(walter,'Damon','Ratfolk','Alchemist','CN',10,16,14,10,14,14,"The Butterfly","Dark Lands",'Male',5.92,115,Sizes[4],'blond','green');
+
+characters[walter].Money = Money(0,2,1163);
+
+walterrace = new Stats(0,2,-2,0,0,2);
+walterrace.skill['Stealth'][5].push(["light dim less",2]);
+walterrace.skill['Intimidate'][5].push(["light dim less",2]);
+walterrace.SpellResistance = 16;
+characters[walter].stats.push(["Drow",walterrace,"Race"]);
+
+walterclass = new Stats(0,0,0,0,0,0);
+walterclass.level = 10;
+walterclass.bab[0] = 7;
+walterclass.bab[1] = 2;
+walterclass.saves['fortitude'].Base = 3;
+walterclass.saves['reflex'].Base = 7;
+walterclass.saves['will'].Base = 3;
+walterclass.skill['Acrobatics'][1] = true;
+walterclass.skill['Appraise'][1] = true;
+walterclass.skill['Bluff'][1] = true;
+walterclass.skill['Climb'][1] = true;
+walterclass.skill['Craft'][1] = true;
+walterclass.skill['Diplomacy'][1] = true;
+walterclass.skill['Disable Device'][1] = true;
+walterclass.skill['Disguise'][1] = true;
+walterclass.skill['Escape Artist'][1] = true;
+walterclass.skill['Intimidate'][1] = true;
+walterclass.skill['Knowledge Local'][1] = true;
+walterclass.skill['Knowledge Nobility'][1] = true;
+walterclass.skill['Linguistics'][1] = true;
+walterclass.skill['Perception'][1] = true;
+walterclass.skill['Perform'][1] = true;
+walterclass.skill['Profession'][1] = true;
+walterclass.skill['Sense Motive'][1] = true;
+walterclass.skill['Sleight of Hand'][1] = true;
+walterclass.skill['Stealth'][1] = true;
+walterclass.skill['Swim'][1] = true;
+walterclass.skill['Use Magic Device'][1] = true;
+
+walterclass.skill['Acrobatics'][3] = 5;
+walterclass.skill['Appraise'][3] = 1;
+walterclass.skill['Bluff'][3] = 6;
+walterclass.skill['Climb'][3] = 5;
+walterclass.skill['Craft'][3] = 1;
+walterclass.skill['Diplomacy'][3] = 1;
+walterclass.skill['Disable Device'][3] = 10;
+walterclass.skill['Disguise'][3] = 1;
+walterclass.skill['Escape Artist'][3] = 5;
+walterclass.skill['Intimidate'][3] = 6;
+walterclass.skill['Knowledge Local'][3] = 4;
+walterclass.skill['Knowledge Nobility'][3] = 4;
+walterclass.skill['Linguistics'][3] = 1;
+walterclass.skill['Perception'][3] = 10;
+walterclass.skill['Sense Motive'][3] = 4;
+walterclass.skill['Sleight of Hand'][3] = 1;
+walterclass.skill['Stealth'][3] = 10;
+walterclass.skill['Swim'][3] = 5;
+walterclass.skill['Use Magic Device'][3] = 5;
+
+walterclass.skill['Disguise'][4] = 3;
+walterclass.skill['Disable Device'][5].push(["light dim less",5]);
+walterclass.skill['Perception'][5].push(["light dim less",5]);
+walterrace.skill['Stealth'][5].push(["opposed",3]);
+characters[walter].stats.push(["Alchemist",walterclass,"Class"]);
+walterclass.mod="CHA";
+walterclass.Abilities.push(find_Castable("Dancing Lights"));
+walterclass.Abilities.push(find_Castable("Darkness"));
+walterclass.Abilities.push(find_Castable("Faerie Fire"));
+
+//walterclass.Spells.push(find_Castable("Magic Missile"));
+
+//items
+characters[walter].stats.push(["Belt of Incredible Dexterity",new Stats(0,2,0,0,0,0),"Item"]);
+characters[walter].stats.push(["Headband of Charisma",new Stats(0,0,0,0,0,2),"Item"]);
+var walterclass = new Stats(0,0,0,0,0,0);
+walterclass.saves['fortitude'].Misc = 2;
+walterclass.saves['reflex'].Misc = 2;
+walterclass.saves['will'].Misc = 2;
+characters[walter].stats.push(["Cloak of resistance",walterclass,"Item"]);
+var walterclass = new Stats(0,0,0,0,0,0);
+walterclass.skill['Perception'][4] = 5;
+characters[walter].stats.push(["Eyes of the Eagle",walterclass,"Item"]);
+var walterclass = new Stats(0,0,0,0,0,0);
+walterclass.skill['Disable Device'][4] = 2;
+characters[walter].stats.push(["Masterwork Theives Tools",walterclass,"Item"]);
+var walterclass = new Stats(0,0,0,0,0,0);
+walterclass.armour['armour'] = 4;
+walterclass.resistance['damage'] = 5;
+walterclass.skill['Stealth'][4] = 5;
+characters[walter].stats.push(["Armour",walterclass,"Armour"]);
+applyFeat("Skill Focus (Stealth)",characters[walter]);
+applyFeat("Weapon Finesse",characters[walter]);
+
+characters[walter].stats.push(["Fatal Finesse",new Stats(0,0,0,0,0,0),"Ninja Trick"]);
+
+var weap = new Weapon("+1 Keen Corrosive Chthonic Wakizashi", "L", "Exotic", "Melee", [1,6], "P/S", [15,2], " - ", " - ", 10, cMoney(17285,"cp"),1,[[1,6,"acid"]],2);
+characters[walter].Equip(weap);
+var weap = new Weapon("+1 Cold Iron Shuriken", 1, "Exotic", "Thrown", [1,2], "P", [20,2], 10, 100, 0.5, cMoney(640,"cp"),"Masterwork",[[3,6,"P"]]);
+characters[walter].Equip(weap);
+
+</script>
+</body>

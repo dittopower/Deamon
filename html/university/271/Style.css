@@ -1,0 +1,717 @@
+/*
+
+Damon Jones n8857954 
+
+Josh Henley n8858594
+
+INB271 - 2014
+
+*/
+
+/*		CSS Style Sheet			*/
+
+
+
+/*=============== Values specific to non mobiles ============== */
+
+@media only screen and (min-device-width: 480px) {
+
+	
+
+	#page{
+
+		margin: auto;
+
+		width: 1000px;
+
+		position:relative;
+
+		background:white;
+
+		padding: 0 0 20px 0;
+
+	}
+
+		#page #inner{
+
+			text-align:center;
+
+			padding: 10px;
+
+		}
+
+		
+
+	footer{
+
+		margin: auto;
+
+		width: 1000px;
+
+		color: grey;
+
+		font-size: 12px;
+
+		padding-left: 10px;
+
+		font-style:italic;
+
+	}
+
+
+
+	#parksearch{
+
+		position:relative;
+
+		margin: auto;
+
+		width:40%;
+
+		text-align: center;
+
+	}
+
+	
+
+	#reg{
+
+		text-align:center;
+
+		position:relative;
+
+		margin: auto;
+
+		width:50%;
+
+	}/* Center the register form */
+
+	
+
+	nav{
+
+		text-align:right;
+
+	}
+
+		
+
+}
+
+
+
+/*=============== Values specific to mobiles ============== */
+
+@media only screen and (max-device-width: 480px) {
+
+	
+
+	#page{
+
+		width: 100%;
+
+		position:relative;
+
+		background:white;
+
+		padding: 0 0 20px 0;
+
+	}
+
+	footer{
+
+		width: 100%;
+
+		color: grey;
+
+		font-size: 12px;
+
+		font-style:italic;
+
+		text-align:center;
+
+	}
+
+	#parksearch{
+
+		position:relative;
+
+		margin: auto;
+
+		width:100%;
+
+		text-align: center;
+
+	}
+
+	
+
+	#reg{
+
+		text-align:center;
+
+		position:relative;
+
+		width:100%;
+
+	}/* Center the register form */
+
+	
+
+	nav{
+
+		text-align:center;
+
+	}
+
+	
+
+}
+
+
+
+/* ========== Common values ================*/
+
+
+
+/* Main elements start */
+
+html body{
+
+	margin: 0;
+
+	background: #D0E288;
+
+	font-family: 'Open Sans', 'sans-serif';
+
+}
+
+
+
+header{
+
+background: #e6f0a3; /* Old browsers */
+
+background: -moz-linear-gradient(top,  #e6f0a3 0%, #d2e638 35%, #c3d825 51%, #dbf043 100%); /* FF3.6+ */
+
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#e6f0a3), color-stop(35%,#d2e638), color-stop(51%,#c3d825), color-stop(100%,#dbf043)); /* Chrome,Safari4+ */
+
+background: -webkit-linear-gradient(top,  #e6f0a3 0%,#d2e638 35%,#c3d825 51%,#dbf043 100%); /* Chrome10+,Safari5.1+ */
+
+background: -o-linear-gradient(top,  #e6f0a3 0%,#d2e638 35%,#c3d825 51%,#dbf043 100%); /* Opera 11.10+ */
+
+background: -ms-linear-gradient(top,  #e6f0a3 0%,#d2e638 35%,#c3d825 51%,#dbf043 100%); /* IE10+ */
+
+background: linear-gradient(to bottom,  #e6f0a3 0%,#d2e638 35%,#c3d825 51%,#dbf043 100%); /* W3C */
+
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6f0a3', endColorstr='#dbf043',GradientType=0 ); /* IE6-9 */
+
+
+
+	padding: 20px;
+
+}
+
+
+
+header h1{
+
+	color: white;
+
+}
+
+
+
+header h1 a{
+
+	color: white;
+
+	text-decoration: none;
+
+}
+
+
+
+nav{
+
+	color: white;
+
+	border-top: 1px solid white;
+
+	background:#252525 ;
+
+}
+
+
+
+nav a{
+
+	font-weight: 800;
+
+	color: white;
+
+}
+
+
+
+footer a{
+
+	color: grey;
+
+}
+
+/* Main elements end */
+
+
+
+#parkLink{
+
+	text-decoration:none;
+
+}
+
+
+
+article{
+
+	padding: 10px;
+
+	color:black;
+
+	text-decoration:none;
+
+	border-bottom: 1px solid black;
+
+}
+
+
+
+article:hover{
+
+	background: #252525;
+
+	color: white;
+
+}
+
+
+
+article a{
+
+	color: white;
+
+	text-decoration: none;
+
+}
+
+
+
+#login #name{
+
+	text-decoration:underline;
+
+	color:white;
+
+	background:none;
+
+	border:none;
+
+	font-weight:bold;
+
+	display:inline;
+
+}
+
+
+
+#login #out {
+
+	background:rgba(150,150,200,0.6);
+
+}
+
+
+
+#login #out:hover {
+
+	background:rgba(100,100,150,0.6);
+
+}
+
+
+
+#login{
+
+	display:inline;
+
+}
+
+	
+
+#parksearch h2{
+
+	text-align:center;
+
+}
+
+
+
+.parkthumbnail{
+
+	width:250px;
+
+	height:150px;
+
+	float:left;
+
+}
+
+.parkthumb{
+
+	position:relative;
+
+	width:95%;
+
+	height:100%;
+
+}
+
+.parklist{
+
+	position:relative;
+
+	top:10px;
+
+	left:5px;
+
+}
+
+.parklistsub{
+
+	position:relative;
+
+	left:5px;
+
+	text-decoration: none;
+
+}
+
+
+
+#parkimg{
+
+	float:left;
+
+	width:300px;
+
+	height:200px;
+
+	padding-bottom: 2px;
+
+}
+
+
+
+/* Rating start */
+
+/*
+
+	All the elements needs to display the current
+
+	rating of the park being displayed
+
+*/
+
+.rate{
+
+	display:inline-block;
+
+}
+
+h4 .rating{
+
+float:none;
+
+}
+
+.rating{
+
+	width:100px;
+
+	height:20px;
+
+	background-color:red;
+
+	display:inline-block;
+
+	float:right;
+
+}
+
+.rated5{
+
+	width:100px;
+
+	height:20px;
+
+	background-color:green;
+
+	text-align:center;
+
+}
+
+.rated4{
+
+	width:80px;
+
+	height:20px;
+
+	background-color:green;
+
+	text-align:center;
+
+}
+
+.rated3{
+
+	width:60px;
+
+	height:20px;
+
+	background-color:green;
+
+	text-align:center;
+
+}
+
+.rated2{
+
+	width:40px;
+
+	height:20px;
+
+	background-color:green;
+
+	text-align:center;
+
+}
+
+.rated1{
+
+	width:20px;
+
+	height:20px;
+
+	background-color:green;
+
+	text-align:center;
+
+}
+
+.rated0{
+
+	width:0px;
+
+	height:20px;
+
+	background-color:green;
+
+	text-align:center;
+
+}
+
+.ratedn{
+
+	width:100px;
+
+	height:20px;
+
+	background-color:grey;
+
+	text-align:center;
+
+}
+
+/* Rating end */
+
+
+
+/* Map styles start */
+
+#maps{
+
+	background: #e5e3df;
+
+	width:100%;
+
+	height:300px;
+
+	clear:both;
+
+}
+
+
+
+#maps #maplocal{
+
+	position: relative;
+
+	top: -26px;
+
+}
+
+
+
+#map-canvas{
+
+	height: 100%;
+
+}
+
+
+
+#res-map-canvas{
+
+	width:100%;
+
+	height:400px;
+
+}
+
+/* Map styles end */
+
+
+
+.infoentry{
+
+	text-align:center;
+
+}
+
+
+
+.infoentry a{
+
+	color: black;
+
+}
+
+
+
+#myrating{
+
+	clear:both;
+
+	width: 100%;
+
+	margin-bottom: 5px;
+
+	margin-top: 20px;
+
+}
+
+
+
+#infoBox{
+
+	float: right;
+
+	width: 680px;
+
+}
+
+
+
+#results a{
+
+	color: black;
+
+}
+
+
+
+#search{
+
+	padding-left: 10px;
+
+	font-weight: normal;
+
+}
+
+
+
+#reviewText{
+
+	width: 100%;
+
+	height: 50px;
+
+}
+
+
+
+#comments{
+
+	margin-bottom: 50px;
+
+}
+
+
+
+#reviewEntry{
+
+	width: 100%;
+
+	border-bottom: 1px dotted grey;
+
+	overflow: auto;
+
+	margin-bottom: 10px;
+
+}
+
+	#reviewEntry .left{
+
+		float: left;
+
+		width: calc(80% - 10px);
+
+		padding-left: 10px;
+
+	}
+
+
+
+	.dateText{
+
+		float:right;
+
+		width: 20%;
+
+		color: grey;
+
+		font-size: 12px;
+
+		text-align:right;
+
+	}
+
+	
+
+#rating{
+
+	
+
+}
+
+
+
+/*
+
+Damon Jones n8857954 
+
+Josh Henley n8858594
+
+INB271 - 2014
+
+*/

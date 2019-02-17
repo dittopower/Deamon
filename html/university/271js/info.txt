@@ -1,0 +1,65 @@
+271 - Assignment 1:
+
+  - Client-side web development
+
+
+
+Student 1:
+
+- Damon 
+
+
+
+Student 2:
+
+- Joshua 
+
+
+
+Our site will load in the .csv file and store user details + ratings and reviews in cookies allow you
+
+to save your user account, ratings and comments until you clear cookies for every park in the .csv
+
+on the site.
+
+
+
+  
+
+Addon Tasks Completion:
+
+
+
+1: Maps DONE
+
+    -- Google Maps, Complete!
+
+
+
+2: Meta-data and microdata DONE
+
+    -- Meta-data 
+
+        -- Open Graph, Complete!
+
+        -- Twitter card, Complete according to the twitter validator
+
+    -- microdata 
+
+        -- Complete using the google's old data-vocabulary.org/ standards
+
+        -- pages are dynamic Javascript & most web parsers dont run Js...
+
+
+
+3: Mobile-ready design	-- 90%?
+
+    -- Detects when a mobile device is being used using @media
+
+    -- Changes the width of the page to fit any screen
+
+    -- Changes alignment of some parts of the page to look better on a smaller screen.
+
+
+
+    -- Need to add scaling font size

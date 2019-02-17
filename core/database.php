@@ -1,11 +1,16 @@
 <?php 
 	global $mysqli;
-	$mysqli = new mysqli('localhost', 'deamon_site', 'OL.qc6G?&W_bSwQ~', 'deamon_core');
+	$mysqli = new mysqli('localhost', '{{credu}}', '{{credp}}', '{{credd}}');
 
 	if ($mysqli->connect_error) {
 		die('Connect Error (' . $mysqli->connect_errno . ') ' . $mysqli->connect_error);
 		echo '<script>alert("Database Connection Failure!");</script>';
 	}
+
+	//predifined fetch constants
+	define('MYSQL_BOTH',MYSQLI_BOTH);
+	define('MYSQL_NUM',MYSQLI_NUM);
+	define('MYSQL_ASSOC',MYSQLI_ASSOC);
 	
 	function closeCon(){
 		global $mysqli;

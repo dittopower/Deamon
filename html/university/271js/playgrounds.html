@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html>
+
+<!-- Damon Jones n8857954 -->
+
+<!-- Josh Henley n8858594 -->
+
+
+
+<!--_______________________________ Start Head _______________________________-->
+
+<head>
+
+
+
+	<!-- Style Sheet -->
+
+	<link rel="stylesheet" type="text/css" href="./Style.css"/>
+
+	 <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,800' rel='stylesheet' type='text/css'>
+
+
+
+	<!-- JavaScript -->
+
+	<script type="text/javascript"
+
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDz2a91AEEjAG_myKeojr4sFSnYhRF1J_k&sensor=true">
+
+    </script>
+
+	<script type="text/javascript" src="./magic.js"></script>
+
+
+
+	<!-- Page Title -->
+
+	<title>QLD Playgrounds</title>
+
+
+
+	<!-- Page Icon -->
+
+	<link rel="icon" type="image/png" href="./parks/favicon.ico">
+
+	
+
+	<!-- Generic site wide meta-data cause dynamic Javascripts pages have trouble seting meta-data -->
+
+	
+
+		<!-- Who created the site -->
+
+		<meta property="author" content="Damon & Josh">
+
+		<!-- Description of the site -->
+
+		<meta property="description" 
+
+			content = "Checkout some Local Playgrounds! Search for Playgrounds by their name, their park's name, rating or location." />
+
+		<!-- Keywords to help search engines determine if the site is relivant -->
+
+		<meta property="keywords" content="qld,queensland,Playgrounds,review,search,find">
+
+	
+
+		<!-- Facebook - OpenGraphs - http://ogp.me/ -->
+
+			<!-- Site's name -->
+
+			<meta property="og:title" content="Find Playgrounds!" />
+
+			<!-- description of the site -->
+
+			<meta property="og:description" 
+
+				content = "Checkout some Local Playgrounds! Search for Playgrounds by their name, their park's name, rating or location." />
+
+				<!-- The website's home url -->
+
+			<meta property="og:url" content="http://54.206.43.109/~n8857954/a1/" />
+
+			<!-- The website's media type -->
+
+			<meta property="og:type" content="website" />
+
+			<!-- An images relivant to the websites content -->
+
+			<meta property="og:image" content="http://54.206.43.109/~n8857954/a1/parks/playground.jpg" />
+
+			<meta property="og:image" content="http://54.206.43.109/~n8857954/a1/parks/park.jpg" />
+
+			<!-- Langauge -->
+
+			<meta property="og:locale" content="en_US" />
+
+			<!-- Overall Site name -->
+
+			<meta property="og:site_name" content="QLD Playgrounds" />
+
+			
+
+		<!-- Twitter cards - https://dev.twitter.com/docs/cards/validation/validator -->
+
+			<!-- The type of twitter card -->
+
+			<meta name="twitter:card" content="summary">
+
+			<!-- Site name -->
+
+			<meta name="twitter:title" content="Find QLD Playgrounds!">
+
+			<!-- Site description -->
+
+			<meta name="twitter:description" content="Checkout some Local Playgrounds! Search for Playgrounds by their name, their park's name, rating or location.">
+
+			<!-- Image about the site -->
+
+			<meta name="twitter:image:src" content="http://54.206.43.109/~n8857954/a1/parks/playground.jpg">
+
+			<!-- Site home url -->
+
+			<meta name="twitter:domain" content="http://54.206.43.109/~n8857954/a1/">
+
+	
+
+</head>
+
+<!--_______________________________ End Head _______________________________-->
+
+
+
+
+
+
+
+<!--_______________________________ Start Body _______________________________-->
+
+<body>
+
+
+
+
+
+
+
+<!-- - - - - - - - - - - - - -  Page Header  - - - - - - - - - - - - - -->
+
+<header>
+
+
+
+	<h1>Queensland Playgrounds</h1>
+
+
+
+</header>
+
+
+
+
+
+
+
+<!-- - - - - - - - - - - - - -  Navigation Bar  - - - - - - - - - - - - - -->
+
+<nav>
+
+
+
+	<a href="./info.txt">Submision Info</a>  |  
+
+	<a href="./">Search</a>  |  
+
+	<a href="./parks.html">Playgrounds</a>  |  
+
+
+
+	<form name="login" id="login" onsubmit="logon()">
+
+
+
+		<a href="registration.html">Register</a>  |
+
+		
+
+		<input type="text" name="username" placeholder="Username">
+
+		<input type="password" name="password" placeholder="Password">
+
+		
+
+		<input type="button" name="logmein" value="Login" onclick="logon()">
+
+		
+
+		<script>loginout()</script>
+
+		
+
+	</form>
+
+
+
+</nav>
+
+
+
+
+
+
+
+<!-- - - - - - - - - - - - - -  Page Content  - - - - - - - - - - - - - -->
+
+<div id="page">
+
+<!-- Everything on this page is dynamically load/changed with javascript based on the selected playground -->
+
+	
+
+	<div id="maps">
+
+		<div id="map-canvas"></div>
+
+		<!-- Show where the user is on the map -->
+
+		<button id="maplocal" onclick="showmypos()">Show My Location</button>
+
+	</div>
+
+	
+
+	<!-- Should be dynamicly changed but we dont have photos of every park, also itemprop is for microdata review -->
+
+	<img id="parkimg" itemprop="photo" alt="The Park" src="./parks/playground.jpg"/>
+
+	
+
+	<h2 id="title">playground name</h2>
+
+	
+
+	<div id="location"></div><br>
+
+	
+
+	<div id="notes"></div><br>
+
+	
+
+	<form name="myrating" id="myrating">
+
+		<fieldset>
+
+		
+
+			<h4>Rating:</h4>
+
+			
+
+			<div id="vrate"></div>
+
+
+
+			<input type="range" name="rater" min="0" max="4" value="2">
+
+			<br><input type="button" onclick="rateme()" value="Rate Me!">
+
+			
+
+		</fieldset>
+
+	</form>
+
+	
+
+	<form name="commentform" id="commentform" onsubmit="addcomment()">
+
+		<fieldset>
+
+		
+
+			<h4>Reviews:</h4>
+
+			
+
+			<div id="comments"></div>
+
+
+
+			<input type="text" name="comment" placeholder="Write a Review?">
+
+			<br><input type="button" onclick="addcomment()" value="Post Review">
+
+			
+
+		</fieldset>
+
+	</form>
+
+	
+
+	<!-- This dynamic add all the page content from the .csv everything for  -->
+
+	<script>viewitem()</script>
+
+</div>
+
+
+
+
+
+
+
+<!-- - - - - - - - - - - - - -  Page Footer  - - - - - - - - - - - - - -->
+
+<footer>
+
+
+
+	<h4>Damon & Josh</h4>
+
+
+
+</footer>
+
+
+
+
+
+
+
+</body>
+
+<!--_______________________________ End Body _______________________________-->
+
+
+
+
+
+
+
+</html>

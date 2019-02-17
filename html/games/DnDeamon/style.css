@@ -1,0 +1,354 @@
+body{
+	margin:0;
+	overflow:hidden;
+	background-color: #ffeb3b;
+}
+.sections{
+	display:inline-block;
+    vertical-align: top;
+	overflow:hidden;
+    height: 100%;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-top: 1px black solid;
+}
+#log{
+    width: calc(25% - 2em);
+}
+#rolls{
+	overflow-y:auto;
+	height: 80%;
+}
+#menu{
+    width: calc(15% - 1em);
+	padding-right:0;
+    overflow-y: auto;
+}
+#stat{
+	overflow-y:auto;
+}
+#main{
+	width:calc(60% - 2em - 2px);
+	height:100%;
+	border-left:1px black dashed;
+	border-right:1px black dashed;
+	padding-left:1em;
+	padding-right:1em;
+	margin:0;
+	overflow-y:auto;
+}
+.statdiv{
+	margin:3px;
+    display: inline-block;
+    background-color: rgba(255,255,255,0.7);
+    padding: 0.3em;
+    font-size: x-large;
+}
+#menu h4{
+    margin: 0;
+    border-bottom-color: black;
+    border-bottom-width: 1px;
+    border-bottom-style: dashed;
+    padding: 0.2em;
+    cursor: pointer;
+}
+#menu h4:hover{
+	color: white;
+    padding: 0.3em;
+    text-shadow: rgba(0,0,0,0.5) 2px 3px;
+}
+.ui-tabs-nav {
+    padding: 0;
+    padding-bottom: 10px;
+    margin: 0;
+    margin-top: 10px;
+}
+.ui-corner-top {
+    display: inline-block;
+}
+.ui-corner-top a{
+    margin: 2px;
+    padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 5px;
+    border: black 1px solid;
+    background-color: #f5f5c7;
+}
+.ui-corner-top:hover{
+    background-color: #ffff91;
+}
+.ui-corner-top *{
+	text-decoration: none;
+	color:black;
+}
+
+#controls-rolls button {
+    margin: 5px;
+    margin-top: 0;
+	padding: 3px 6px;
+}
+.msg{
+	padding:10px;
+	border-bottom: 1px black solid;
+    overflow-wrap: break-word;
+}
+.crit_fail {
+    background-color: #ff5722;
+	border-bottom:none;
+}
+.crit_suc {
+    background-color: #8BC34A;
+	border-bottom:none;
+}
+#cirs{
+    display: block;
+    font-size: large;
+    width: calc(100% - 1em);
+    padding: 0.5em;
+	overflow-y:auto;
+}
+#cirs h1{
+	font-size:1em;
+	margin:0;
+    font-weight: bold;
+}
+#cirs * {
+    font-size: 0.8em;
+}
+.sections h1{
+	margin-top:0;
+}
+.mmain{
+	background-color: #2196F3;
+}
+.mstats{
+	background-color: #8bc34a;
+}
+.mrolls{
+	background-color: #00BCD4;
+}
+.mchars{
+	background-color: #ff5722;
+}
+.mspell {
+    background-color: #FF9800;
+}
+.msetting {
+    background-color: #607D8B;
+}
+.rollable{
+    color: rgba(0,0,0,0);
+    background-image: url('d6.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+	cursor:pointer;
+    background-position: 50%;
+	height: 2em;
+    width: 2em;
+    border-radius: 0.6em;
+	border:black dotted 1px;
+	margin: 3px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.rollable:hover {
+    background-color: white;
+}
+.rollableicon{
+    color: rgba(0,0,0,0);
+    background-image: url('d6.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50%;
+	height: 2em;
+    width: 2em;
+    border-radius: 0.6em;
+    background-color: white;
+    margin: 3px;
+}
+.clickable{
+	background-color:rgba(255,255,255,0.3);
+	border-radius:1em;
+	cursor:pointer;
+	padding:0.3em;
+	margin:0.5em;
+	display:inline-block;
+    border: black dotted 1px;
+}
+.clickable:hover{
+	background-color:rgba(255,255,255,0.6);
+    border: black dashed 1px;
+}
+.clickablenot{
+	background-color:rgba(255,255,255,0.6);
+	border-radius:2em;
+	cursor:no-drop;
+	padding:0.3em;
+	margin:0.5em;
+	display:inline-block;
+	font-weight:bold;
+    border: white solid 1px;
+}
+.atkbonus {
+    padding: 2;
+    margin: 2;
+    border: black dotted 1px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.atkbonus:hover {
+    background-color: white;
+}
+.sections div h1 {
+    margin-top: 24px;
+    text-decoration: underline;
+}
+#main table{
+    display: inline-block;
+    padding: 1em;
+    margin: 1em;
+    vertical-align: top;
+    border-collapse: collapse;
+}
+#stat table{
+	background-color: #CDDC39;
+}
+#controls-rolls table{
+	background-color: #009688;
+}
+#main td{
+	padding:5px;
+    border-bottom: 1px solid black;
+    /*border-right: 1px black dashed;
+    border-left: 1px dashed black;*/
+}
+#main th{
+	padding:5px;
+    border-bottom: 4px solid black;
+}
+#main td:nth-child(1){
+	padding:0;
+}
+#main th:nth-child(1){
+	padding:0;
+}
+.skills td:nth-child(n+4){
+	text-align:center;
+}
+.abilities td:nth-child(n+3){
+	text-align:center;
+}
+.Attacks td:nth-child(n+2){
+	text-align:center;
+}
+tr:nth-child(even){
+	background-color:rgba(255,255,255,0.1);
+}
+tr:nth-child(odd){
+	background-color:rgba(0,0,0,0.1);
+}
+tr:nth-child(1){
+	background:none;
+}
+.spacer{
+	display:block;
+	width:100%;
+	height:3em;
+}
+.spacer2{
+	display:block;
+	width:100%;
+	height:1em;
+}
+.meas[type="number"]{
+	width:4em;
+}
+.unit{
+	width:5em;
+}
+.diceroll[type="number"]{
+	width:3em;
+}
+.dres{
+	background-color:rgba(255,255,255,0.3);
+	padding: 0.3em;
+}
+.emphasis{
+    background-color: rgba(0,0,0,0.2);
+}
+.result{
+    font-weight: 900;
+}
+#spell td{
+	padding:5px;
+    /*border-right: 1px black dashed;
+    border-left: 1px dashed black;*/
+}
+#spell table{
+	margin:0px;
+    border-bottom: none;
+	background-color:#FFA726;
+    width: calc(100% - 2em);
+}
+#spell table h3{
+	margin-top:0px;
+	margin-bottom:12px;
+}
+#spell tr{
+	padding:0.3em;
+}
+#spell tr:nth-child(even){
+	background-color:rgba(255,255,255,0.1);
+}
+#spell tr:nth-child(odd){
+	background-color:rgba(0,0,0,0.1);
+}
+#spell td:nth-child(1){
+	padding:0.3em;
+}
+#spell th:nth-child(1){
+	padding:0.3em;
+}
+.spell_stat {
+    font-weight: bolder;
+    display: inline-block;
+    margin-right: 1em;
+    margin-bottom: 0.3em;
+    background: rgba(0,0,0,0.15);
+    padding: 0.2em;
+}
+.spell_des {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+/*
+.castable td:hover {
+    background-color: white;
+}
+*/
+#Races h3{
+	margin:0;
+}
+#Races ul{
+	margin-top:0;
+}
+#races {
+    padding: 1em;
+    width: calc(100% - 4em);
+	overflow:auto;
+}
+#races tr {
+    width: 100%;
+    /*display: inline-table;*/
+}
+#races .statdiv {
+    background-color: rgba(255,193,7,0.8);
+    vertical-align: text-top;
+    border-radius: 0.7em;
+}
+#chars table{
+	margin:0;
+    background-color: #FF7043;
+}

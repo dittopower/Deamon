@@ -1,0 +1,94 @@
+@font-face {
+
+  font-family: 'IconicStroke';
+
+    src: url("fonts/iconic/iconic_stroke.eot");
+
+    src: local('IconicStroke'),
+
+       url("fonts/iconic/iconic_stroke.svg#iconic") format('svg'),
+
+	   url("fonts/iconic/iconic_stroke.otf") format('opentype');
+
+}
+
+
+
+.iconic {
+
+	color:inherit;
+
+	font-family: "IconicStroke";
+
+	font-size: 38px;
+
+	line-height: 20px;
+
+	vertical-align: middle;
+
+}
+
+
+
+a.iconic:hover {
+
+	color:inherit;
+
+}
+
+
+
+.iconic.home:before { content: '!'; }
+
+
+
+.iconic.dial:before { content: "2"; }
+
+
+
+.iconic.image:before { content: "?"; }
+
+
+
+.iconic.map-pin:before { content: "\\"; }
+
+.iconic.pin:before { content: "|"; }
+
+
+
+.iconic.calendar:before { content: "a"; }
+
+.iconic.calendar-alt:before { content: "A"; }
+
+
+
+.iconic.book:before { content: "e"; }
+
+.iconic.book-alt:before { content: "E"; }
+
+
+
+.iconic.magnifying-glass:before { content: "f"; }
+
+
+
+.iconic.unlocked:before { content: "l"; }
+
+.iconic.locked:before { content: "L"; }
+
+
+
+.iconic.pencil:before { content: "p"; }
+
+.iconic.pencil-alt:before { content: "P"; }
+
+
+
+.iconic.user:before { content: "u"; }
+
+
+
+.iconic.cog:before { content: "w"; }
+
+.iconic.cog-alt:before { content: "W"; }
+

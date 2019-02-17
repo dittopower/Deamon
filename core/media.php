@@ -148,7 +148,7 @@
 					}
 				}
 				// Check file size
-				if ($_FILES["fileToUpload"]["size"] > (5*1024*1024)) {
+				if ($_FILES["fileToUpload"]["size"] > (150*1024*1024)) {
 					$uploadTxt .= "Sorry, your file is too large. ";
 					note('upload',"Problem::filesize");
 					$uploadOk = 0;
@@ -225,7 +225,7 @@
 						$id = singleSQL("Select LAST_INSERT_ID();");
 						note('upload',"Uploaded::".basename( $_FILES["fileToUpload"]["name"]));
 					}
-					$uploadTxt = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded to <a href='//$_SERVER[HTTP_HOST]/files/view?$id' target='_blank'>$_SERVER[HTTP_HOST]/files/view?$id</a>.<hr>";
+					$uploadTxt = "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded to <a href='//$_SERVER[HTTP_HOST]/files/view?$id' target='_blank' rel='noopener'>$_SERVER[HTTP_HOST]/files/view?$id</a>.<hr>";
 				}else{
 					note('upload',"Failed::".basename( $_FILES["fileToUpload"]["name"]));
 				}

@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Admin Pages"
-AuthUserFile "/home3/deamon/.htpasswds/public_html/core/passwd"
-require valid-user

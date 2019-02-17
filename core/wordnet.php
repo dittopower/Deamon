@@ -1,6 +1,6 @@
 <?php 
 	global $wordsql;
-	$wordsql = new mysqli('localhost', 'deamon_site', 'OL.qc6G?&W_bSwQ~', 'deamon_wordnet');
+	$wordsql = new mysqli('localhost', '{{credu}}', '{{credp}}', '{{credd}}');
 
 	if ($wordsql->connect_error) {
 		die('Connect Error (' . $wordsql->connect_errno . ') ' . $wordsql->connect_error);

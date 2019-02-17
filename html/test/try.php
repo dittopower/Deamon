@@ -1,0 +1,1 @@
+<?phpecho "POST: ";var_dump($_POST);echo "<hr>Server: ";var_dump($_SERVER);echo "<hr>";echo "var1" + $_SERVER["REQUEST_SCHEME"];echo "<hr>";?>

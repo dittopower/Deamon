@@ -1,0 +1,159 @@
+	*{
+		font-family: "Century Gothic",Arial, Helvetica, Sans-Serif;
+	}
+	body{
+		margin:0;
+		overflow-x:hidden;
+		width:100%;
+	}
+	header{
+		background-image:url('images/Bottom_texture.jpg');
+	}
+	footer{
+	    background-color: #FFCC80;
+		width: calc(100% - 2em);
+		padding: 1em;
+		position:static;
+		bottom:0;
+		margin-top:0.5em;
+	}
+	#logo{
+		background-image:url('images/wsd.png');
+		width: 227px;
+		height: 175px;
+		float:left;
+	}
+	h1, h2, h3, h4, h5, h6, p, a {
+		margin: 0;
+		padding: 0;
+	}
+	h1, h2, h3, h4, h5, h6{
+		color: #f57c00;
+	}
+	header h1{
+		color:#ca3300;/*maybe swap to #e65100*/
+		font-size:4em;
+	}
+	header h2{
+		font-size:3em;
+		color:#858585;
+	}
+	header table{
+		margin:auto;
+	}
+	#deamon{
+		float:right;
+		display:none;
+	}
+	.services{
+		list-style-image: url('images/postbullets.png');
+	}
+	#content h3{
+		margin-bottom:18px;
+		margin-top:18px;
+	}
+	#content h2{
+		margin-bottom:24px;
+		margin-top:24px;
+	}
+	a{
+		color:#ca3300;
+		font-weight:bold;
+	}
+	nav{
+		background: #ff9800;
+		padding:0.75em;
+		text-align:center;
+		font-weight:bold;
+		text-transform: uppercase;
+		width: calc(100% - 1.5em);
+	}
+	nav a{
+		padding:0.3em;
+		padding-left:1em;
+		padding-right:1em;
+		color:black;
+		text-decoration:none;
+		border:rgba(0,0,0,0) 1px solid;
+		border-radius:4px;
+	}
+	nav a:hover{
+		border:#D47902 1px solid;
+		border-radius:4px;
+		background: #ffb74d;
+		text-decoration:overline;
+	}
+	a.current{
+		border:#D47902 1px solid;
+		border-radius:4px;
+		background: #FFCC80;
+		text-decoration:underline;
+	}
+	
+	.car{
+		background-color:#fff3e0;
+		background-image: url('./images/daisyhill-2-2-2-2-2.jpg');
+		/* background-repeat: no-repeat;
+		background-position: center; */
+		width:100%;
+		/* min-width:500px; */
+		height:100%;
+		min-height:500px;
+		/* display:inline-block; */
+		/* float:right; */
+		margin-right:-0.5em;
+		padding:0;
+	}
+	#content{
+		/* margin:1em;
+		margin-bottom: 0;*/
+		margin-top: 0.5em;
+		background-color:white;
+		width:100%;
+	}
+	#content td{
+		width:50%;
+		padding-left: 1em;
+		padding-right: 0.5em;
+	}
+	article{
+		/* display:inline-block; */
+		/* margin:0.5em;
+		margin-left:1.5em;
+		margin-bottom: 0; */
+		/* width:48% */
+		margin:auto;
+		width:90%;
+		text-align: justify;
+	}
+	address{
+		width:100%;
+		height:100%;
+	}
+	
+	.balance{
+		margin:auto;
+		text-align: center;
+	}
+	.enhanced{
+		color:#e65100;
+		background-color:#fff3e0;
+		font-size: 1.2em;
+		display:block;
+		padding: 1em;
+		margin: 0.5em;
+	}
+	
+	@media all and (max-width: 1080px){
+		.car{
+			width:100%;
+		/*margin-right:0;*/
+		}
+		#content td{
+			display:block;
+			width:calc(100% - 2em);
+		padding-left: 1em;
+		padding-right: 1em;
+		}
+	}
+

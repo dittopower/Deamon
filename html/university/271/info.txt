@@ -1,0 +1,82 @@
+271 - Assignment 2:
+
+  - PHP Web Implementation
+
+
+
+Student 1:
+
+---------------------------------------
+
+- Damon
+
+
+
+Student 2:
+
+---------------------------------------
+
+- Joshua 
+
+
+
+
+
+Challenge Task:
+
+---------------------------------------
+
+6: Admin page
+
+	-- Complete.
+
+    -- user: Admin	Pass: logmein
+
+
+
+Addon Tasks From Assignment 1:
+
+---------------------------------------
+
+1: Maps DONE
+
+    -- Google Maps, Complete!
+
+
+
+2: Meta-data and microdata DONE
+
+    -- Meta-data 
+
+        -- Open Graph, Complete!
+
+		Example: https://developers.facebook.com/tools/debug/og/object?q=http%3A%2F%2F54.206.43.109%2F~n8857954%2Fa2%2Fparks.php%3Fplayground%3D894
+
+		
+
+        -- Twitter card, Complete according to the twitter validator
+
+		
+
+    -- Microdata of idividual items
+
+        -- Place Complete
+
+		-- Review Complete
+
+		-- Rating Complete
+
+		Example link: http://www.google.com/webmasters/tools/richsnippets?q=http%3A%2F%2F54.206.43.109%2F~n8857954%2Fa2%2Fparks.php%3Fplayground%3D987
+
+
+
+3: Mobile-ready design DONE
+
+    -- Detects when a mobile device is being used using @media
+
+    -- Changes the width of the page to fit any screen
+
+    -- Changes alignment of some parts of the page to look better on a smaller screen.
+
+
+
