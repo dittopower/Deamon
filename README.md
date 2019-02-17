@@ -29,6 +29,7 @@ Includes:
      - [lpm] Lecture Progess Monitor
 
 Planned Site Architechure:
+https://docs.google.com/presentation/d/10eP38ZNa3N9LI2Ty_HlfJ-6GnvmotcqP2pH4uaIGdjc/edit?usp=sharing
  - Firebase Realtime Database
  - Firebase Serverless functions
  - Nodejs server to host static content
@@ -36,3 +37,6 @@ Planned Site Architechure:
    - Caching
  - Firebases notifications
  - React/Preact/Vue/svelte Front end
+ PlannedSiteArchitechure.png
+
+ 
