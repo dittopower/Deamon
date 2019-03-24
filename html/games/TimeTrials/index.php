@@ -29,7 +29,8 @@ var fps = 30;
 var ticks = 0;
 var current = 5;
 var finish = 0;
-var lean = 250;
+var lean = 100;
+var superlean = 10;
 var max = 10;
 var timer;
 
@@ -155,37 +156,37 @@ function writescore(){
 function outcome(res){
   ctx.fillStyle = 'white';
   ctx.fillRect(0,0,canvas.width,radius);
-switch(res){
-  case 'win':
-    max = max *1.2 %60;
-    var diff = (Date.now()-finish);
-    if(diff < (lean/20) && diff > -(lean/20)){
-      score.alter(5);//if it's perfect triple points :)
-      drawEdge('green',20);
-      centerText('Perect!! '+current+'s', halfx, radius*0.5, 'green');
-    }else{
-      score.alter(1);
-      drawEdge('green',10);
-      centerText('You did it! ~'+current+'s', halfx, radius*0.5, 'green');
-    }
-    break;
-  case 'over':
-    score.set(0);
-    drawEdge('red',10);
-    centerText('Time\'s up '+current+'s', halfx, radius*0.5, 'red');
-    break;
-  case 'under':
-    score.set(0);
-    drawEdge('orange',10);
+  switch(res){
+    case 'win':
+      max = max *1.2 %60;
+      var diff = (Date.now()-finish);
+      if(diff < (superlean) && diff > -(superlean)){
+        score.alter(5);//if it's perfect triple points :)
+        drawEdge('green',20);
+        centerText('Perect!! ' + ((Date.now()-finish+(current * 1000))/ 1000).toFixed(2).replace(/0+$/,"") + 's of ' + current + 's', halfx, radius*0.5, 'green');
+      }else{
+        score.alter(1);
+        drawEdge('green',10);
+        centerText('Close enough! ' + ((Date.now()-finish+(current * 1000))/ 1000).toFixed(2).replace(/0+$/,"") + 's of ' + current + 's', halfx, radius*0.5, 'green');
+      }
+      break;
+    case 'over':
+      score.set(0);
+      drawEdge('red',10);
+      centerText('Time\'s up '+current+'s', halfx, radius*0.5, 'red');
+      break;
+    case 'under':
+      score.set(0);
+      drawEdge('orange',10);
 
-    centerText(((Date.now()-finish+(current * 1000))/ 1000).toPrecision(2)+'s instead of '+current+'s', halfx, radius*0.5, 'red');
-    break;
-  default:
-    //error
-    break;
-  }
-writescore();
-canvas.onclick = function(){resetTicker();}
+      centerText(((Date.now()-finish+(current * 1000))/ 1000).toFixed(2).replace(/0+$/,"")+'s instead of '+current+'s', halfx, radius*0.5, 'red');
+      break;
+    default:
+      //error
+      break;
+    }
+  writescore();
+  canvas.onclick = function(){resetTicker();}
 }
 
 </script>
